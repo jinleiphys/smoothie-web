@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth of SMOOTHIE - SMOOTHIE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">SMOOTHIE</h1>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="story.html" class="nav-link active">Birth of SMOOTHIE</a></li>
+                <li><a href="papers.html" class="nav-link">Related Papers</a></li>
+                <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+                <li><a href="examples.html" class="nav-link">Input Examples</a></li>
+                <li><a href="programs.html" class="nav-link">Related Programs</a></li>
+                <li><a href="generator.html" class="nav-link">Input File Generator</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Story Page -->
+            <div class="page-header">
+                <h1>The Birth of SMOOTHIE</h1>
+                <p><em>by Jin Lei</em></p>
+            </div>
+            <div class="content-section">
+                <div class="story-content">
+                    <p>The autumn wind carried promise and uncertainty as I stepped off the plane in Sevilla on October 15, 2013. The Spanish sun, still warm despite the season, seemed to mock my naive optimism. I had come here to pursue my doctorate in theoretical nuclear physics under Professor Antonio Moro, armed with misconceptions that would soon crumble like ancient parchment.</p>
+
+                    <p>In my mind, the path was clear: run some calculations using the renowned FRESCO code, publish a few papers, and smoothly sail toward my PhD. How wrong I was. Antonio's first words to me were sobering: "Getting a PhD is very difficult. I have high standards. You won't just use existing codes—you'll write your own."</p>
+
+                    <p>The weight of his expectations settled on my shoulders like a lead cloak. He had two projects in mind, he said, and I would choose one. But choice, I soon learned, was an illusion. He had already decided: I would work on inclusive breakup reactions while my colleague Mario tackled (p,pN) reactions. The goal was ambitious—to benchmark semi-classical methods against the Ichimura-Austern-Vincent (IAV) model, the fully quantum mechanical model.</p>
+
+                    <h3>The First Month: Baptism by Fire</h3>
+                    <p>That first month was baptism by fire. Antonio taught me to use FRESCO for transfer reactions, and together with Mario, we attempted a warm-up project on the <sup>9</sup>Li(d,p)<sup>10</sup>Li* reaction. We never reached our goal, but I learned something far more valuable—the depth of my ignorance.</p>
+
+                    <p>My educational foundation was built on sand. My undergraduate degree in mechanical engineering—chosen by my mother who feared a physics degree would leave me unemployed—had left me without even basic quantum mechanics. During my master's studies in Lanzhou, working with heavy ion accelerators, I had learned about detectors and nuclear electronics, but quantum theory remained a foreign language.</p>
+
+                    <p>Sitting in discussions with Mario and Antonio, I was lost in a forest of unfamiliar terms. Clebsch-Gordan coefficients? Partial wave decomposition? They might as well have been speaking ancient Sumerian. The learning curve wasn't steep—it was vertical.</p>
+
+                    <h3>The Challenge: Inclusive Breakup Reactions</h3>
+                    <p>By the second month, Antonio introduced me to the real challenge: inclusive breakup reactions. Three competing models existed—IAV, Udagawa-Tamura (UT), and Hussein-McVoy (HM)—and their creators had engaged in heated debates throughout the 1980s. Since 1990, the subject had virtually vanished from scientific literature, as if swallowed by history itself. No public computer codes existed for such calculations.</p>
+
+                    <p>The task before me was Herculean: understand why these models disagreed, determine which (if any) was correct, and possibly develop a new model entirely. For a beginner barely grasping the fundamentals, it felt like being asked to compose a symphony before learning to read music.</p>
+
+                    <p>Just before Christmas, Antonio wrote to Ian Thompson about my work. Ian's reply was discouraging—he had hired an experienced postdoc, Gregory Potel, for similar work. Ian gently suggested Antonio find an easier project for a beginner like me. But neither Antonio nor I wanted to surrender.</p>
+
+                    <h3>Learning to Code: The Birth of AHUA</h3>
+                    <p>I dove into the numerical depths, using the Numerov method to solve the Schrödinger equation in partial wave expansion. My programming skills were rusty—I had learned C during my undergraduate years but hadn't touched it since. Antonio offered me a choice of programming languages but mentioned his extensive Fortran subroutines. The message was clear.</p>
+
+                    <p>Within a week, I had learned to solve scattering equations. Another week brought mastery of bound state problems. Armed with Kasano and Ichimura's paper on zero-range methods, I had benchmarks to validate my work.</p>
+
+                    <p>I named my IAV code "AHUA," after my cat from my master's degree days. In Chinese, "Hua" means flower, and AHUA was a common tabby cat. Following Chinese tradition—the more ordinary the name, the better the fortune—I embraced this humble naming. Within AHUA, I used the Chinese zodiac to name files: mouse.f contained the Numerov method for scattering and bound state problems. Antonio laughed when he discovered this, encouraging my cultural touch.</p>
+
+                    <p>It took six weeks to complete the zero-range IAV model and benchmark it against Kasano's results. I learned Simpson integration, Gaussian quadrature, the Numerov method, and Green's functions for inhomogeneous equations. Most importantly, I learned to think in Fortran.</p>
+
+                    <h3>Beyond Zero-Range: The Finite-Range Challenge</h3>
+                    <p>Antonio pushed me forward: zero-range approximation wasn't enough; I needed finite-range calculations. No existing papers discussed finite-range partial wave forms for the IAV model. I had to derive them myself—a daunting task given my background.</p>
+
+                    <p>Satchler's book became my bible, its detailed derivations of finite-range partial waves for transfer reactions my roadmap. The coupling of Clebsch-Gordan coefficients nearly broke me. After more than a month of struggle, I finally derived the formulas.</p>
+
+                    <p>Then Antonio returned from a conference with news: Brett Carlson was working on the same project. He tried to comfort me—Brett and Gregory focused on deuteron-induced reactions while we targeted knockout reactions. But when I completed my code, I discovered a harsh truth: only deuteron-induced reactions were computationally feasible. As projectile mass increased, the required partial waves exploded, and my unoptimized code couldn't handle knockout reactions.</p>
+
+                    <h3>Competition and Optimization</h3>
+                    <p>After publishing my first IAV paper, Antonio insisted on benchmarking our code against the other groups' results. Meanwhile, I needed to optimize my program for parallel computing to achieve our original goal of knockout reaction calculations.</p>
+
+                    <p>I spent over a year on optimization. During this time, I met Ofelia—the most important person in my life. Love bloomed alongside scientific progress.</p>
+
+                    <h3>The Final Year: Thesis and Beyond</h3>
+                    <p>My third year in Sevilla arrived with urgency. My three-year scholarship was ending, and Spanish bureaucracy demanded thesis submission months before defense. I needed to graduate and find a postdoc position.</p>
+
+                    <p>I spent a month visiting Brett Carlson in Brazil, benchmarking our codes. Though I wanted to continue with Antonio, he wisely encouraged me to broaden my horizons. That final year brought many changes: multiple AHUA versions, optimizations that made the code 1000 times faster than the original, marriage to Ofelia, and a honeymoon through Germany, Italy, Greece, and Austria. Most importantly, I successfully defended my PhD.</p>
+
+                    <h3>Ohio: New Beginnings and SMOOTHIE's Birth</h3>
+                    <p>Ohio brought new beginnings and new challenges. Starting from scratch, I learned to think in momentum space—a lengthy transformation from coordinate space thinking. I mastered the Glöckle approach and Jacobi coordinate transformations in angular momentum basis, techniques entirely different from Satchler's methods.</p>
+
+                    <p>A thought crystallized: why not rewrite the IAV program using these new techniques? AHUA, written when I knew nothing about efficient programming, contained many naive implementations. From this realization, SMOOTHIE was born—not just a code, but the culmination of a journey from mechanical engineer to nuclear theorist, from student to scientist.</p>
+
+                    <p>Looking back, every struggle, every late night, every moment of despair had led to this. SMOOTHIE wasn't just a computer program; it was proof that with persistence, even the most unlikely journeys can reach beautiful destinations.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

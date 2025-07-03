@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input File Generator - SMOOTHIE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">SMOOTHIE</h1>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="story.html" class="nav-link">Birth of SMOOTHIE</a></li>
+                <li><a href="papers.html" class="nav-link">Related Papers</a></li>
+                <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+                <li><a href="examples.html" class="nav-link">Input Examples</a></li>
+                <li><a href="programs.html" class="nav-link">Related Programs</a></li>
+                <li><a href="generator.html" class="nav-link active">Input File Generator</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Generator Page -->
+            <div class="page-header">
+                <h1>Input File Generator</h1>
+                <p>Generate input files for SMOOTHIE calculations</p>
+            </div>
+            <div class="content-section">
+                <div class="generator-container">
+                    <form class="generator-form" id="smoothieForm">
+                        <div class="form-section">
+                            <h2>Basic Parameters</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="projectileMass">Projectile Mass (u)</label>
+                                    <input type="number" id="projectileMass" name="projectileMass" step="0.001" placeholder="e.g., 2.014" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="targetMass">Target Mass (u)</label>
+                                    <input type="number" id="targetMass" name="targetMass" step="0.001" placeholder="e.g., 12.0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="beamEnergy">Beam Energy (MeV)</label>
+                                    <input type="number" id="beamEnergy" name="beamEnergy" step="0.1" placeholder="e.g., 56.0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectileZ">Projectile Z</label>
+                                    <input type="number" id="projectileZ" name="projectileZ" placeholder="e.g., 1" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="targetZ">Target Z</label>
+                                    <input type="number" id="targetZ" name="targetZ" placeholder="e.g., 6" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectileA">Projectile A</label>
+                                    <input type="number" id="projectileA" name="projectileA" placeholder="e.g., 2" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2>Angular Range</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="angleMin">Minimum Angle (degrees)</label>
+                                    <input type="number" id="angleMin" name="angleMin" step="0.1" value="0.0" placeholder="0.0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="angleMax">Maximum Angle (degrees)</label>
+                                    <input type="number" id="angleMax" name="angleMax" step="0.1" value="180.0" placeholder="180.0">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="angleStep">Angular Step (degrees)</label>
+                                    <input type="number" id="angleStep" name="angleStep" step="0.1" value="1.0" placeholder="1.0">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2>Potential Parameters</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="realCentral">Real Central Potential</label>
+                                    <select id="realCentral" name="realCentral">
+                                        <option value="woods_saxon">Woods-Saxon</option>
+                                        <option value="gaussian">Gaussian</option>
+                                        <option value="exponential">Exponential</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="imaginaryCentral">Imaginary Central Potential</label>
+                                    <select id="imaginaryCentral" name="imaginaryCentral">
+                                        <option value="woods_saxon">Woods-Saxon</option>
+                                        <option value="gaussian">Gaussian</option>
+                                        <option value="exponential">Exponential</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="spinOrbit">Spin-Orbit Potential</label>
+                                    <select id="spinOrbit" name="spinOrbit">
+                                        <option value="thomas">Thomas</option>
+                                        <option value="derivative">Derivative</option>
+                                        <option value="none">None</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="coulomb">Coulomb Potential</label>
+                                    <select id="coulomb" name="coulomb">
+                                        <option value="point">Point Charge</option>
+                                        <option value="uniform">Uniform Sphere</option>
+                                        <option value="none">None</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2>Breakup Configuration</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="channels">Number of Channels</label>
+                                    <input type="number" id="channels" name="channels" min="1" max="10" value="2" placeholder="2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fragment1">Fragment 1</label>
+                                    <select id="fragment1" name="fragment1">
+                                        <option value="proton">Proton</option>
+                                        <option value="neutron">Neutron</option>
+                                        <option value="alpha">Alpha</option>
+                                        <option value="deuteron">Deuteron</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fragment2">Fragment 2</label>
+                                    <select id="fragment2" name="fragment2">
+                                        <option value="neutron">Neutron</option>
+                                        <option value="proton">Proton</option>
+                                        <option value="alpha">Alpha</option>
+                                        <option value="deuteron">Deuteron</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bindingEnergy">Binding Energy (MeV)</label>
+                                    <input type="number" id="bindingEnergy" name="bindingEnergy" step="0.001" placeholder="e.g., 2.225">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2>Numerical Parameters</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="rMax">Maximum Radius (fm)</label>
+                                    <input type="number" id="rMax" name="rMax" step="0.1" value="20.0" placeholder="20.0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rStep">Radial Step (fm)</label>
+                                    <input type="number" id="rStep" name="rStep" step="0.001" value="0.1" placeholder="0.1">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="lMax">Maximum L</label>
+                                    <input type="number" id="lMax" name="lMax" min="1" max="50" value="20" placeholder="20">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tolerance">Convergence Tolerance</label>
+                                    <input type="number" id="tolerance" name="tolerance" step="1e-6" value="1e-6" placeholder="1e-6">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-generate" onclick="generateInputFile()">Generate Input File</button>
+                            <button type="button" class="btn-secondary" onclick="loadExample()">Load Example</button>
+                            <button type="button" class="btn-secondary" onclick="resetForm()">Reset Form</button>
+                        </div>
+                    </form>
+                    
+                    <div class="preview-section">
+                        <h2>Preview</h2>
+                        <div class="preview-container">
+                            <pre id="inputPreview" class="input-preview">
+# Input file preview will appear here
+# Fill in the form and click "Generate Input File"
+                            </pre>
+                        </div>
+                        <div class="preview-actions">
+                            <button type="button" class="btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+                            <button type="button" class="btn-secondary" onclick="downloadInputFile()">Download File</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
