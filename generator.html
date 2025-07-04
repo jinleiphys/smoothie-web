@@ -272,33 +272,11 @@
                         <!-- POTENTIAL Namelist Parameters -->
                         <div class="form-section">
                             <h2>POTENTIAL Parameters</h2>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="potentialCount">Number of Potentials</label>
-                                    <select id="potentialCount" name="potentialCount">
-                                        <option value="1">1 Potential</option>
-                                        <option value="2">2 Potentials</option>
-                                        <option value="3">3 Potentials</option>
-                                        <option value="4">4 Potentials</option>
-                                        <option value="5" selected>5 Potentials</option>
-                                    </select>
-                                </div>
-                            </div>
                             
-                            <!-- Potential 1: a-A -->
+                            <!-- Potential 1: a-A System -->
                             <div class="potential-section" id="potential1">
-                                <h3>Potential 1: a-A System</h3>
+                                <h3>Potential 1: kp1='a' (projectile-target)</h3>
                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="kp1_1">Potential Type</label>
-                                        <select id="kp1_1" name="kp1_1">
-                                            <option value="a" selected>a (projectile-target)</option>
-                                            <option value="b">b (detected-recoil)</option>
-                                            <option value="x">x (undetected-target)</option>
-                                            <option value="p">p (detected-undetected)</option>
-                                            <option value="t">t (detected-target)</option>
-                                        </select>
-                                    </div>
                                     <div class="form-group">
                                         <label for="ptype1">Potential Model</label>
                                         <select id="ptype1" name="ptype1">
@@ -306,20 +284,22 @@
                                             <option value="2">Gaussian</option>
                                             <option value="3">KD02 Global</option>
                                             <option value="4">CH89 Global</option>
+                                            <option value="41">Read from fort.41</option>
+                                            <option value="42">Read from fort.42</option>
+                                            <option value="43">Read from fort.43</option>
+                                            <option value="44">Read from fort.44</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="form-group">
                                         <label for="a1_1">Mass Parameter 1 (amu)</label>
                                         <input type="number" id="a1_1" name="a1_1" step="0.001" placeholder="0" value="0">
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="form-group">
                                         <label for="a2_1">Mass Parameter 2 (amu)</label>
                                         <input type="number" id="a2_1" name="a2_1" step="0.001" placeholder="93" value="93">
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="form-group">
                                         <label for="rc1">Coulomb Radius (fm)</label>
                                         <input type="number" id="rc1" name="rc1" step="0.01" placeholder="1.3" value="1.3">
@@ -371,6 +351,514 @@
                                             <label for="rwd1">Surface Absorption Radius (fm)</label>
                                             <input type="number" id="rwd1" name="rwd1" step="0.01" placeholder="1.37" value="1.37">
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Potential 2: b-B* System -->
+                            <div class="potential-section" id="potential2">
+                                <h3>Potential 2: kp1='b' (detected-recoil)</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ptype2">Potential Model</label>
+                                        <select id="ptype2" name="ptype2">
+                                            <option value="1">Woods-Saxon</option>
+                                            <option value="2">Gaussian</option>
+                                            <option value="3">KD02 Global</option>
+                                            <option value="4" selected>CH89 Global</option>
+                                            <option value="41">Read from fort.41</option>
+                                            <option value="42">Read from fort.42</option>
+                                            <option value="43">Read from fort.43</option>
+                                            <option value="44">Read from fort.44</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="a1_2">Mass Parameter 1 (amu)</label>
+                                        <input type="number" id="a1_2" name="a1_2" step="0.001" placeholder="0" value="0">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="a2_2">Mass Parameter 2 (amu)</label>
+                                        <input type="number" id="a2_2" name="a2_2" step="0.001" placeholder="94" value="94">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rc2">Coulomb Radius (fm)</label>
+                                        <input type="number" id="rc2" name="rc2" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Woods-Saxon Volume Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="uv2">Real Volume Depth (MeV)</label>
+                                        <input type="number" id="uv2" name="uv2" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="av2">Real Volume Diffuseness (fm)</label>
+                                        <input type="number" id="av2" name="av2" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rv2">Real Volume Radius (fm)</label>
+                                        <input type="number" id="rv2" name="rv2" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="uw2">Imaginary Volume Depth (MeV)</label>
+                                        <input type="number" id="uw2" name="uw2" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="aw2">Imaginary Volume Diffuseness (fm)</label>
+                                        <input type="number" id="aw2" name="aw2" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rw2">Imaginary Volume Radius (fm)</label>
+                                        <input type="number" id="rw2" name="rw2" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Surface Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vd2">Real Surface Depth (MeV)</label>
+                                        <input type="number" id="vd2" name="vd2" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="avd2">Real Surface Diffuseness (fm)</label>
+                                        <input type="number" id="avd2" name="avd2" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rvd2">Real Surface Radius (fm)</label>
+                                        <input type="number" id="rvd2" name="rvd2" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wd2">Imaginary Surface Depth (MeV)</label>
+                                        <input type="number" id="wd2" name="wd2" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="awd2">Imaginary Surface Diffuseness (fm)</label>
+                                        <input type="number" id="awd2" name="awd2" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rwd2">Imaginary Surface Radius (fm)</label>
+                                        <input type="number" id="rwd2" name="rwd2" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Spin-Orbit Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vsov2">Real Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsov2" name="vsov2" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rsov2">Real Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsov2" name="rsov2" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asov2">Real Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asov2" name="asov2" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vsow2">Imaginary Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsow2" name="vsow2" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rsow2">Imaginary Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsow2" name="rsow2" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asow2">Imaginary Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asow2" name="asow2" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Potential 3: x-A System -->
+                            <div class="potential-section" id="potential3">
+                                <h3>Potential 3: kp1='x' (undetected-target)</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ptype3">Potential Model</label>
+                                        <select id="ptype3" name="ptype3">
+                                            <option value="1">Woods-Saxon</option>
+                                            <option value="2">Gaussian</option>
+                                            <option value="3">KD02 Global</option>
+                                            <option value="4" selected>CH89 Global</option>
+                                            <option value="41">Read from fort.41</option>
+                                            <option value="42">Read from fort.42</option>
+                                            <option value="43">Read from fort.43</option>
+                                            <option value="44">Read from fort.44</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="a1_3">Mass Parameter 1 (amu)</label>
+                                        <input type="number" id="a1_3" name="a1_3" step="0.001" placeholder="0" value="0">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="a2_3">Mass Parameter 2 (amu)</label>
+                                        <input type="number" id="a2_3" name="a2_3" step="0.001" placeholder="93" value="93">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rc3">Coulomb Radius (fm)</label>
+                                        <input type="number" id="rc3" name="rc3" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Woods-Saxon Volume Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="uv3">Real Volume Depth (MeV)</label>
+                                        <input type="number" id="uv3" name="uv3" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="av3">Real Volume Diffuseness (fm)</label>
+                                        <input type="number" id="av3" name="av3" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rv3">Real Volume Radius (fm)</label>
+                                        <input type="number" id="rv3" name="rv3" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="uw3">Imaginary Volume Depth (MeV)</label>
+                                        <input type="number" id="uw3" name="uw3" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="aw3">Imaginary Volume Diffuseness (fm)</label>
+                                        <input type="number" id="aw3" name="aw3" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rw3">Imaginary Volume Radius (fm)</label>
+                                        <input type="number" id="rw3" name="rw3" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Surface Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vd3">Real Surface Depth (MeV)</label>
+                                        <input type="number" id="vd3" name="vd3" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="avd3">Real Surface Diffuseness (fm)</label>
+                                        <input type="number" id="avd3" name="avd3" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rvd3">Real Surface Radius (fm)</label>
+                                        <input type="number" id="rvd3" name="rvd3" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wd3">Imaginary Surface Depth (MeV)</label>
+                                        <input type="number" id="wd3" name="wd3" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="awd3">Imaginary Surface Diffuseness (fm)</label>
+                                        <input type="number" id="awd3" name="awd3" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rwd3">Imaginary Surface Radius (fm)</label>
+                                        <input type="number" id="rwd3" name="rwd3" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Spin-Orbit Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vsov3">Real Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsov3" name="vsov3" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rsov3">Real Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsov3" name="rsov3" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asov3">Real Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asov3" name="asov3" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vsow3">Imaginary Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsow3" name="vsow3" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rsow3">Imaginary Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsow3" name="rsow3" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asow3">Imaginary Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asow3" name="asow3" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Potential 4: p (b-x) System -->
+                            <div class="potential-section" id="potential4">
+                                <h3>Potential 4: kp1='p' (detected-undetected)</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ptype4">Potential Model</label>
+                                        <select id="ptype4" name="ptype4">
+                                            <option value="1">Woods-Saxon</option>
+                                            <option value="2" selected>Gaussian</option>
+                                            <option value="3">KD02 Global</option>
+                                            <option value="4">CH89 Global</option>
+                                            <option value="41">Read from fort.41</option>
+                                            <option value="42">Read from fort.42</option>
+                                            <option value="43">Read from fort.43</option>
+                                            <option value="44">Read from fort.44</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="a1_4">Mass Parameter 1 (amu)</label>
+                                        <input type="number" id="a1_4" name="a1_4" step="0.001" placeholder="1" value="1">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="a2_4">Mass Parameter 2 (amu)</label>
+                                        <input type="number" id="a2_4" name="a2_4" step="0.001" placeholder="1" value="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rc4">Coulomb Radius (fm)</label>
+                                        <input type="number" id="rc4" name="rc4" step="0.01" placeholder="1.5" value="1.5">
+                                    </div>
+                                </div>
+                                <!-- Woods-Saxon Volume Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="uv4">Real Volume Depth (MeV)</label>
+                                        <input type="number" id="uv4" name="uv4" step="0.1" placeholder="72.15" value="72.15">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="av4">Real Volume Diffuseness (fm)</label>
+                                        <input type="number" id="av4" name="av4" step="0.01" placeholder="1.484" value="1.484">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rv4">Real Volume Radius (fm)</label>
+                                        <input type="number" id="rv4" name="rv4" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="uw4">Imaginary Volume Depth (MeV)</label>
+                                        <input type="number" id="uw4" name="uw4" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="aw4">Imaginary Volume Diffuseness (fm)</label>
+                                        <input type="number" id="aw4" name="aw4" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rw4">Imaginary Volume Radius (fm)</label>
+                                        <input type="number" id="rw4" name="rw4" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Surface Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vd4">Real Surface Depth (MeV)</label>
+                                        <input type="number" id="vd4" name="vd4" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="avd4">Real Surface Diffuseness (fm)</label>
+                                        <input type="number" id="avd4" name="avd4" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rvd4">Real Surface Radius (fm)</label>
+                                        <input type="number" id="rvd4" name="rvd4" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wd4">Imaginary Surface Depth (MeV)</label>
+                                        <input type="number" id="wd4" name="wd4" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="awd4">Imaginary Surface Diffuseness (fm)</label>
+                                        <input type="number" id="awd4" name="awd4" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rwd4">Imaginary Surface Radius (fm)</label>
+                                        <input type="number" id="rwd4" name="rwd4" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Spin-Orbit Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vsov4">Real Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsov4" name="vsov4" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rsov4">Real Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsov4" name="rsov4" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asov4">Real Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asov4" name="asov4" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vsow4">Imaginary Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsow4" name="vsow4" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rsow4">Imaginary Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsow4" name="rsow4" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asow4">Imaginary Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asow4" name="asow4" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Potential 5: t (b-A) System -->
+                            <div class="potential-section" id="potential5">
+                                <h3>Potential 5: kp1='t' (detected-target)</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="ptype5">Potential Model</label>
+                                        <select id="ptype5" name="ptype5">
+                                            <option value="1">Woods-Saxon</option>
+                                            <option value="2">Gaussian</option>
+                                            <option value="3">KD02 Global</option>
+                                            <option value="4" selected>CH89 Global</option>
+                                            <option value="41">Read from fort.41</option>
+                                            <option value="42">Read from fort.42</option>
+                                            <option value="43">Read from fort.43</option>
+                                            <option value="44">Read from fort.44</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="a1_5">Mass Parameter 1 (amu)</label>
+                                        <input type="number" id="a1_5" name="a1_5" step="0.001" placeholder="0" value="0">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="a2_5">Mass Parameter 2 (amu)</label>
+                                        <input type="number" id="a2_5" name="a2_5" step="0.001" placeholder="93" value="93">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rc5">Coulomb Radius (fm)</label>
+                                        <input type="number" id="rc5" name="rc5" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Woods-Saxon Volume Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="uv5">Real Volume Depth (MeV)</label>
+                                        <input type="number" id="uv5" name="uv5" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="av5">Real Volume Diffuseness (fm)</label>
+                                        <input type="number" id="av5" name="av5" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rv5">Real Volume Radius (fm)</label>
+                                        <input type="number" id="rv5" name="rv5" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="uw5">Imaginary Volume Depth (MeV)</label>
+                                        <input type="number" id="uw5" name="uw5" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="aw5">Imaginary Volume Diffuseness (fm)</label>
+                                        <input type="number" id="aw5" name="aw5" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rw5">Imaginary Volume Radius (fm)</label>
+                                        <input type="number" id="rw5" name="rw5" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Surface Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vd5">Real Surface Depth (MeV)</label>
+                                        <input type="number" id="vd5" name="vd5" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="avd5">Real Surface Diffuseness (fm)</label>
+                                        <input type="number" id="avd5" name="avd5" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rvd5">Real Surface Radius (fm)</label>
+                                        <input type="number" id="rvd5" name="rvd5" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wd5">Imaginary Surface Depth (MeV)</label>
+                                        <input type="number" id="wd5" name="wd5" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="awd5">Imaginary Surface Diffuseness (fm)</label>
+                                        <input type="number" id="awd5" name="awd5" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rwd5">Imaginary Surface Radius (fm)</label>
+                                        <input type="number" id="rwd5" name="rwd5" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!-- Spin-Orbit Parameters -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="vsov5">Real Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsov5" name="vsov5" step="0.1" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rsov5">Real Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsov5" name="rsov5" step="0.01" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asov5">Real Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asov5" name="asov5" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vsow5">Imaginary Spin-Orbit Strength (MeV)</label>
+                                        <input type="number" id="vsow5" name="vsow5" step="0.1" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rsow5">Imaginary Spin-Orbit Radius (fm)</label>
+                                        <input type="number" id="rsow5" name="rsow5" step="0.01" placeholder="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asow5">Imaginary Spin-Orbit Diffuseness (fm)</label>
+                                        <input type="number" id="asow5" name="asow5" step="0.01" placeholder="" value="">
                                     </div>
                                 </div>
                             </div>

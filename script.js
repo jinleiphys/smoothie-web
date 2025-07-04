@@ -317,6 +317,66 @@ class SmoothieWebsite {
         }
     }
 
+    generatePotentialSection(kp1, index, data) {
+        const params = [];
+        
+        // Basic parameters
+        params.push(`kp1='${kp1}'`);
+        params.push(`ptype=${data[`ptype${index}`] || (index === 1 ? '1' : index === 4 ? '2' : '4')}`);
+        params.push(`a1=${data[`a1_${index}`] || (index === 4 ? '1' : '0')}`);
+        params.push(`a2=${data[`a2_${index}`] || (index === 2 ? '94' : '93')}`);
+        
+        // Coulomb radius (if specified)
+        if (data[`rc${index}`]) {
+            params.push(`rc=${data[`rc${index}`]}`);
+        }
+        
+        let paramLines = [`&POTENTIAL  ${params.join(' ')}`];
+        
+        // Volume potential parameters
+        const volumeParams = [];
+        if (data[`uv${index}`]) volumeParams.push(`uv=${data[`uv${index}`]}`);
+        if (data[`av${index}`]) volumeParams.push(`av=${data[`av${index}`]}`);
+        if (data[`rv${index}`]) volumeParams.push(`rv=${data[`rv${index}`]}`);
+        if (data[`uw${index}`]) volumeParams.push(`uw=${data[`uw${index}`]}`);
+        if (data[`aw${index}`]) volumeParams.push(`aw=${data[`aw${index}`]}`);
+        if (data[`rw${index}`]) volumeParams.push(`rw=${data[`rw${index}`]}`);
+        
+        if (volumeParams.length > 0) {
+            paramLines.push(`            ${volumeParams.join(' ')}`);
+        }
+        
+        // Surface potential parameters
+        const surfaceParams = [];
+        if (data[`vd${index}`]) surfaceParams.push(`vd=${data[`vd${index}`]}`);
+        if (data[`avd${index}`]) surfaceParams.push(`avd=${data[`avd${index}`]}`);
+        if (data[`rvd${index}`]) surfaceParams.push(`rvd=${data[`rvd${index}`]}`);
+        if (data[`wd${index}`]) surfaceParams.push(`wd=${data[`wd${index}`]}`);
+        if (data[`awd${index}`]) surfaceParams.push(`awd=${data[`awd${index}`]}`);
+        if (data[`rwd${index}`]) surfaceParams.push(`rwd=${data[`rwd${index}`]}`);
+        
+        if (surfaceParams.length > 0) {
+            paramLines.push(`            ${surfaceParams.join(' ')}`);
+        }
+        
+        // Spin-orbit parameters
+        const spinOrbitParams = [];
+        if (data[`vsov${index}`]) spinOrbitParams.push(`vsov=${data[`vsov${index}`]}`);
+        if (data[`rsov${index}`]) spinOrbitParams.push(`rsov=${data[`rsov${index}`]}`);
+        if (data[`asov${index}`]) spinOrbitParams.push(`asov=${data[`asov${index}`]}`);
+        if (data[`vsow${index}`]) spinOrbitParams.push(`vsow=${data[`vsow${index}`]}`);
+        if (data[`rsow${index}`]) spinOrbitParams.push(`rsow=${data[`rsow${index}`]}`);
+        if (data[`asow${index}`]) spinOrbitParams.push(`asow=${data[`asow${index}`]}`);
+        
+        if (spinOrbitParams.length > 0) {
+            paramLines.push(`            ${spinOrbitParams.join(' ')}`);
+        }
+        
+        paramLines.push('            /');
+        
+        return paramLines.join('\n');
+    }
+
     generateInputFileContent(data) {
         const date = new Date().toLocaleDateString();
         return `NAMELIST
@@ -337,27 +397,15 @@ class SmoothieWebsite {
 &OUTGOING /
 
 
-&POTENTIAL  kp1='${data.kp1_1 || 'a'}' ptype=${data.ptype1 || '1'} a1=${data.a1_1 || '0'} a2=${data.a2_1 || '93'} rc=${data.rc1 || '1.3'}
-            ${data.ptype1 === '1' ? `uv=${data.uv1 || '77.3'} av=${data.av1 || '0.77'} rv=${data.rv1 || '1.15'}
-            uw=${data.uw1 || '6.1'}  aw=${data.aw1 || '0.47'} rw=${data.rw1 || '1.33'}
-            ${data.wd1 ? `wd=${data.wd1}  awd=${data.awd1 || '0.77'} rwd=${data.rwd1 || '1.37'}` : ''}` : ''}
-            /
+${this.generatePotentialSection('a', 1, data)}
 
+${this.generatePotentialSection('b', 2, data)}
 
-&POTENTIAL  kp1='b'  ptype=4 a1=0 a2=94
-           /
+${this.generatePotentialSection('x', 3, data)}
 
+${this.generatePotentialSection('p', 4, data)}
 
-&POTENTIAL  kp1='x' ptype=4 a1=0 a2=93
-
-            /
-
-&POTENTIAL  kp1='p' ptype=2 a1=1 a2=1 rc=1.5
-            uv=72.15 av=1.484
-            /
-
-&POTENTIAL  kp1='t' ptype=4 a1=0 a2=93
-           /
+${this.generatePotentialSection('t', 5, data)}
 
 
 
@@ -501,8 +549,8 @@ function loadExample() {
     document.getElementById('ecmbmax').value = '30';
     document.getElementById('ecmbh').value = '1';
 
-    // POTENTIAL parameters from d93Nb.in (first potential)
-    document.getElementById('kp1_1').value = 'a';
+    // POTENTIAL parameters from d93Nb.in
+    // Potential 1: a-A system
     document.getElementById('ptype1').value = '1';
     document.getElementById('a1_1').value = '0';
     document.getElementById('a2_1').value = '93';
@@ -516,6 +564,29 @@ function loadExample() {
     document.getElementById('wd1').value = '8.4';
     document.getElementById('awd1').value = '0.77';
     document.getElementById('rwd1').value = '1.37';
+
+    // Potential 2: b-B* system
+    document.getElementById('ptype2').value = '4';
+    document.getElementById('a1_2').value = '0';
+    document.getElementById('a2_2').value = '94';
+
+    // Potential 3: x-A system
+    document.getElementById('ptype3').value = '4';
+    document.getElementById('a1_3').value = '0';
+    document.getElementById('a2_3').value = '93';
+
+    // Potential 4: p (b-x) system
+    document.getElementById('ptype4').value = '2';
+    document.getElementById('a1_4').value = '1';
+    document.getElementById('a2_4').value = '1';
+    document.getElementById('rc4').value = '1.5';
+    document.getElementById('uv4').value = '72.15';
+    document.getElementById('av4').value = '1.484';
+
+    // Potential 5: t (b-A) system
+    document.getElementById('ptype5').value = '4';
+    document.getElementById('a1_5').value = '0';
+    document.getElementById('a2_5').value = '93';
 
     // Update preview
     window.smoothieWebsite.updatePreview();
