@@ -319,40 +319,49 @@ class SmoothieWebsite {
 
     generateInputFileContent(data) {
         const date = new Date().toLocaleDateString();
-        return `# SMOOTHIE Input File
-# Generated on ${date}
+        return `NAMELIST
+&GLOBAL      hcm=${data.hcm || '0.05'}  lmax=${data.lmax || '25'}  elab=${data.elab || '25.5'} thmin=${data.thmin || '0.'} thmax=${data.thmax || '180.'}  printf=${data.printf || 'f'} dwba=${data.dwba || '1'}  
+             thinc=${data.thinc || '1'}   nx=${data.nx || '34'} rmax=${data.rmax || '50'}   nr=${data.nr || '100'}  lxmax=${data.lxmax || '12'}  ${data.lmin !== undefined ? 'lmin=' + data.lmin : ''}  ${data.jtmin !== undefined ? 'jtmin=' + data.jtmin : ''}  ${data.jtmax !== undefined ? 'jtmax=' + data.jtmax : ''}  ${data.lxmin !== undefined ? 'lxmin=' + data.lxmin : ''}  /
 
-&input
-    projectile_mass = ${data.projectileMass || '2.014'}
-    target_mass = ${data.targetMass || '12.0'}
-    projectile_z = ${data.projectileZ || '1'}
-    target_z = ${data.targetZ || '6'}
-    projectile_a = ${data.projectileA || '2'}
-    beam_energy = ${data.beamEnergy || '56.0'}
-    angular_range = ${data.angleMin || '0.0'}, ${data.angleMax || '180.0'}
-    angular_step = ${data.angleStep || '1.0'}
-&end
 
-&potentials
-    real_central = ${data.realCentral || 'woods_saxon'}
-    imaginary_central = ${data.imaginaryCentral || 'woods_saxon'}
-    spin_orbit = ${data.spinOrbit || 'thomas'}
-    coulomb = ${data.coulomb || 'point'}
-&end
 
-&breakup
-    channels = ${data.channels || '2'}
-    fragment_1 = ${data.fragment1 || 'proton'}
-    fragment_2 = ${data.fragment2 || 'neutron'}
-    binding_energy = ${data.bindingEnergy || '2.225'}
-&end
+&SYSTEM     namep='${data.namep || 'd'}'     massp=${data.massp || '2.'}       zp=${data.zp || '1.0'}    jp=${data.jp || '0.'} sbx=${data.sbx || '0.'}
+            namet='${data.namet || '93Nb'}'  masst=${data.masst || '93.0'}     zt=${data.zt || '41.0'}   jt=${data.jt || '0.0'}  be=${data.be || '2.224'}
+            nameb='${data.nameb || 'p'}'     massb=${data.massb || '1.0078'}        zb=${data.zb || '1.0'}    jb=${data.jb || '0.'}   
+            namex='${data.namex || 'n'}'     massx=${data.massx || '1.0087'}   zx=${data.zx || '0.0'}    jx=${data.jx || '0.'}  lbx=${data.lbx || '0'}    nodes=${data.nodes || '1'}  /
 
-&numerical
-    r_max = ${data.rMax || '20.0'}
-    r_step = ${data.rStep || '0.1'}
-    l_max = ${data.lMax || '20'}
-    tolerance = ${data.tolerance || '1e-6'}
-&end`;
+
+&OUTGOING   ecmbmin=${data.ecmbmin || '2'} ecmbmax=${data.ecmbmax || '30'} ecmbh=${data.ecmbh || '1'}  /
+
+
+&OUTGOING /
+
+
+&POTENTIAL  kp1='${data.kp1_1 || 'a'}' ptype=${data.ptype1 || '1'} a1=${data.a1_1 || '0'} a2=${data.a2_1 || '93'} rc=${data.rc1 || '1.3'}
+            ${data.ptype1 === '1' ? `uv=${data.uv1 || '77.3'} av=${data.av1 || '0.77'} rv=${data.rv1 || '1.15'}
+            uw=${data.uw1 || '6.1'}  aw=${data.aw1 || '0.47'} rw=${data.rw1 || '1.33'}
+            ${data.wd1 ? `wd=${data.wd1}  awd=${data.awd1 || '0.77'} rwd=${data.rwd1 || '1.37'}` : ''}` : ''}
+            /
+
+
+&POTENTIAL  kp1='b'  ptype=4 a1=0 a2=94
+           /
+
+
+&POTENTIAL  kp1='x' ptype=4 a1=0 a2=93
+
+            /
+
+&POTENTIAL  kp1='p' ptype=2 a1=1 a2=1 rc=1.5
+            uv=72.15 av=1.484
+            /
+
+&POTENTIAL  kp1='t' ptype=4 a1=0 a2=93
+           /
+
+
+
+&POTENTIAL /`;
     }
 
     downloadFile(filename, content) {
@@ -412,33 +421,105 @@ function generateInputFile() {
         data[key] = value;
     }
 
-    if (!data.projectileMass || !data.targetMass || !data.beamEnergy) {
-        window.smoothieWebsite.showNotification('Please fill in all required fields', 'error');
+    // Validate SMOOTHIE-specific required parameters
+    const requiredFields = [
+        'elab', 'namep', 'massp', 'zp', 'jp', 'namet', 'masst', 'zt', 'jt', 
+        'nameb', 'massb', 'zb', 'jb', 'namex', 'massx', 'zx', 'jx', 
+        'sbx', 'lbx', 'nodes', 'be', 'ecmbmin', 'ecmbmax', 'ecmbh'
+    ];
+    
+    const missingFields = requiredFields.filter(field => !data[field]);
+    if (missingFields.length > 0) {
+        window.smoothieWebsite.showNotification(`Please fill in all required fields: ${missingFields.join(', ')}`, 'error');
+        return;
+    }
+
+    // Validate numerical constraints
+    if (parseFloat(data.lmax) <= parseFloat(data.lmin || 0)) {
+        window.smoothieWebsite.showNotification('lmax must be greater than lmin', 'error');
+        return;
+    }
+    
+    if (parseFloat(data.jtmax) <= parseFloat(data.jtmin || 0)) {
+        window.smoothieWebsite.showNotification('jtmax must be greater than jtmin', 'error');
+        return;
+    }
+    
+    if (parseFloat(data.ecmbmax) <= parseFloat(data.ecmbmin)) {
+        window.smoothieWebsite.showNotification('ecmbmax must be greater than ecmbmin', 'error');
         return;
     }
 
     const inputFile = window.smoothieWebsite.generateInputFileContent(data);
-    window.smoothieWebsite.downloadFile('smoothie_input.txt', inputFile);
+    window.smoothieWebsite.downloadFile('input.in', inputFile);
     window.smoothieWebsite.showNotification('Input file generated successfully!', 'success');
 }
 
 function loadExample() {
-    // Load a sample example into the form
+    // Load d93Nb.in example into the form
     const form = document.getElementById('smoothieForm');
     if (!form) return;
 
-    // Set example values
-    document.getElementById('projectileMass').value = '2.014';
-    document.getElementById('targetMass').value = '12.0';
-    document.getElementById('beamEnergy').value = '56.0';
-    document.getElementById('projectileZ').value = '1';
-    document.getElementById('targetZ').value = '6';
-    document.getElementById('projectileA').value = '2';
-    document.getElementById('bindingEnergy').value = '2.225';
+    // GLOBAL parameters from d93Nb.in
+    document.getElementById('hcm').value = '0.05';
+    document.getElementById('lmax').value = '25';
+    document.getElementById('elab').value = '25.5';
+    document.getElementById('thmin').value = '0.';
+    document.getElementById('thmax').value = '180.';
+    document.getElementById('printf').value = 'f';
+    document.getElementById('dwba').value = '1';
+    document.getElementById('thinc').value = '1';
+    document.getElementById('nx').value = '34';
+    document.getElementById('rmax').value = '50';
+    document.getElementById('nr').value = '100';
+    document.getElementById('lxmax').value = '12';
+
+    // SYSTEM parameters from d93Nb.in
+    document.getElementById('namep').value = 'd';
+    document.getElementById('massp').value = '2.0';
+    document.getElementById('zp').value = '1.0';
+    document.getElementById('jp').value = '0.0';
+    document.getElementById('sbx').value = '0.0';
+    document.getElementById('namet').value = '93Nb';
+    document.getElementById('masst').value = '93.0';
+    document.getElementById('zt').value = '41.0';
+    document.getElementById('jt').value = '0.0';
+    document.getElementById('be').value = '2.224';
+    document.getElementById('nameb').value = 'p';
+    document.getElementById('massb').value = '1.0078';
+    document.getElementById('zb').value = '1.0';
+    document.getElementById('jb').value = '0.0';
+    document.getElementById('namex').value = 'n';
+    document.getElementById('massx').value = '1.0087';
+    document.getElementById('zx').value = '0.0';
+    document.getElementById('jx').value = '0.0';
+    document.getElementById('lbx').value = '0';
+    document.getElementById('nodes').value = '1';
+
+    // OUTGOING parameters from d93Nb.in
+    document.getElementById('ecmbmin').value = '2';
+    document.getElementById('ecmbmax').value = '30';
+    document.getElementById('ecmbh').value = '1';
+
+    // POTENTIAL parameters from d93Nb.in (first potential)
+    document.getElementById('kp1_1').value = 'a';
+    document.getElementById('ptype1').value = '1';
+    document.getElementById('a1_1').value = '0';
+    document.getElementById('a2_1').value = '93';
+    document.getElementById('rc1').value = '1.3';
+    document.getElementById('uv1').value = '77.3';
+    document.getElementById('av1').value = '0.77';
+    document.getElementById('rv1').value = '1.15';
+    document.getElementById('uw1').value = '6.1';
+    document.getElementById('aw1').value = '0.47';
+    document.getElementById('rw1').value = '1.33';
+    document.getElementById('wd1').value = '8.4';
+    document.getElementById('awd1').value = '0.77';
+    document.getElementById('rwd1').value = '1.37';
 
     // Update preview
     window.smoothieWebsite.updatePreview();
-    window.smoothieWebsite.showNotification('Example loaded successfully!', 'success');
+    window.smoothieWebsite.showNotification('d93Nb.in example loaded successfully!', 'success');
 }
 
 function resetForm() {

@@ -49,154 +49,329 @@
             <div class="content-section">
                 <div class="generator-container">
                     <form class="generator-form" id="smoothieForm">
+                        <!-- GLOBAL Namelist Parameters -->
                         <div class="form-section">
-                            <h2>Basic Parameters</h2>
+                            <h2>GLOBAL Parameters</h2>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="projectileMass">Projectile Mass (u)</label>
-                                    <input type="number" id="projectileMass" name="projectileMass" step="0.001" placeholder="e.g., 2.014" required>
+                                    <label for="hcm">Radial Step Size (fm)</label>
+                                    <input type="number" id="hcm" name="hcm" step="0.001" value="0.05" placeholder="0.05">
                                 </div>
                                 <div class="form-group">
-                                    <label for="targetMass">Target Mass (u)</label>
-                                    <input type="number" id="targetMass" name="targetMass" step="0.001" placeholder="e.g., 12.0" required>
+                                    <label for="rmax">Maximum Radius (fm)</label>
+                                    <input type="number" id="rmax" name="rmax" step="0.1" value="50.0" placeholder="50.0">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="beamEnergy">Beam Energy (MeV)</label>
-                                    <input type="number" id="beamEnergy" name="beamEnergy" step="0.1" placeholder="e.g., 56.0" required>
+                                    <label for="lmin">Minimum L (λₐ, λᵦ)</label>
+                                    <input type="number" id="lmin" name="lmin" min="0" value="0" placeholder="0">
                                 </div>
                                 <div class="form-group">
-                                    <label for="projectileZ">Projectile Z</label>
-                                    <input type="number" id="projectileZ" name="projectileZ" placeholder="e.g., 1" required>
+                                    <label for="lmax">Maximum L (λₐ, λᵦ)</label>
+                                    <input type="number" id="lmax" name="lmax" min="1" value="25" placeholder="25">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="targetZ">Target Z</label>
-                                    <input type="number" id="targetZ" name="targetZ" placeholder="e.g., 6" required>
+                                    <label for="jtmin">Minimum Total J</label>
+                                    <input type="number" id="jtmin" name="jtmin" min="0" value="0" placeholder="0">
                                 </div>
                                 <div class="form-group">
-                                    <label for="projectileA">Projectile A</label>
-                                    <input type="number" id="projectileA" name="projectileA" placeholder="e.g., 2" required>
+                                    <label for="jtmax">Maximum Total J</label>
+                                    <input type="number" id="jtmax" name="jtmax" min="1" value="25" placeholder="25">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="lxmin">Minimum lₓ</label>
+                                    <input type="number" id="lxmin" name="lxmin" min="0" value="0" placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lxmax">Maximum lₓ</label>
+                                    <input type="number" id="lxmax" name="lxmax" min="1" value="12" placeholder="12">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="elab">Incident Energy (MeV)</label>
+                                    <input type="number" id="elab" name="elab" step="0.1" placeholder="e.g., 25.5" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dwba">DWBA Method</label>
+                                    <select id="dwba" name="dwba">
+                                        <option value="1">DWBA=1: No spins, rᵦₓ variable</option>
+                                        <option value="2">DWBA=2: No spins, rᵦ variable</option>
+                                        <option value="3">DWBA=3: With spins, rᵦ variable</option>
+                                        <option value="4">DWBA=4: Enhanced DWBA=1, Lagrange mesh</option>
+                                        <option value="5">DWBA=5: Lagrange mesh, rᵦ variable</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="thmin">Minimum Angle (degrees)</label>
+                                    <input type="number" id="thmin" name="thmin" step="0.1" value="0.0" placeholder="0.0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="thmax">Maximum Angle (degrees)</label>
+                                    <input type="number" id="thmax" name="thmax" step="0.1" value="180.0" placeholder="180.0">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="thinc">Angular Increment (degrees)</label>
+                                    <input type="number" id="thinc" name="thinc" step="0.1" value="1.0" placeholder="1.0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nx">Gaussian Quadrature Points (cos θ)</label>
+                                    <input type="number" id="nx" name="nx" min="1" value="34" placeholder="34">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nr">Radial Quadrature Points</label>
+                                    <input type="number" id="nr" name="nr" min="1" value="100" placeholder="100">
+                                </div>
+                                <div class="form-group">
+                                    <label for="printf">Enable Detailed Output</label>
+                                    <select id="printf" name="printf">
+                                        <option value="f">False</option>
+                                        <option value="t">True</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         
+                        <!-- SYSTEM Namelist Parameters -->
                         <div class="form-section">
-                            <h2>Angular Range</h2>
+                            <h2>SYSTEM Parameters</h2>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="angleMin">Minimum Angle (degrees)</label>
-                                    <input type="number" id="angleMin" name="angleMin" step="0.1" value="0.0" placeholder="0.0">
+                                    <label for="namep">Projectile Name</label>
+                                    <input type="text" id="namep" name="namep" placeholder="e.g., 'd'" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="angleMax">Maximum Angle (degrees)</label>
-                                    <input type="number" id="angleMax" name="angleMax" step="0.1" value="180.0" placeholder="180.0">
+                                    <label for="massp">Projectile Mass (amu)</label>
+                                    <input type="number" id="massp" name="massp" step="0.001" placeholder="e.g., 2.014" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="angleStep">Angular Step (degrees)</label>
-                                    <input type="number" id="angleStep" name="angleStep" step="0.1" value="1.0" placeholder="1.0">
+                                    <label for="zp">Projectile Charge</label>
+                                    <input type="number" id="zp" name="zp" step="0.1" placeholder="e.g., 1.0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jp">Projectile Spin</label>
+                                    <input type="number" id="jp" name="jp" step="0.5" placeholder="e.g., 0.0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="namet">Target Name</label>
+                                    <input type="text" id="namet" name="namet" placeholder="e.g., '93Nb'" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="masst">Target Mass (amu)</label>
+                                    <input type="number" id="masst" name="masst" step="0.001" placeholder="e.g., 93.0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zt">Target Charge</label>
+                                    <input type="number" id="zt" name="zt" step="0.1" placeholder="e.g., 41.0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jt">Target Spin</label>
+                                    <input type="number" id="jt" name="jt" step="0.5" placeholder="e.g., 0.0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nameb">Detected Particle Name</label>
+                                    <input type="text" id="nameb" name="nameb" placeholder="e.g., 'p'" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="massb">Detected Particle Mass (amu)</label>
+                                    <input type="number" id="massb" name="massb" step="0.001" placeholder="e.g., 1.0078" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zb">Detected Particle Charge</label>
+                                    <input type="number" id="zb" name="zb" step="0.1" placeholder="e.g., 1.0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jb">Detected Particle Spin</label>
+                                    <input type="number" id="jb" name="jb" step="0.5" placeholder="e.g., 0.0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="namex">Undetected Particle Name</label>
+                                    <input type="text" id="namex" name="namex" placeholder="e.g., 'n'" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="massx">Undetected Particle Mass (amu)</label>
+                                    <input type="number" id="massx" name="massx" step="0.001" placeholder="e.g., 1.0087" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zx">Undetected Particle Charge</label>
+                                    <input type="number" id="zx" name="zx" step="0.1" placeholder="e.g., 0.0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jx">Undetected Particle Spin</label>
+                                    <input type="number" id="jx" name="jx" step="0.5" placeholder="e.g., 0.0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="sbx">Total Spin Coupling (b+x)</label>
+                                    <input type="number" id="sbx" name="sbx" step="0.5" placeholder="e.g., 0.0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lbx">Orbital Angular Momentum (b+x)</label>
+                                    <input type="number" id="lbx" name="lbx" min="0" placeholder="e.g., 0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nodes">Number of Nodes</label>
+                                    <input type="number" id="nodes" name="nodes" min="1" placeholder="e.g., 1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="be">Binding Energy (MeV)</label>
+                                    <input type="number" id="be" name="be" step="0.001" placeholder="e.g., 2.224" required>
                                 </div>
                             </div>
                         </div>
                         
+                        <!-- OUTGOING Namelist Parameters -->
                         <div class="form-section">
-                            <h2>Potential Parameters</h2>
+                            <h2>OUTGOING Parameters</h2>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="realCentral">Real Central Potential</label>
-                                    <select id="realCentral" name="realCentral">
-                                        <option value="woods_saxon">Woods-Saxon</option>
-                                        <option value="gaussian">Gaussian</option>
-                                        <option value="exponential">Exponential</option>
-                                    </select>
+                                    <label for="ecmbmin">Minimum Energy (MeV)</label>
+                                    <input type="number" id="ecmbmin" name="ecmbmin" step="0.1" placeholder="e.g., 2.0" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="imaginaryCentral">Imaginary Central Potential</label>
-                                    <select id="imaginaryCentral" name="imaginaryCentral">
-                                        <option value="woods_saxon">Woods-Saxon</option>
-                                        <option value="gaussian">Gaussian</option>
-                                        <option value="exponential">Exponential</option>
-                                    </select>
+                                    <label for="ecmbmax">Maximum Energy (MeV)</label>
+                                    <input type="number" id="ecmbmax" name="ecmbmax" step="0.1" placeholder="e.g., 30.0" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="spinOrbit">Spin-Orbit Potential</label>
-                                    <select id="spinOrbit" name="spinOrbit">
-                                        <option value="thomas">Thomas</option>
-                                        <option value="derivative">Derivative</option>
-                                        <option value="none">None</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="coulomb">Coulomb Potential</label>
-                                    <select id="coulomb" name="coulomb">
-                                        <option value="point">Point Charge</option>
-                                        <option value="uniform">Uniform Sphere</option>
-                                        <option value="none">None</option>
-                                    </select>
+                                    <label for="ecmbh">Energy Step (MeV)</label>
+                                    <input type="number" id="ecmbh" name="ecmbh" step="0.1" placeholder="e.g., 1.0" required>
                                 </div>
                             </div>
                         </div>
                         
+                        <!-- POTENTIAL Namelist Parameters -->
                         <div class="form-section">
-                            <h2>Breakup Configuration</h2>
+                            <h2>POTENTIAL Parameters</h2>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="channels">Number of Channels</label>
-                                    <input type="number" id="channels" name="channels" min="1" max="10" value="2" placeholder="2">
-                                </div>
-                                <div class="form-group">
-                                    <label for="fragment1">Fragment 1</label>
-                                    <select id="fragment1" name="fragment1">
-                                        <option value="proton">Proton</option>
-                                        <option value="neutron">Neutron</option>
-                                        <option value="alpha">Alpha</option>
-                                        <option value="deuteron">Deuteron</option>
+                                    <label for="potentialCount">Number of Potentials</label>
+                                    <select id="potentialCount" name="potentialCount">
+                                        <option value="1">1 Potential</option>
+                                        <option value="2">2 Potentials</option>
+                                        <option value="3">3 Potentials</option>
+                                        <option value="4">4 Potentials</option>
+                                        <option value="5" selected>5 Potentials</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="fragment2">Fragment 2</label>
-                                    <select id="fragment2" name="fragment2">
-                                        <option value="neutron">Neutron</option>
-                                        <option value="proton">Proton</option>
-                                        <option value="alpha">Alpha</option>
-                                        <option value="deuteron">Deuteron</option>
-                                    </select>
+                            
+                            <!-- Potential 1: a-A -->
+                            <div class="potential-section" id="potential1">
+                                <h3>Potential 1: a-A System</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="kp1_1">Potential Type</label>
+                                        <select id="kp1_1" name="kp1_1">
+                                            <option value="a" selected>a (projectile-target)</option>
+                                            <option value="b">b (detected-recoil)</option>
+                                            <option value="x">x (undetected-target)</option>
+                                            <option value="p">p (detected-undetected)</option>
+                                            <option value="t">t (detected-target)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ptype1">Potential Model</label>
+                                        <select id="ptype1" name="ptype1">
+                                            <option value="1" selected>Woods-Saxon</option>
+                                            <option value="2">Gaussian</option>
+                                            <option value="3">KD02 Global</option>
+                                            <option value="4">CH89 Global</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="bindingEnergy">Binding Energy (MeV)</label>
-                                    <input type="number" id="bindingEnergy" name="bindingEnergy" step="0.001" placeholder="e.g., 2.225">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="a1_1">Mass Parameter 1 (amu)</label>
+                                        <input type="number" id="a1_1" name="a1_1" step="0.001" placeholder="0" value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="a2_1">Mass Parameter 2 (amu)</label>
+                                        <input type="number" id="a2_1" name="a2_1" step="0.001" placeholder="93" value="93">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-section">
-                            <h2>Numerical Parameters</h2>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="rMax">Maximum Radius (fm)</label>
-                                    <input type="number" id="rMax" name="rMax" step="0.1" value="20.0" placeholder="20.0">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="rc1">Coulomb Radius (fm)</label>
+                                        <input type="number" id="rc1" name="rc1" step="0.01" placeholder="1.3" value="1.3">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="rStep">Radial Step (fm)</label>
-                                    <input type="number" id="rStep" name="rStep" step="0.001" value="0.1" placeholder="0.1">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="lMax">Maximum L</label>
-                                    <input type="number" id="lMax" name="lMax" min="1" max="50" value="20" placeholder="20">
-                                </div>
-                                <div class="form-group">
-                                    <label for="tolerance">Convergence Tolerance</label>
-                                    <input type="number" id="tolerance" name="tolerance" step="1e-6" value="1e-6" placeholder="1e-6">
+                                <div class="woods-saxon-params" id="wsParams1">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="uv1">Real Potential Depth (MeV)</label>
+                                            <input type="number" id="uv1" name="uv1" step="0.1" placeholder="77.3" value="77.3">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="av1">Real Diffuseness (fm)</label>
+                                            <input type="number" id="av1" name="av1" step="0.01" placeholder="0.77" value="0.77">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="rv1">Real Radius (fm)</label>
+                                            <input type="number" id="rv1" name="rv1" step="0.01" placeholder="1.15" value="1.15">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="uw1">Imaginary Volume Depth (MeV)</label>
+                                            <input type="number" id="uw1" name="uw1" step="0.1" placeholder="6.1" value="6.1">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="aw1">Imaginary Volume Diffuseness (fm)</label>
+                                            <input type="number" id="aw1" name="aw1" step="0.01" placeholder="0.47" value="0.47">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rw1">Imaginary Volume Radius (fm)</label>
+                                            <input type="number" id="rw1" name="rw1" step="0.01" placeholder="1.33" value="1.33">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="wd1">Surface Absorption Depth (MeV)</label>
+                                            <input type="number" id="wd1" name="wd1" step="0.1" placeholder="8.4" value="8.4">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="awd1">Surface Absorption Diffuseness (fm)</label>
+                                            <input type="number" id="awd1" name="awd1" step="0.01" placeholder="0.77" value="0.77">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="rwd1">Surface Absorption Radius (fm)</label>
+                                            <input type="number" id="rwd1" name="rwd1" step="0.01" placeholder="1.37" value="1.37">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
