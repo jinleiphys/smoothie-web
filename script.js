@@ -87,90 +87,56 @@ class SmoothieWebsite {
         const sidebarOverlay = document.querySelector('.sidebar-overlay');
 
         if (!mobileToggle || !sidebar || !sidebarOverlay) {
-            console.error('Mobile menu elements not found:', {
-                mobileToggle: !!mobileToggle,
-                sidebar: !!sidebar,
-                sidebarOverlay: !!sidebarOverlay
-            });
+            console.error('Mobile menu elements not found');
             return;
         }
 
-        // Toggle mobile menu - handle both click and touch
-        const toggleMenu = (e) => {
-            console.log('Mobile menu toggle triggered:', e.type);
-            e.preventDefault();
-            e.stopPropagation();
-            
+        // Toggle mobile menu
+        mobileToggle.addEventListener('click', () => {
+            console.log('Mobile toggle clicked');
             this.isMenuOpen = !this.isMenuOpen;
-            console.log('Menu state:', this.isMenuOpen ? 'opening' : 'closing');
             
             if (this.isMenuOpen) {
                 sidebar.classList.add('open');
-                mobileToggle.classList.add('active');
-                sidebarOverlay.style.display = 'block';
+                sidebarOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                
-                // Force reflow before adding active class
-                sidebarOverlay.offsetHeight;
-                
-                // Animate overlay
-                requestAnimationFrame(() => {
-                    sidebarOverlay.classList.add('active');
-                });
             } else {
-                this.closeMobileMenu();
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             }
-        };
-        
-        mobileToggle.addEventListener('click', toggleMenu);
-        mobileToggle.addEventListener('touchstart', toggleMenu, { passive: false });
+        });
 
         // Close menu when clicking overlay
-        sidebarOverlay.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.closeMobileMenu();
-        });
-        
-        // Handle touch events for better mobile support
-        sidebarOverlay.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.closeMobileMenu();
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            this.isMenuOpen = false;
         });
 
-        // Close menu when clicking nav links - handle both click and touch
+        // Close menu when clicking nav links
         const navLinks = sidebar.querySelectorAll('.nav-link');
-        console.log('Found nav links:', navLinks.length);
         navLinks.forEach(link => {
-            const closeMenuOnNavigation = (e) => {
-                console.log('Nav link clicked:', e.type, link.textContent);
-                // Don't prevent default for navigation links
-                this.closeMobileMenu();
-            };
-            
-            link.addEventListener('click', closeMenuOnNavigation);
-            link.addEventListener('touchstart', closeMenuOnNavigation, { passive: true });
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                this.isMenuOpen = false;
+            });
         });
-
-        // Handle responsive behavior
-        this.handleResize();
     }
 
     closeMobileMenu() {
         const sidebar = document.querySelector('.sidebar');
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
         const sidebarOverlay = document.querySelector('.sidebar-overlay');
         
         this.isMenuOpen = false;
         
         if (sidebar) sidebar.classList.remove('open');
-        if (mobileToggle) mobileToggle.classList.remove('active');
         if (sidebarOverlay) sidebarOverlay.classList.remove('active');
         
         document.body.style.overflow = '';
-        
-        setTimeout(() => {
-            if (sidebarOverlay) sidebarOverlay.style.display = 'none';
-        }, 300);
     }
 
     setupParallaxEffects() {
@@ -340,7 +306,7 @@ class SmoothieWebsite {
 
         const formData = new FormData(form);
         const data = {};
-        for (let [key, value] = formData) {
+        for (let [key, value] of formData) {
             data[key] = value;
         }
 
@@ -503,154 +469,139 @@ function downloadInputFile() {
 }
 
 function copyBibTeX(bibtexId, buttonElement) {
+    console.log('=== COPY BIBTEX DEBUG START ===');
+    console.log('bibtexId:', bibtexId);
+    console.log('buttonElement:', buttonElement);
+    
+    // Find the BibTeX element
     const bibtexElement = document.getElementById(bibtexId);
+    console.log('bibtexElement found:', !!bibtexElement);
+    
     if (!bibtexElement) {
-        console.error('BibTeX element not found:', bibtexId);
+        alert('ERROR: BibTeX element not found with ID: ' + bibtexId);
         return;
     }
     
+    // Find the pre element
     const preElement = bibtexElement.querySelector('pre');
+    console.log('preElement found:', !!preElement);
+    
     if (!preElement) {
-        console.error('Pre element not found in BibTeX box:', bibtexId);
+        alert('ERROR: Pre element not found inside BibTeX box');
+        console.log('bibtexElement innerHTML:', bibtexElement.innerHTML);
         return;
     }
     
-    const bibtexText = preElement.textContent;
-    console.log('Attempting to copy BibTeX text:', bibtexText.substring(0, 50) + '...');
+    // Get the text content
+    const textContent = preElement.textContent;
+    const innerText = preElement.innerText;
+    const innerHTML = preElement.innerHTML;
     
-    // Find the button that was clicked - either passed or find via event
-    const copyButton = buttonElement || (window.event && window.event.target) || document.querySelector(`button[onclick*="${bibtexId}"]`);
-    const originalText = copyButton ? copyButton.textContent : 'Copy BibTeX';
+    console.log('textContent:', textContent);
+    console.log('innerText:', innerText);
+    console.log('innerHTML:', innerHTML);
     
-    // Add visual feedback
-    if (copyButton) {
-        copyButton.classList.add('copying');
-        copyButton.textContent = 'Copying...';
-        copyButton.disabled = true;
-    }
+    const bibtexText = textContent || innerText || innerHTML.replace(/<[^>]*>/g, '');
+    console.log('Final bibtexText length:', bibtexText.length);
+    console.log('Final bibtexText preview:', bibtexText.substring(0, 100));
     
-    // Function to reset button state
-    const resetButton = (success = false) => {
-        setTimeout(() => {
-            if (copyButton) {
-                copyButton.classList.remove('copying');
-                copyButton.textContent = success ? 'Copied!' : originalText;
-                copyButton.disabled = false;
-                
-                if (success) {
-                    setTimeout(() => {
-                        copyButton.textContent = originalText;
-                    }, 1500);
-                }
-            }
-        }, 100);
-    };
-    
-    // Check if clipboard API is available
-    console.log('Clipboard API available:', !!navigator.clipboard);
-    console.log('Secure context:', window.isSecureContext);
-    
-    if (!navigator.clipboard || !window.isSecureContext) {
-        console.log('Using fallback method - Clipboard API not available or not in secure context');
-        // Fallback for older browsers or non-secure contexts
-        fallbackCopyToClipboard(bibtexText, bibtexId, resetButton);
+    if (!bibtexText || bibtexText.trim().length === 0) {
+        alert('ERROR: No text content found to copy');
         return;
     }
     
-    navigator.clipboard.writeText(bibtexText).then(() => {
-        console.log('Successfully copied to clipboard via Clipboard API');
-        showNotificationSafe('BibTeX copied to clipboard!', 'success');
-        resetButton(true);
-        
-        // Toggle visibility of BibTeX box
-        if (bibtexElement.style.display === 'none' || bibtexElement.style.display === '') {
-            bibtexElement.style.display = 'block';
-            setTimeout(() => {
-                bibtexElement.style.display = 'none';
-            }, 3000);
-        }
-    }).catch((err) => {
-        console.error('Clipboard API failed:', err);
-        showNotificationSafe('Trying alternative copy method...', 'info');
-        resetButton(false);
-        
-        // Try fallback method
-        fallbackCopyToClipboard(bibtexText, bibtexId, resetButton);
-    });
+    // Method 1: Try modern clipboard API first
+    if (navigator.clipboard && window.isSecureContext) {
+        console.log('Trying modern clipboard API...');
+        navigator.clipboard.writeText(bibtexText.trim()).then(() => {
+            console.log('✅ Modern clipboard API SUCCESS');
+            alert('✅ BibTeX copied successfully!');
+            updateButton(buttonElement);
+        }).catch(err => {
+            console.log('❌ Modern clipboard API FAILED:', err);
+            tryFallbackMethod(bibtexText.trim(), buttonElement, bibtexElement);
+        });
+    } else {
+        console.log('Modern clipboard API not available, trying fallback...');
+        tryFallbackMethod(bibtexText.trim(), buttonElement, bibtexElement);
+    }
 }
 
-function fallbackCopyToClipboard(text, bibtexId, resetButton) {
-    console.log('Using fallback copy method');
+function tryFallbackMethod(text, buttonElement, bibtexElement) {
+    console.log('=== TRYING FALLBACK METHOD ===');
     
-    // Create a temporary textarea element
+    // Create textarea
     const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
+    textarea.style.position = 'absolute';
     textarea.style.left = '-9999px';
-    textarea.style.top = '-9999px';
+    textarea.style.top = '0';
     textarea.style.opacity = '0';
-    textarea.style.pointerEvents = 'none';
-    textarea.setAttribute('readonly', '');
+    textarea.value = text;
+    
     document.body.appendChild(textarea);
     
     try {
-        // Focus and select the text
+        // Focus and select
         textarea.focus();
         textarea.select();
         textarea.setSelectionRange(0, textarea.value.length);
         
-        // Try to copy
+        console.log('Selected text length:', textarea.selectionEnd - textarea.selectionStart);
+        
+        // Execute copy command
         const successful = document.execCommand('copy');
-        console.log('execCommand copy result:', successful);
+        console.log('execCommand result:', successful);
         
         if (successful) {
-            console.log('Successfully copied via execCommand');
-            showNotificationSafe('BibTeX copied to clipboard!', 'success');
-            if (resetButton) resetButton(true);
-            
-            // Toggle visibility of BibTeX box
-            const bibtexElement = document.getElementById(bibtexId);
-            if (bibtexElement && (bibtexElement.style.display === 'none' || bibtexElement.style.display === '')) {
-                bibtexElement.style.display = 'block';
-                setTimeout(() => {
-                    bibtexElement.style.display = 'none';
-                }, 3000);
-            }
+            console.log('✅ Fallback method SUCCESS');
+            alert('✅ BibTeX copied successfully!');
+            updateButton(buttonElement);
         } else {
-            throw new Error('execCommand returned false');
+            console.log('❌ Fallback method FAILED');
+            showManualCopy(text, bibtexElement);
         }
     } catch (err) {
-        console.error('Fallback copy failed:', err);
-        showNotificationSafe('Copy failed. Please select the text and copy manually (Ctrl+C or Cmd+C).', 'error');
-        if (resetButton) resetButton(false);
-        
-        // Show the BibTeX box so user can copy manually
-        const bibtexElement = document.getElementById(bibtexId);
-        if (bibtexElement) {
-            bibtexElement.style.display = 'block';
-        }
+        console.log('❌ Fallback method ERROR:', err);
+        showManualCopy(text, bibtexElement);
     } finally {
         document.body.removeChild(textarea);
     }
 }
 
-function showNotificationSafe(message, type = 'info') {
-    // Check if the smoothieWebsite instance exists
-    if (window.smoothieWebsite && typeof window.smoothieWebsite.showNotification === 'function') {
-        window.smoothieWebsite.showNotification(message, type);
-    } else {
-        // Fallback: use browser alert or console
-        console.log(`Notification [${type}]: ${message}`);
-        // You could also use alert, but it's less elegant
-        if (type === 'error') {
-            alert(message);
-        }
+function updateButton(buttonElement) {
+    if (buttonElement) {
+        const originalText = buttonElement.textContent;
+        buttonElement.textContent = 'Copied!';
+        buttonElement.style.backgroundColor = '#28a745';
+        setTimeout(() => {
+            buttonElement.textContent = originalText;
+            buttonElement.style.backgroundColor = '';
+        }, 2000);
     }
 }
 
+function showManualCopy(text, bibtexElement) {
+    alert('❌ Automatic copy failed. The BibTeX will be shown below - please select and copy it manually.');
+    if (bibtexElement) {
+        bibtexElement.style.display = 'block';
+    }
+    console.log('Text to copy manually:');
+    console.log(text);
+}
+
+
+
 // Initialize the website when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    window.smoothieWebsite = new SmoothieWebsite();
+    console.log('DOM loaded, initializing...');
+    
+    try {
+        window.smoothieWebsite = new SmoothieWebsite();
+        console.log('SmoothieWebsite initialized successfully');
+    } catch (error) {
+        console.error('Error initializing SmoothieWebsite:', error);
+    }
+    
 });
 
 // Export for module usage
