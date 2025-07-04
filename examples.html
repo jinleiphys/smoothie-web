@@ -11,11 +11,21 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo">SMOOTHIE</h1>
-                <div class="logo-subtitle">Scattering Model of Optical Operator Theory</div>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -40,90 +50,14 @@
                 <div class="examples-grid">
                     <div class="example-card">
                         <h3>Basic Deuteron Breakup</h3>
-                        <p>Simple example for deuteron breakup on a light target</p>
+                        <p>Simple example for deuteron breakup on a 93Nb target at Elab=25.5 MeV</p>
                         <div class="example-meta">
                             <span>Projectile: Deuteron</span>
-                            <span>Target: 12C</span>
-                            <span>Energy: 56 MeV</span>
+                            <span>Target: 93Nb</span>
+                            <span>Energy: 25.5 MeV</span>
+                            <span>Input file: input/d93Nb.in</span>
                         </div>
-                        <button class="btn-example">View Example</button>
-                    </div>
-                    
-                    <div class="example-card">
-                        <h3>Complex Nuclear System</h3>
-                        <p>Advanced example with multiple channels and complex potential</p>
-                        <div class="example-meta">
-                            <span>Projectile: 6Li</span>
-                            <span>Target: 208Pb</span>
-                            <span>Energy: 24 MeV</span>
-                        </div>
-                        <button class="btn-example">View Example</button>
-                    </div>
-                    
-                    <div class="example-card">
-                        <h3>High Energy Breakup</h3>
-                        <p>Breakup calculation at relativistic energies</p>
-                        <div class="example-meta">
-                            <span>Projectile: Deuteron</span>
-                            <span>Target: 12C</span>
-                            <span>Energy: 270 MeV</span>
-                        </div>
-                        <button class="btn-example">View Example</button>
-                    </div>
-                    
-                    <div class="example-card">
-                        <h3>Neutron-Rich Projectile</h3>
-                        <p>Breakup of neutron-rich nuclei with halo structure</p>
-                        <div class="example-meta">
-                            <span>Projectile: 11Be</span>
-                            <span>Target: 208Pb</span>
-                            <span>Energy: 69 MeV</span>
-                        </div>
-                        <button class="btn-example">View Example</button>
-                    </div>
-                    
-                    <div class="example-card">
-                        <h3>Three-Body System</h3>
-                        <p>Breakup of three-body projectiles like 6He</p>
-                        <div class="example-meta">
-                            <span>Projectile: 6He</span>
-                            <span>Target: 208Pb</span>
-                            <span>Energy: 18 MeV</span>
-                        </div>
-                        <button class="btn-example">View Example</button>
-                    </div>
-                    
-                    <div class="example-card">
-                        <h3>Angular Distribution</h3>
-                        <p>Calculation of angular distributions for breakup fragments</p>
-                        <div class="example-meta">
-                            <span>Projectile: Deuteron</span>
-                            <span>Target: 58Ni</span>
-                            <span>Energy: 80 MeV</span>
-                        </div>
-                        <button class="btn-example">View Example</button>
-                    </div>
-                    
-                    <div class="example-card">
-                        <h3>Energy Spectrum</h3>
-                        <p>Calculation of energy spectra for breakup products</p>
-                        <div class="example-meta">
-                            <span>Projectile: 6Li</span>
-                            <span>Target: 120Sn</span>
-                            <span>Energy: 156 MeV</span>
-                        </div>
-                        <button class="btn-example">View Example</button>
-                    </div>
-                    
-                    <div class="example-card">
-                        <h3>Benchmark Calculation</h3>
-                        <p>Standard benchmark case for testing and validation</p>
-                        <div class="example-meta">
-                            <span>Projectile: Deuteron</span>
-                            <span>Target: 12C</span>
-                            <span>Energy: 56 MeV</span>
-                        </div>
-                        <button class="btn-example">View Example</button>
+                        <a href="input/d93Nb.in" class="btn-example" target="_blank">View Example</a>
                     </div>
                 </div>
                 
@@ -148,7 +82,7 @@
                             <div class="step-number">3</div>
                             <div class="step-content">
                                 <h3>Run SMOOTHIE</h3>
-                                <p>Execute SMOOTHIE with your input file: <code>./smoothie input.txt</code></p>
+                                <p>Execute SMOOTHIE with stdin and stdout: <code>./smoothie < input.in > output.out</code></p>
                             </div>
                         </div>
                         <div class="step">

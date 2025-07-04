@@ -11,11 +11,21 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo">SMOOTHIE</h1>
-                <div class="logo-subtitle">Scattering Model of Optical Operator Theory</div>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -34,103 +44,29 @@
             <!-- Downloads Page -->
             <div class="page-header">
                 <h1>Downloads</h1>
-                <p>Get the latest version of SMOOTHIE for your system</p>
+                <p>Get the latest version of SMOOTHIE from our GitHub repository</p>
             </div>
             <div class="content-section">
                 <div class="download-info">
-                    <h2>Current Version: SMOOTHIE v2.1</h2>
-                    <p>Released: March 2024</p>
-                    <p>This version includes improved performance, enhanced numerical stability, and new features for complex nuclear systems.</p>
+                    <h2>SMOOTHIE Source Code</h2>
+                    <p>SMOOTHIE is available as open source code on GitHub. The repository contains the complete Fortran 95 source code, build scripts, documentation, and examples.</p>
                 </div>
                 
                 <div class="download-grid">
                     <div class="download-card">
-                        <div class="download-icon">🐧</div>
-                        <h3>Linux Version</h3>
-                        <p>Compiled for Linux systems (Ubuntu 20.04+, CentOS 7+)</p>
-                        <ul class="feature-list">
-                            <li>Optimized for GNU Fortran</li>
-                            <li>Includes OpenMP support</li>
-                            <li>64-bit architecture</li>
-                        </ul>
-                        <button class="btn-download">Download for Linux</button>
-                        <div class="download-details">
-                            <small>Size: 2.4 MB | SHA256: a1b2c3d4...</small>
-                        </div>
-                    </div>
-                    
-                    <div class="download-card">
-                        <div class="download-icon">🪟</div>
-                        <h3>Windows Version</h3>
-                        <p>Compiled for Windows systems (Windows 10+)</p>
-                        <ul class="feature-list">
-                            <li>Intel Fortran compiled</li>
-                            <li>Includes runtime libraries</li>
-                            <li>64-bit architecture</li>
-                        </ul>
-                        <button class="btn-download">Download for Windows</button>
-                        <div class="download-details">
-                            <small>Size: 3.1 MB | SHA256: e5f6g7h8...</small>
-                        </div>
-                    </div>
-                    
-                    <div class="download-card">
                         <div class="download-icon">📦</div>
-                        <h3>Source Code</h3>
-                        <p>Complete Fortran 95 source code with build scripts</p>
+                        <h3>GitHub Repository</h3>
+                        <p>Complete SMOOTHIE source code, documentation, and examples hosted on GitHub</p>
                         <ul class="feature-list">
-                            <li>Full source code</li>
-                            <li>Build scripts included</li>
-                            <li>Documentation</li>
+                            <li>Full Fortran 95 source code</li>
+                            <li>Build scripts and Makefile</li>
+                            <li>User manual and documentation</li>
+                            <li>Input examples and test cases</li>
+                            <li>Regular updates and bug fixes</li>
                         </ul>
-                        <button class="btn-download">Download Source</button>
+                        <a href="https://github.com/jinleiphys/smoothie-public" class="btn-download" target="_blank">Visit GitHub Repository</a>
                         <div class="download-details">
-                            <small>Size: 1.8 MB | SHA256: i9j0k1l2...</small>
-                        </div>
-                    </div>
-                    
-                    <div class="download-card">
-                        <div class="download-icon">📚</div>
-                        <h3>Documentation</h3>
-                        <p>Complete user manual and technical documentation</p>
-                        <ul class="feature-list">
-                            <li>User manual (PDF)</li>
-                            <li>Technical reference</li>
-                            <li>Examples and tutorials</li>
-                        </ul>
-                        <button class="btn-download">Download Documentation</button>
-                        <div class="download-details">
-                            <small>Size: 5.2 MB | SHA256: m3n4o5p6...</small>
-                        </div>
-                    </div>
-                    
-                    <div class="download-card">
-                        <div class="download-icon">🧪</div>
-                        <h3>Test Cases</h3>
-                        <p>Benchmark test cases and reference results</p>
-                        <ul class="feature-list">
-                            <li>Validation test cases</li>
-                            <li>Reference outputs</li>
-                            <li>Performance benchmarks</li>
-                        </ul>
-                        <button class="btn-download">Download Test Cases</button>
-                        <div class="download-details">
-                            <small>Size: 12.5 MB | SHA256: q7r8s9t0...</small>
-                        </div>
-                    </div>
-                    
-                    <div class="download-card">
-                        <div class="download-icon">🔧</div>
-                        <h3>Utilities</h3>
-                        <p>Additional tools and utilities for SMOOTHIE</p>
-                        <ul class="feature-list">
-                            <li>Input file generator</li>
-                            <li>Result visualization tools</li>
-                            <li>Data conversion scripts</li>
-                        </ul>
-                        <button class="btn-download">Download Utilities</button>
-                        <div class="download-details">
-                            <small>Size: 800 KB | SHA256: u1v2w3x4...</small>
+                            <small>Free and open source | MIT License</small>
                         </div>
                     </div>
                 </div>
@@ -139,23 +75,19 @@
                     <h2>System Requirements</h2>
                     <div class="requirements-grid">
                         <div class="requirement-section">
-                            <h3>Linux</h3>
+                            <h3>Compiler Requirements</h3>
                             <ul>
-                                <li>Linux kernel 3.10+</li>
-                                <li>GNU Fortran 7.0+ or Intel Fortran 18.0+</li>
-                                <li>OpenMP support (optional)</li>
-                                <li>Minimum 4 GB RAM</li>
-                                <li>100 MB disk space</li>
+                                <li>GNU Fortran (gfortran)</li>
+                                <li>Intel Fortran Compiler</li>
                             </ul>
                         </div>
                         <div class="requirement-section">
-                            <h3>Windows</h3>
+                            <h3>Build Instructions</h3>
                             <ul>
-                                <li>Windows 10 or later</li>
-                                <li>Intel Fortran runtime</li>
-                                <li>Minimum 4 GB RAM</li>
-                                <li>100 MB disk space</li>
-                                <li>Visual Studio redistributables</li>
+                                <li>Clone the repository from GitHub</li>
+                                <li>Run the provided Makefile</li>
+                                <li>Follow the README.md instructions</li>
+                                <li>Ensure Fortran compiler is in PATH</li>
                             </ul>
                         </div>
                     </div>

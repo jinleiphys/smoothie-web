@@ -11,11 +11,21 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo">SMOOTHIE</h1>
-                <div class="logo-subtitle">Scattering Model of Optical Operator Theory</div>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -34,85 +44,107 @@
             <!-- Papers Page -->
             <div class="page-header">
                 <h1>Related Papers</h1>
-                <p>Scientific publications and research related to SMOOTHIE</p>
+                <p>Scientific publications and research related to SMOOTHIE and the IAV formalism</p>
             </div>
+            
+            <!-- Original Model Papers -->
             <div class="content-section">
+                <h2>Original Model Papers</h2>
                 <div class="papers-grid">
                     <div class="paper-card">
-                        <h3>SMOOTHIE: A Computer Code for Non-elastic Breakup Calculations</h3>
-                        <p>The theoretical foundation and implementation details of SMOOTHIE using the Ichimura-Austern-Vincent formalism</p>
+                        <h3>Original IAV Model</h3>
+                        <p>The original Ichimura-Austern-Vincent model paper that forms the theoretical foundation of SMOOTHIE</p>
                         <div class="paper-meta">
-                            <span>Jin Lei, Antonio M. Moro</span>
-                            <span>Computer Physics Communications (2024)</span>
+                            <span>M. Ichimura, N. Austern, and C. M. Vincent</span>
+                            <span>Phys. Rev. C 32, 431 (1985)</span>
                         </div>
                         <div class="paper-links">
-                            <a href="#" class="paper-link">View Paper</a>
-                            <a href="#" class="paper-link">Download PDF</a>
+                            <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.32.431" class="paper-link" target="_blank">View Paper</a>
+                            <a href="files/ichimura1985.pdf" class="paper-link" target="_blank">Download PDF</a>
                         </div>
                     </div>
                     
                     <div class="paper-card">
-                        <h3>Theory of Inclusive Breakup Reactions</h3>
-                        <p>Original work by Ichimura, Austern, and Vincent on breakup reactions and the theoretical framework</p>
+                        <h3>Original UT Model</h3>
+                        <p>The original Udagawa-Tamura model paper, another important approach to breakup reactions</p>
                         <div class="paper-meta">
-                            <span>Ichimura, Austern, Vincent</span>
-                            <span>Physical Review C (1985)</span>
+                            <span>T. Udagawa and T. Tamura</span>
+                            <span>Phys. Rev. C 24, 1348 (1981)</span>
                         </div>
                         <div class="paper-links">
-                            <a href="#" class="paper-link">View Paper</a>
-                            <a href="#" class="paper-link">Download PDF</a>
+                            <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.24.1348" class="paper-link" target="_blank">View Paper</a>
+                            <a href="files/udagawa1981.pdf" class="paper-link" target="_blank">Download PDF</a>
                         </div>
                     </div>
                     
                     <div class="paper-card">
-                        <h3>Application of SMOOTHIE to Deuteron Breakup</h3>
-                        <p>First applications of SMOOTHIE to deuteron breakup reactions on various targets</p>
+                        <h3>Original HM Model</h3>
+                        <p>The original Hussein-McVoy model paper, providing an alternative theoretical framework</p>
                         <div class="paper-meta">
-                            <span>Jin Lei, Antonio M. Moro</span>
-                            <span>Physical Review C (2024)</span>
+                            <span>M. Hussein and K. McVoy</span>
+                            <span>Nucl. Phys. A 445, 124 (1985)</span>
                         </div>
                         <div class="paper-links">
-                            <a href="#" class="paper-link">View Paper</a>
-                            <a href="#" class="paper-link">Download PDF</a>
+                            <a href="https://www.sciencedirect.com/science/article/pii/0375947485903641?via%3Dihub" class="paper-link" target="_blank">View Paper</a>
+                            <a href="files/hussein1985.pdf" class="paper-link" target="_blank">Download PDF</a>
                         </div>
                     </div>
                     
                     <div class="paper-card">
-                        <h3>Modern Fortran Implementation of IAV Formalism</h3>
-                        <p>Technical details of the computational implementation and optimization strategies</p>
+                        <h3>First Numerical Implementation of IAV</h3>
+                        <p>The first numerical implementation of the IAV model with zero range approximation</p>
                         <div class="paper-meta">
-                            <span>Jin Lei, Antonio M. Moro</span>
-                            <span>Journal of Computational Physics (2024)</span>
+                            <span>A. Kasano and M. Ichimura</span>
+                            <span>Phys. Lett. B 115, 81 (1982)</span>
                         </div>
                         <div class="paper-links">
-                            <a href="#" class="paper-link">View Paper</a>
-                            <a href="#" class="paper-link">Download PDF</a>
+                            <a href="https://www.sciencedirect.com/science/article/pii/0370269382908000?via%3Dihub" class="paper-link" target="_blank">View Paper</a>
+                            <a href="files/kasano1982.pdf" class="paper-link" target="_blank">Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Numerical Development Papers -->
+            <div class="content-section">
+                <h2>Numerical Development of IAV Model in Our Group</h2>
+                <div class="papers-grid">
+                    <div class="paper-card">
+                        <h3>First Numerical Calculation with AHUA Code</h3>
+                        <p>The first numerical calculation with AHUA code, which is the previous version of SMOOTHIE</p>
+                        <div class="paper-meta">
+                            <span>Jin Lei and Antonio M. Moro</span>
+                            <span>Phys. Rev. C 92, 044616 (2015)</span>
+                        </div>
+                        <div class="paper-links">
+                            <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.92.044616" class="paper-link" target="_blank">View Paper</a>
+                            <a href="files/PhysRevC.92.044616.pdf" class="paper-link" target="_blank">Download PDF</a>
                         </div>
                     </div>
                     
                     <div class="paper-card">
-                        <h3>Benchmark Calculations with SMOOTHIE</h3>
-                        <p>Comprehensive benchmark study comparing SMOOTHIE results with experimental data</p>
+                        <h3>First Derivation of Formulas Used in SMOOTHIE</h3>
+                        <p>The first derivation of the theoretical formulas that are implemented in SMOOTHIE</p>
                         <div class="paper-meta">
-                            <span>Various Authors</span>
-                            <span>Nuclear Physics A (2024)</span>
+                            <span>Jin Lei</span>
+                            <span>Phys. Rev. C 97, 034628 (2018)</span>
                         </div>
                         <div class="paper-links">
-                            <a href="#" class="paper-link">View Paper</a>
-                            <a href="#" class="paper-link">Download PDF</a>
+                            <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.97.034628" class="paper-link" target="_blank">View Paper</a>
+                            <a href="files/PhysRevC.97.034628.pdf" class="paper-link" target="_blank">Download PDF</a>
                         </div>
                     </div>
                     
                     <div class="paper-card">
-                        <h3>Review of Breakup Reaction Theories</h3>
-                        <p>Comprehensive review of theoretical approaches to breakup reactions including the IAV formalism</p>
+                        <h3>Theory of the R-matrix Method Used in SMOOTHIE</h3>
+                        <p>The theoretical foundation of the R-matrix method that is implemented in SMOOTHIE</p>
                         <div class="paper-meta">
-                            <span>Antonio M. Moro, Jin Lei</span>
-                            <span>Progress in Particle and Nuclear Physics (2024)</span>
+                            <span>Jin Lei and Pierre Descouvemont</span>
+                            <span>Phys. Rev. C 102, 014608 (2020)</span>
                         </div>
                         <div class="paper-links">
-                            <a href="#" class="paper-link">View Paper</a>
-                            <a href="#" class="paper-link">Download PDF</a>
+                            <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.102.014608" class="paper-link" target="_blank">View Paper</a>
+                            <a href="files/PhysRevC.102.014608.pdf" class="paper-link" target="_blank">Download PDF</a>
                         </div>
                     </div>
                 </div>

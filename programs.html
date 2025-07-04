@@ -11,11 +11,21 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo">SMOOTHIE</h1>
-                <div class="logo-subtitle">Scattering Model of Optical Operator Theory</div>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -39,222 +49,39 @@
             <div class="content-section">
                 <div class="programs-grid">
                     <div class="program-card">
-                        <div class="program-icon">📊</div>
-                        <h3>SMOOTHIE-Plot</h3>
-                        <p>Visualization tool for SMOOTHIE results including cross sections, angular distributions, and energy spectra</p>
+                        <div class="program-icon">🔗</div>
+                        <h3>Fresco</h3>
+                        <p>Used for Coupled Reaction Channels Calculations</p>
                         <div class="program-features">
                             <ul>
-                                <li>Interactive plotting</li>
-                                <li>Multiple data formats</li>
-                                <li>Export to various formats</li>
-                                <li>Comparison with experimental data</li>
+                                <li>Coupled channels calculations</li>
+                                <li>Direct and transfer reactions</li>
+                                <li>Elastic and inelastic scattering</li>
+                                <li>Optical model calculations</li>
                             </ul>
                         </div>
                         <div class="program-links">
-                            <a href="#" class="btn-program">Download</a>
-                            <a href="#" class="btn-program secondary">Documentation</a>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-icon">🔬</div>
-                        <h3>DWBA-Calculator</h3>
-                        <p>Distorted Wave Born Approximation calculator for direct reaction analysis</p>
-                        <div class="program-features">
-                            <ul>
-                                <li>DWBA calculations</li>
-                                <li>Form factor analysis</li>
-                                <li>Optical model potentials</li>
-                                <li>Transfer reaction analysis</li>
-                            </ul>
-                        </div>
-                        <div class="program-links">
-                            <a href="#" class="btn-program">Download</a>
-                            <a href="#" class="btn-program secondary">Documentation</a>
+                            <a href="https://www.fresco.org.uk" class="btn-program" target="_blank">Visit Website</a>
+                            <a href="https://github.com/I-Thompson/fresco" class="btn-program secondary" target="_blank">GitHub Repository</a>
                         </div>
                     </div>
                     
                     <div class="program-card">
                         <div class="program-icon">🧮</div>
-                        <h3>Potential-Fitter</h3>
-                        <p>Optical model potential fitting program for nuclear scattering data</p>
+                        <h3>COLOSS</h3>
+                        <p>Complex-scaled Optical and couLOmb Scattering Solver</p>
                         <div class="program-features">
                             <ul>
-                                <li>Automatic parameter fitting</li>
-                                <li>Multiple potential forms</li>
-                                <li>Statistical analysis</li>
-                                <li>Uncertainty estimation</li>
-                            </ul>
-                        </div>
-                        <div class="program-links">
-                            <a href="#" class="btn-program">Download</a>
-                            <a href="#" class="btn-program secondary">Documentation</a>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-icon">🌊</div>
-                        <h3>Continuum-Solver</h3>
-                        <p>Numerical solver for continuum states in nuclear physics calculations</p>
-                        <div class="program-features">
-                            <ul>
-                                <li>Continuum discretization</li>
-                                <li>Scattering states</li>
-                                <li>Resonance analysis</li>
                                 <li>Complex scaling methods</li>
+                                <li>Optical model calculations</li>
+                                <li>Coulomb scattering</li>
+                                <li>Advanced nuclear physics solver</li>
                             </ul>
                         </div>
                         <div class="program-links">
-                            <a href="#" class="btn-program">Download</a>
-                            <a href="#" class="btn-program secondary">Documentation</a>
+                            <a href="https://github.com/jinleiphys/COLOSS" class="btn-program" target="_blank">GitHub Repository</a>
+                            <span class="program-reference">Junzhe Liu, Jin Lei, Zhongzhou Ren<br>Computer Physics Communications 311 (2025) 109568</span>
                         </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-icon">🎯</div>
-                        <h3>Cross-Section-Tools</h3>
-                        <p>Collection of utilities for cross section calculations and analysis</p>
-                        <div class="program-features">
-                            <ul>
-                                <li>Cross section integration</li>
-                                <li>Angular averaging</li>
-                                <li>Energy binning</li>
-                                <li>Statistical analysis</li>
-                            </ul>
-                        </div>
-                        <div class="program-links">
-                            <a href="#" class="btn-program">Download</a>
-                            <a href="#" class="btn-program secondary">Documentation</a>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-icon">🔗</div>
-                        <h3>Coupling-Calculator</h3>
-                        <p>Calculation of coupling coefficients for nuclear reaction theory</p>
-                        <div class="program-features">
-                            <ul>
-                                <li>Angular momentum coupling</li>
-                                <li>Clebsch-Gordan coefficients</li>
-                                <li>Racah coefficients</li>
-                                <li>Wigner symbols</li>
-                            </ul>
-                        </div>
-                        <div class="program-links">
-                            <a href="#" class="btn-program">Download</a>
-                            <a href="#" class="btn-program secondary">Documentation</a>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-icon">📈</div>
-                        <h3>Data-Analyzer</h3>
-                        <p>Statistical analysis and data processing tools for nuclear physics experiments</p>
-                        <div class="program-features">
-                            <ul>
-                                <li>Statistical analysis</li>
-                                <li>Error propagation</li>
-                                <li>Data fitting</li>
-                                <li>Correlation analysis</li>
-                            </ul>
-                        </div>
-                        <div class="program-links">
-                            <a href="#" class="btn-program">Download</a>
-                            <a href="#" class="btn-program secondary">Documentation</a>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-icon">🌐</div>
-                        <h3>Web-Interface</h3>
-                        <p>Web-based interface for running SMOOTHIE calculations online</p>
-                        <div class="program-features">
-                            <ul>
-                                <li>Online calculations</li>
-                                <li>Input file generation</li>
-                                <li>Result visualization</li>
-                                <li>Collaborative workspace</li>
-                            </ul>
-                        </div>
-                        <div class="program-links">
-                            <a href="#" class="btn-program">Access Online</a>
-                            <a href="#" class="btn-program secondary">User Guide</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="compatibility-section">
-                    <h2>Compatibility Matrix</h2>
-                    <div class="compatibility-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Program</th>
-                                    <th>SMOOTHIE Input</th>
-                                    <th>SMOOTHIE Output</th>
-                                    <th>Standalone</th>
-                                    <th>Platform</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>SMOOTHIE-Plot</td>
-                                    <td>✓</td>
-                                    <td>✓</td>
-                                    <td>✓</td>
-                                    <td>Linux, Windows, macOS</td>
-                                </tr>
-                                <tr>
-                                    <td>DWBA-Calculator</td>
-                                    <td>✓</td>
-                                    <td>-</td>
-                                    <td>✓</td>
-                                    <td>Linux, Windows</td>
-                                </tr>
-                                <tr>
-                                    <td>Potential-Fitter</td>
-                                    <td>✓</td>
-                                    <td>-</td>
-                                    <td>✓</td>
-                                    <td>Linux, Windows</td>
-                                </tr>
-                                <tr>
-                                    <td>Continuum-Solver</td>
-                                    <td>✓</td>
-                                    <td>-</td>
-                                    <td>✓</td>
-                                    <td>Linux</td>
-                                </tr>
-                                <tr>
-                                    <td>Cross-Section-Tools</td>
-                                    <td>-</td>
-                                    <td>✓</td>
-                                    <td>✓</td>
-                                    <td>Linux, Windows, macOS</td>
-                                </tr>
-                                <tr>
-                                    <td>Coupling-Calculator</td>
-                                    <td>✓</td>
-                                    <td>-</td>
-                                    <td>✓</td>
-                                    <td>Linux, Windows</td>
-                                </tr>
-                                <tr>
-                                    <td>Data-Analyzer</td>
-                                    <td>-</td>
-                                    <td>✓</td>
-                                    <td>✓</td>
-                                    <td>Linux, Windows, macOS</td>
-                                </tr>
-                                <tr>
-                                    <td>Web-Interface</td>
-                                    <td>✓</td>
-                                    <td>✓</td>
-                                    <td>-</td>
-                                    <td>Web Browser</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

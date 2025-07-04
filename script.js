@@ -82,43 +82,47 @@ class SmoothieWebsite {
     }
 
     setupMobileMenu() {
-        // Add mobile menu toggle button
         const sidebar = document.querySelector('.sidebar');
-        const mobileToggle = document.createElement('button');
-        mobileToggle.className = 'mobile-menu-toggle';
-        mobileToggle.innerHTML = '☰';
-        mobileToggle.style.cssText = `
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: none;
-            border-radius: 8px;
-            padding: 0.5rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        `;
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
 
-        document.body.appendChild(mobileToggle);
+        if (!mobileToggle || !sidebar || !sidebarOverlay) return;
 
         // Toggle mobile menu
         mobileToggle.addEventListener('click', () => {
             this.isMenuOpen = !this.isMenuOpen;
             sidebar.classList.toggle('open', this.isMenuOpen);
-            mobileToggle.innerHTML = this.isMenuOpen ? '✕' : '☰';
+            mobileToggle.classList.toggle('active', this.isMenuOpen);
+            sidebarOverlay.style.display = this.isMenuOpen ? 'block' : 'none';
+            
+            // Animate overlay
+            if (this.isMenuOpen) {
+                setTimeout(() => sidebarOverlay.classList.add('active'), 10);
+            } else {
+                sidebarOverlay.classList.remove('active');
+                setTimeout(() => sidebarOverlay.style.display = 'none', 300);
+            }
         });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (this.isMenuOpen && !sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+        // Close menu when clicking overlay
+        sidebarOverlay.addEventListener('click', () => {
+            this.isMenuOpen = false;
+            sidebar.classList.remove('open');
+            mobileToggle.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            setTimeout(() => sidebarOverlay.style.display = 'none', 300);
+        });
+
+        // Close menu when clicking nav links
+        const navLinks = sidebar.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
                 this.isMenuOpen = false;
                 sidebar.classList.remove('open');
-                mobileToggle.innerHTML = '☰';
-            }
+                mobileToggle.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                setTimeout(() => sidebarOverlay.style.display = 'none', 300);
+            });
         });
 
         // Handle responsive behavior
@@ -170,14 +174,16 @@ class SmoothieWebsite {
     handleResize() {
         const mobileToggle = document.querySelector('.mobile-menu-toggle');
         const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
         
-        if (window.innerWidth <= 768) {
-            if (mobileToggle) mobileToggle.style.display = 'block';
+        if (window.innerWidth > 768) {
+            // Close mobile menu when switching to desktop
             if (sidebar) sidebar.classList.remove('open');
-            this.isMenuOpen = false;
-        } else {
-            if (mobileToggle) mobileToggle.style.display = 'none';
-            if (sidebar) sidebar.classList.remove('open');
+            if (mobileToggle) mobileToggle.classList.remove('active');
+            if (sidebarOverlay) {
+                sidebarOverlay.classList.remove('active');
+                sidebarOverlay.style.display = 'none';
+            }
             this.isMenuOpen = false;
         }
     }
@@ -462,19 +468,22 @@ function downloadInputFile() {
     window.smoothieWebsite.showNotification('Input file downloaded!', 'success');
 }
 
-function copyBibTeX() {
-    const bibtex = `@article{Lei2024SMOOTHIE,
-    title={SMOOTHIE: A Computer Code for Non-elastic Breakup Calculations using the Ichimura-Austern-Vincent Formalism},
-    author={Lei, Jin and Moro, Antonio M.},
-    journal={Computer Physics Communications},
-    volume={XXX},
-    pages={XXXXXX},
-    year={2024},
-    publisher={Elsevier}
-}`;
-
-    navigator.clipboard.writeText(bibtex).then(() => {
+function copyBibTeX(bibtexId) {
+    const bibtexElement = document.getElementById(bibtexId);
+    if (!bibtexElement) return;
+    
+    const bibtexText = bibtexElement.querySelector('pre').textContent;
+    
+    navigator.clipboard.writeText(bibtexText).then(() => {
         window.smoothieWebsite.showNotification('BibTeX copied to clipboard!', 'success');
+        
+        // Toggle visibility of BibTeX box
+        if (bibtexElement.style.display === 'none' || bibtexElement.style.display === '') {
+            bibtexElement.style.display = 'block';
+            setTimeout(() => {
+                bibtexElement.style.display = 'none';
+            }, 3000);
+        }
     }).catch(() => {
         window.smoothieWebsite.showNotification('Failed to copy BibTeX', 'error');
     });

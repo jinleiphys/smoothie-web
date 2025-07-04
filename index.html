@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMOOTHIE - Scattering Model of Optical Operator Theory</title>
+    <title>SMOOTHIE - Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,11 +11,21 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo">SMOOTHIE</h1>
-                <div class="logo-subtitle">Scattering Model of Optical Operator Theory</div>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
@@ -61,6 +71,100 @@
                     <div class="hero-actions">
                         <a href="downloads.html" class="btn-primary">Download Now</a>
                         <a href="examples.html" class="btn-secondary">View Examples</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Citation Section -->
+            <div class="citation-section">
+                <div class="citation-content">
+                    <h2>How to Cite SMOOTHIE</h2>
+                    <p>If you use SMOOTHIE in your research, please cite the following papers:</p>
+                    
+                    <div class="citation-papers">
+                        <div class="citation-paper">
+                            <h3>First Numerical Calculation with AHUA Code</h3>
+                            <p class="paper-title">Reexamining closed-form formulae for inclusive breakup: Application to deuteron- and ⁶Li-induced reactions</p>
+                            <p class="paper-authors">Jin Lei and A. M. Moro</p>
+                            <p class="paper-journal">Phys. Rev. C 92, 044616 (2015)</p>
+                            <div class="paper-links">
+                                <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.92.044616" class="paper-link" target="_blank">View Paper</a>
+                                <a href="files/PhysRevC.92.044616.pdf" class="paper-link" target="_blank">Download PDF</a>
+                                <button class="paper-link" onclick="copyBibTeX('bibtex1')">Copy BibTeX</button>
+                            </div>
+                            <div class="bibtex-box" id="bibtex1" style="display: none;">
+                                <pre>@article{PhysRevC.92.044616,
+  title = {Reexamining closed-form formulae for inclusive breakup: Application to deuteron- and $^{6}\\mathrm{Li}$-induced reactions},
+  author = {Lei, Jin and Moro, A. M.},
+  journal = {Phys. Rev. C},
+  volume = {92},
+  issue = {4},
+  pages = {044616},
+  numpages = {14},
+  year = {2015},
+  month = {Oct},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevC.92.044616},
+  url = {https://link.aps.org/doi/10.1103/PhysRevC.92.044616}
+}</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="citation-paper">
+                            <h3>First Derivation of Formulas Used in SMOOTHIE</h3>
+                            <p class="paper-title">Inclusive breakup calculations in angular momentum basis: Application to ⁷Li+⁵⁸Ni</p>
+                            <p class="paper-authors">Jin Lei</p>
+                            <p class="paper-journal">Phys. Rev. C 97, 034628 (2018)</p>
+                            <div class="paper-links">
+                                <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.97.034628" class="paper-link" target="_blank">View Paper</a>
+                                <a href="files/PhysRevC.97.034628.pdf" class="paper-link" target="_blank">Download PDF</a>
+                                <button class="paper-link" onclick="copyBibTeX('bibtex2')">Copy BibTeX</button>
+                            </div>
+                            <div class="bibtex-box" id="bibtex2" style="display: none;">
+                                <pre>@article{PhysRevC.97.034628,
+  title = {Inclusive breakup calculations in angular momentum basis: Application to $^{7}\\mathrm{Li}+^{58}\\mathrm{Ni}$},
+  author = {Lei, Jin},
+  journal = {Phys. Rev. C},
+  volume = {97},
+  issue = {3},
+  pages = {034628},
+  numpages = {7},
+  year = {2018},
+  month = {Mar},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevC.97.034628},
+  url = {https://link.aps.org/doi/10.1103/PhysRevC.97.034628}
+}</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="citation-paper">
+                            <h3>Theory of the R-matrix Method Used in SMOOTHIE</h3>
+                            <p class="paper-title">Lagrange-mesh R-matrix method for inhomogeneous equations</p>
+                            <p class="paper-authors">Jin Lei and Pierre Descouvemont</p>
+                            <p class="paper-journal">Phys. Rev. C 102, 014608 (2020)</p>
+                            <div class="paper-links">
+                                <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.102.014608" class="paper-link" target="_blank">View Paper</a>
+                                <a href="files/PhysRevC.102.014608.pdf" class="paper-link" target="_blank">Download PDF</a>
+                                <button class="paper-link" onclick="copyBibTeX('bibtex3')">Copy BibTeX</button>
+                            </div>
+                            <div class="bibtex-box" id="bibtex3" style="display: none;">
+                                <pre>@article{PhysRevC.102.014608,
+  title = {Lagrange-mesh $R$-matrix method for inhomogeneous equations},
+  author = {Lei, Jin and Descouvemont, Pierre},
+  journal = {Phys. Rev. C},
+  volume = {102},
+  issue = {1},
+  pages = {014608},
+  numpages = {7},
+  year = {2020},
+  month = {Jul},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevC.102.014608},
+  url = {https://link.aps.org/doi/10.1103/PhysRevC.102.014608}
+}</pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
