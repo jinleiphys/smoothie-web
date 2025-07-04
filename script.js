@@ -108,24 +108,26 @@ class SmoothieWebsite {
                 sidebarOverlay.style.display = 'block';
                 document.body.style.overflow = 'hidden';
                 
-                // Animate overlay
-                setTimeout(() => {
-                    sidebarOverlay.classList.add('active');
-                }, 10);
-            } else {
-                sidebar.classList.remove('open');
-                mobileToggle.classList.remove('active');
-                sidebarOverlay.classList.remove('active');
-                document.body.style.overflow = '';
+                // Force reflow before adding active class
+                sidebarOverlay.offsetHeight;
                 
-                setTimeout(() => {
-                    sidebarOverlay.style.display = 'none';
-                }, 300);
+                // Animate overlay
+                requestAnimationFrame(() => {
+                    sidebarOverlay.classList.add('active');
+                });
+            } else {
+                this.closeMobileMenu();
             }
         });
 
         // Close menu when clicking overlay
         sidebarOverlay.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.closeMobileMenu();
+        });
+        
+        // Handle touch events for better mobile support
+        sidebarOverlay.addEventListener('touchstart', (e) => {
             e.preventDefault();
             this.closeMobileMenu();
         });
@@ -491,12 +493,53 @@ function downloadInputFile() {
 
 function copyBibTeX(bibtexId) {
     const bibtexElement = document.getElementById(bibtexId);
-    if (!bibtexElement) return;
+    if (!bibtexElement) {
+        console.error('BibTeX element not found:', bibtexId);
+        return;
+    }
     
-    const bibtexText = bibtexElement.querySelector('pre').textContent;
+    const preElement = bibtexElement.querySelector('pre');
+    if (!preElement) {
+        console.error('Pre element not found in BibTeX box:', bibtexId);
+        return;
+    }
+    
+    const bibtexText = preElement.textContent;
+    
+    // Find the button that was clicked
+    const copyButton = event.target;
+    const originalText = copyButton.textContent;
+    
+    // Add visual feedback
+    copyButton.classList.add('copying');
+    copyButton.textContent = 'Copying...';
+    copyButton.disabled = true;
+    
+    // Function to reset button state
+    const resetButton = (success = false) => {
+        setTimeout(() => {
+            copyButton.classList.remove('copying');
+            copyButton.textContent = success ? 'Copied!' : originalText;
+            copyButton.disabled = false;
+            
+            if (success) {
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                }, 1500);
+            }
+        }, 100);
+    };
+    
+    // Check if clipboard API is available
+    if (!navigator.clipboard) {
+        // Fallback for older browsers
+        fallbackCopyToClipboard(bibtexText, bibtexId, resetButton);
+        return;
+    }
     
     navigator.clipboard.writeText(bibtexText).then(() => {
-        window.smoothieWebsite.showNotification('BibTeX copied to clipboard!', 'success');
+        showNotificationSafe('BibTeX copied to clipboard!', 'success');
+        resetButton(true);
         
         // Toggle visibility of BibTeX box
         if (bibtexElement.style.display === 'none' || bibtexElement.style.display === '') {
@@ -505,9 +548,66 @@ function copyBibTeX(bibtexId) {
                 bibtexElement.style.display = 'none';
             }, 3000);
         }
-    }).catch(() => {
-        window.smoothieWebsite.showNotification('Failed to copy BibTeX', 'error');
+    }).catch((err) => {
+        console.error('Failed to copy BibTeX:', err);
+        showNotificationSafe('Failed to copy BibTeX', 'error');
+        resetButton(false);
+        
+        // Try fallback method
+        fallbackCopyToClipboard(bibtexText, bibtexId, resetButton);
     });
+}
+
+function fallbackCopyToClipboard(text, bibtexId, resetButton) {
+    // Create a temporary textarea element
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    textarea.style.pointerEvents = 'none';
+    document.body.appendChild(textarea);
+    
+    try {
+        textarea.select();
+        textarea.setSelectionRange(0, 99999); // For mobile devices
+        const successful = document.execCommand('copy');
+        
+        if (successful) {
+            showNotificationSafe('BibTeX copied to clipboard!', 'success');
+            if (resetButton) resetButton(true);
+            
+            // Toggle visibility of BibTeX box
+            const bibtexElement = document.getElementById(bibtexId);
+            if (bibtexElement && (bibtexElement.style.display === 'none' || bibtexElement.style.display === '')) {
+                bibtexElement.style.display = 'block';
+                setTimeout(() => {
+                    bibtexElement.style.display = 'none';
+                }, 3000);
+            }
+        } else {
+            throw new Error('execCommand failed');
+        }
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+        showNotificationSafe('Failed to copy BibTeX. Please select and copy manually.', 'error');
+        if (resetButton) resetButton(false);
+    } finally {
+        document.body.removeChild(textarea);
+    }
+}
+
+function showNotificationSafe(message, type = 'info') {
+    // Check if the smoothieWebsite instance exists
+    if (window.smoothieWebsite && typeof window.smoothieWebsite.showNotification === 'function') {
+        window.smoothieWebsite.showNotification(message, type);
+    } else {
+        // Fallback: use browser alert or console
+        console.log(`Notification [${type}]: ${message}`);
+        // You could also use alert, but it's less elegant
+        if (type === 'error') {
+            alert(message);
+        }
+    }
 }
 
 // Initialize the website when DOM is loaded

@@ -524,21 +524,24 @@ body {
     border-radius: var(--border-radius);
     padding: 0.75rem;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex-direction: column;
     gap: 0.25rem;
     width: 3rem;
     height: 3rem;
     justify-content: center;
     align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .hamburger-line {
     width: 1.5rem;
     height: 2px;
     background: var(--primary-color);
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 2px;
+    display: block;
 }
 
 .mobile-menu-toggle:hover {
@@ -552,6 +555,7 @@ body {
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
 }
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
@@ -567,13 +571,15 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
 }
 
 .sidebar-overlay.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
 /* Responsive Design */
@@ -585,9 +591,13 @@ body {
     .sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1001;
+        z-index: 1002;
         width: 280px;
         position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
     }
     
     .sidebar.open {
@@ -640,6 +650,23 @@ body {
     .logo-subtitle {
         font-size: 0.8rem;
         line-height: 1.3;
+    }
+    
+    /* Ensure sidebar is always above overlay */
+    .sidebar.open {
+        z-index: 1002;
+    }
+    
+    /* Fix for very small screens */
+    @media (max-width: 320px) {
+        .sidebar {
+            width: 100vw;
+        }
+        
+        .mobile-menu-toggle {
+            top: 0.5rem;
+            left: 0.5rem;
+        }
     }
 }
 
@@ -739,11 +766,51 @@ html {
     border-radius: 6px;
     font-size: 0.875rem;
     transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .paper-link:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
+}
+
+.paper-link:active {
+    transform: translateY(0);
+    background: var(--accent-color);
+}
+
+/* Special styling for copy buttons */
+.paper-link[onclick*="copyBibTeX"] {
+    background: var(--accent-color);
+    position: relative;
+}
+
+.paper-link[onclick*="copyBibTeX"]:hover {
+    background: var(--secondary-color);
+}
+
+.paper-link[onclick*="copyBibTeX"]:active {
+    transform: scale(0.95);
+    background: var(--primary-color);
+}
+
+/* Copy button feedback animation */
+.paper-link.copying {
+    background: var(--success-color, #28a745) !important;
+    transform: scale(0.95);
+}
+
+.paper-link.copying::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    color: white;
 }
 
 /* Downloads page styles */
