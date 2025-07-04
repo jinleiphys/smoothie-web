@@ -95,12 +95,14 @@ class SmoothieWebsite {
             return;
         }
 
-        // Toggle mobile menu
-        mobileToggle.addEventListener('click', (e) => {
+        // Toggle mobile menu - handle both click and touch
+        const toggleMenu = (e) => {
+            console.log('Mobile menu toggle triggered:', e.type);
             e.preventDefault();
             e.stopPropagation();
             
             this.isMenuOpen = !this.isMenuOpen;
+            console.log('Menu state:', this.isMenuOpen ? 'opening' : 'closing');
             
             if (this.isMenuOpen) {
                 sidebar.classList.add('open');
@@ -118,7 +120,10 @@ class SmoothieWebsite {
             } else {
                 this.closeMobileMenu();
             }
-        });
+        };
+        
+        mobileToggle.addEventListener('click', toggleMenu);
+        mobileToggle.addEventListener('touchstart', toggleMenu, { passive: false });
 
         // Close menu when clicking overlay
         sidebarOverlay.addEventListener('click', (e) => {
@@ -132,12 +137,18 @@ class SmoothieWebsite {
             this.closeMobileMenu();
         });
 
-        // Close menu when clicking nav links
+        // Close menu when clicking nav links - handle both click and touch
         const navLinks = sidebar.querySelectorAll('.nav-link');
+        console.log('Found nav links:', navLinks.length);
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            const closeMenuOnNavigation = (e) => {
+                console.log('Nav link clicked:', e.type, link.textContent);
+                // Don't prevent default for navigation links
                 this.closeMobileMenu();
-            });
+            };
+            
+            link.addEventListener('click', closeMenuOnNavigation);
+            link.addEventListener('touchstart', closeMenuOnNavigation, { passive: true });
         });
 
         // Handle responsive behavior
@@ -491,7 +502,7 @@ function downloadInputFile() {
     window.smoothieWebsite.showNotification('Input file downloaded!', 'success');
 }
 
-function copyBibTeX(bibtexId) {
+function copyBibTeX(bibtexId, buttonElement) {
     const bibtexElement = document.getElementById(bibtexId);
     if (!bibtexElement) {
         console.error('BibTeX element not found:', bibtexId);
@@ -505,39 +516,49 @@ function copyBibTeX(bibtexId) {
     }
     
     const bibtexText = preElement.textContent;
+    console.log('Attempting to copy BibTeX text:', bibtexText.substring(0, 50) + '...');
     
-    // Find the button that was clicked
-    const copyButton = event.target;
-    const originalText = copyButton.textContent;
+    // Find the button that was clicked - either passed or find via event
+    const copyButton = buttonElement || (window.event && window.event.target) || document.querySelector(`button[onclick*="${bibtexId}"]`);
+    const originalText = copyButton ? copyButton.textContent : 'Copy BibTeX';
     
     // Add visual feedback
-    copyButton.classList.add('copying');
-    copyButton.textContent = 'Copying...';
-    copyButton.disabled = true;
+    if (copyButton) {
+        copyButton.classList.add('copying');
+        copyButton.textContent = 'Copying...';
+        copyButton.disabled = true;
+    }
     
     // Function to reset button state
     const resetButton = (success = false) => {
         setTimeout(() => {
-            copyButton.classList.remove('copying');
-            copyButton.textContent = success ? 'Copied!' : originalText;
-            copyButton.disabled = false;
-            
-            if (success) {
-                setTimeout(() => {
-                    copyButton.textContent = originalText;
-                }, 1500);
+            if (copyButton) {
+                copyButton.classList.remove('copying');
+                copyButton.textContent = success ? 'Copied!' : originalText;
+                copyButton.disabled = false;
+                
+                if (success) {
+                    setTimeout(() => {
+                        copyButton.textContent = originalText;
+                    }, 1500);
+                }
             }
         }, 100);
     };
     
     // Check if clipboard API is available
-    if (!navigator.clipboard) {
-        // Fallback for older browsers
+    console.log('Clipboard API available:', !!navigator.clipboard);
+    console.log('Secure context:', window.isSecureContext);
+    
+    if (!navigator.clipboard || !window.isSecureContext) {
+        console.log('Using fallback method - Clipboard API not available or not in secure context');
+        // Fallback for older browsers or non-secure contexts
         fallbackCopyToClipboard(bibtexText, bibtexId, resetButton);
         return;
     }
     
     navigator.clipboard.writeText(bibtexText).then(() => {
+        console.log('Successfully copied to clipboard via Clipboard API');
         showNotificationSafe('BibTeX copied to clipboard!', 'success');
         resetButton(true);
         
@@ -549,8 +570,8 @@ function copyBibTeX(bibtexId) {
             }, 3000);
         }
     }).catch((err) => {
-        console.error('Failed to copy BibTeX:', err);
-        showNotificationSafe('Failed to copy BibTeX', 'error');
+        console.error('Clipboard API failed:', err);
+        showNotificationSafe('Trying alternative copy method...', 'info');
         resetButton(false);
         
         // Try fallback method
@@ -559,20 +580,31 @@ function copyBibTeX(bibtexId) {
 }
 
 function fallbackCopyToClipboard(text, bibtexId, resetButton) {
+    console.log('Using fallback copy method');
+    
     // Create a temporary textarea element
     const textarea = document.createElement('textarea');
     textarea.value = text;
     textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    textarea.style.top = '-9999px';
     textarea.style.opacity = '0';
     textarea.style.pointerEvents = 'none';
+    textarea.setAttribute('readonly', '');
     document.body.appendChild(textarea);
     
     try {
+        // Focus and select the text
+        textarea.focus();
         textarea.select();
-        textarea.setSelectionRange(0, 99999); // For mobile devices
+        textarea.setSelectionRange(0, textarea.value.length);
+        
+        // Try to copy
         const successful = document.execCommand('copy');
+        console.log('execCommand copy result:', successful);
         
         if (successful) {
+            console.log('Successfully copied via execCommand');
             showNotificationSafe('BibTeX copied to clipboard!', 'success');
             if (resetButton) resetButton(true);
             
@@ -585,12 +617,18 @@ function fallbackCopyToClipboard(text, bibtexId, resetButton) {
                 }, 3000);
             }
         } else {
-            throw new Error('execCommand failed');
+            throw new Error('execCommand returned false');
         }
     } catch (err) {
         console.error('Fallback copy failed:', err);
-        showNotificationSafe('Failed to copy BibTeX. Please select and copy manually.', 'error');
+        showNotificationSafe('Copy failed. Please select the text and copy manually (Ctrl+C or Cmd+C).', 'error');
         if (resetButton) resetButton(false);
+        
+        // Show the BibTeX box so user can copy manually
+        const bibtexElement = document.getElementById(bibtexId);
+        if (bibtexElement) {
+            bibtexElement.style.display = 'block';
+        }
     } finally {
         document.body.removeChild(textarea);
     }
