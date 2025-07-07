@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theoretical Framework - SMOOTHIE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">SMOOTHIE</h1>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="story.html" class="nav-link">Birth of SMOOTHIE</a></li>
+                <li><a href="papers.html" class="nav-link">Related Papers</a></li>
+                <li><a href="formulas.html" class="nav-link active">Theoretical Framework</a></li>
+                <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+                <li><a href="examples.html" class="nav-link">Input Examples</a></li>
+                <li><a href="programs.html" class="nav-link">Related Programs</a></li>
+                <li><a href="generator.html" class="nav-link">Input File Generator</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Formulas Page -->
+            <div class="page-header">
+                <h1>Theoretical Framework</h1>
+                <p>Mathematical formulation of the Ichimura-Austern-Vincent model implemented in SMOOTHIE</p>
+            </div>
+            
+            <div class="content-section formulas-content">
+                <div class="theory-section">
+                    <h2>Theoretical Framework</h2>
+                    <p>The process under study involves a projectile labeled $a$, which has a two-body structure denoted as $a = b + x$. This projectile collides with a target nucleus $A$, leading to the emission of a fragment $b$. In this reaction, $b$ acts as a spectator, while $x$ is the participant interacting with $A$. The process can be represented as:</p>
+                    
+                    <div class="formula-block">
+                        $$a (= b + x) + A \to b + B^*$$
+                    </div>
+                    
+                    <p>where $B^*$ denotes any resulting state of the $x + A$ system.</p>
+
+                    <p>Applying energy conservation in Jacobi coordinates, one obtains:</p>
+                    
+                    <div class="formula-block">
+                        $$E_{bx} + E_a = E_b + E_x$$
+                    </div>
+                    
+                    <p>where $E_{bx}$ is the relative energy of the $b + x$ pair, $E_x$ is the relative energy of the $x + A$ pair, $E_a$ is the relative energy of $a$ with respect to $A$, and $E_b$ is the relative energy of $b$ with respect to the $x + A$ system. The corresponding wave numbers for $E_a$, $E_b$, and $E_x$ are denoted $k_a$, $k_b$, and $k_x$, respectively.</p>
+
+                    <p>The interaction between $x$ and $A$ encompasses both elastic scattering and nonelastic reactions. The elastic scattering is termed EBU, while the nonelastic processes, collectively referred to as NEB, include inelastic scattering of $x + A$, nucleon exchange between $x$ and $A$, fusion, and transfer to bound states of $B$. The EBU cross section can typically be computed by CDCC calculations.</p>
+
+                    <p>In the three-body model proposed by Ichimura, Austern, and Vincent (IAV), the differential cross section for the NEB inclusive process is given by the closed-form expression:</p>
+                    
+                    <div class="formula-block">
+                        $$\left. \frac{d^2\sigma}{dE_b \, d\Omega_b} \right|_{\text{NEB}} = -\frac{2}{\hbar v_a} \rho_b(E_b) \langle \varphi_x (\mathbf{k}_b) | \text{Im}[U_{xA}] | \varphi_x (\mathbf{k}_b) \rangle$$
+                    </div>
+                    
+                    <p>where $\rho_b(E_b)$ is the density of states of particle $b$, $v_a$ is the velocity of the incoming projectile $a$, $\varphi_x(\mathbf{k}_b, \mathbf{r}_{xA})$ is the relative wave function describing the motion between $x$ and $A$ when $b$ is scattered with momentum $\mathbf{k}_b$, and $U_{xA}$ is the effective optical potential between $x$ and $A$. The wave function $\varphi_x(\mathbf{k}_b, \mathbf{r}_x)$ is determined by:</p>
+                    
+                    <div class="formula-block">
+                        $$\varphi_x(\mathbf{k}_b, \mathbf{r}_x) = \int_0^{R_\textit{max}} G_x (\mathbf{r}_x, \mathbf{r}'_x) \langle \mathbf{r}'_x | \rho (\mathbf{k}_b) \rangle \, d\mathbf{r}'_x$$
+                    </div>
+                    
+                    <p>where the source term is:</p>
+                    
+                    <div class="formula-block">
+                        $$\langle \mathbf{r}_x | \rho(\mathbf{k}_b) \rangle = \langle \mathbf{r}_x \chi_b^{(-)}(\mathbf{k}_b) | \mathcal{V}_{\text{post}} | \chi_a^{(+)} \phi_{bx}\rangle$$
+                    </div>
+                    
+                    <p>Here, $G_x$ is the Green's function incorporating the optical potential $U_{xA}$, $\chi_b^{(-)*}(\mathbf{k}_b, \mathbf{r}_b)$ is the distorted wave describing the relative motion of $b$ with respect to the $B^*$ system (obtained using an optical potential $U_{bB}$), and $\chi_a^{(+)} \phi_{bx}$ is the DWBA form of $\Psi^{3b(+)}$, which is the exact three-body scattering wave function, with $\chi_a^{(+)}$ being the scattering state between $a+A$ and $\phi_{bx}$ being the two-body bound state of the projectile. The post-form transition operator is defined as $\mathcal{V}_{\text{post}} = V_{bx} + U_{bA} - U_{bB}$, where $V_{bx}$ is the binding potential of the $b + x$ projectile, and $U_{bA}$ is the optical potential for the relative scattering of $b$ and $A$.</p>
+
+                    <p>However, a notable limitation of this representation is the absence of a natural cutoff in the integration of the transition matrix, leading to non-convergent numerical results due to long-range effects. For practical calculations, the IAV-prior form is typically chosen, where the relative wave function $\varphi_x(\mathbf{k}_b, \mathbf{r}_x)$ is given by:</p>
+                    
+                    <div class="formula-block">
+                        $$\varphi_x(\mathbf{k}_b, \mathbf{r}_x) = \varphi^\mathrm{UT}_x(\mathbf{k}_b, \mathbf{r}_x) + \varphi_x^\mathrm{HM}(\mathbf{k}_b, \mathbf{r}_x)$$
+                    </div>
+                    
+                    <p>where the first term, introduced by Udagawa and Tamura, takes the form:</p>
+                    
+                    <div class="formula-block">
+                        $$\varphi^\mathrm{UT}_x(\mathbf{k}_b, \mathbf{r}_x) = \int_0^{R_\mathrm{max}} G_x(\mathbf{r}_x, \mathbf{r}'_x) \langle \mathbf{r}'_x | \rho^\mathrm{prior}(\mathbf{k}_b) \rangle \, d\mathbf{r}'_x$$
+                    </div>
+                    
+                    <p>with:</p>
+                    
+                    <div class="formula-block">
+                        $$\langle \mathbf{r}'_x | \rho^\mathrm{prior}(\mathbf{k}_b) \rangle = \langle \mathbf{r}'_x, \chi_b^{(-)}(\mathbf{k}_b) | \mathcal{V}_\mathrm{prior} | \chi_a^{(+)} \phi_{bx} \rangle$$
+                    </div>
+                    
+                    <p>where $\mathcal{V}_\mathrm{prior} = U_{xA} + U_{bA} - U_{aA}$. The latter term, introduced by Hussein and McVoy, takes the form:</p>
+                    
+                    <div class="formula-block">
+                        $$\langle \mathbf{r}_x | \varphi_x^\mathrm{HM}(\mathbf{k}_b) \rangle = \langle \mathbf{r}_x, \chi_b^{(-)}(\mathbf{k}_b) | \chi_a^{(+)} \phi_{bx} \rangle$$
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h2>Partial Wave Basis</h2>
+                    <p>In the practical numerical calculations, the partial wave basis is chosen to simplify the calculations, which depend on the radial magnitude and angular momentum eigenstates. The orbital angular momenta of the three particles are coupled to a total angular momentum $J$ and its third component $M_J$. For the incoming channels, the state is expressed as:</p>
+                    
+                    <div class="formula-block">
+                        $$\left| r_{bx} r_a \alpha_{\text{in}} M_J \right\rangle = \left| r_{bx} r_a \left( \left( l_a \left( j_b j_x \right) s_{bx} \right) J_a \left( \lambda_a j_A \right) J_A \right) J M_J \right\rangle$$
+                    </div>
+                    
+                    <p>and for the outgoing channels, it is given by:</p>
+                    
+                    <div class="formula-block">
+                        $$\left| r_x r_b \alpha_{\text{out}} M_J \right\rangle = \left| r_x r_b \left( \left( l_x \left( j_x j_A \right) s_{xA} \right) J_x \left( \lambda_b j_b \right) J_b \right) J M_J \right\rangle$$
+                    </div>
+                    
+                    <p>where $j_b$, $j_x$, and $j_A$ denote the internal spins of particles $b$, $x$, and $A$, respectively; $s_{bx}$ and $s_{xA}$ represent the total spins of the $b$-$x$ and $x$-$A$ subsystems in the incoming and outgoing channels, respectively; $l_a$, $\lambda_a$, $l_x$, and $\lambda_b$ are the relative orbital angular momenta of the $b$-$x$, $a$-$A$, $x$-$A$, and $b$-$B^*$ pairs, respectively; and $J_a$ ($J_A$) and $J_x$ ($J_b$) are the total angular momenta of the subsystem (and spectator) in the incoming and outgoing channels, respectively.</p>
+
+                    <p>The angular momentum basis can be normalized as follows:</p>
+                    
+                    <div class="formula-block">
+                        $$\left\langle r_{bx}' r_a' \alpha_{\text{in}}' \mid r_{bx} r_a \alpha_{\text{in}} \right\rangle = \frac{\delta\left( r_{bx}' - r_{bx} \right)}{r_{bx}' r_{bx}} \frac{\delta\left( r_a' - r_a \right)}{r_a' r_a} \delta_{\alpha_{\text{in}}', \alpha_{\text{in}}}$$
+                    </div>
+                    
+                    <p>with a similar normalization applying to the outgoing basis. Additionally, a two-body angular momentum basis for the $x$-$A$ subsystem is defined as:</p>
+                    
+                    <div class="formula-block">
+                        $$\left| r_x \beta M_x \right\rangle = \left| r_x \left( l_x s_{xA} \right) J_x M_x \right\rangle$$
+                    </div>
+
+                    <p>Consequently, the three-body outgoing state can be decoupled into a product of subsystem states:</p>
+                    
+                    <div class="formula-block">
+                        $$\left| r_x r_b \alpha_{\text{out}} M_J \right\rangle = \sum_{M_x M_b} \left\langle J_x M_x J_b M_b \mid J M_J \right\rangle \left| r_x \beta M_x \right\rangle \left| r_b J_b M_b \right\rangle$$
+                    </div>
+                    
+                    <p>and similarly, the incoming state can be written as:</p>
+                    
+                    <div class="formula-block">
+                        $$\left| r_{bx} r_a \alpha_{\text{in}} M_J \right\rangle = \sum_{M_a M_A} \left\langle J_a M_a J_A M_A \mid J M_J \right\rangle \left| r_{bx} J_a M_a \right\rangle \left| r_a J_A M_A \right\rangle$$
+                    </div>
+                    
+                    <p>where $M_x$, $M_b$, $M_a$, and $M_A$ are the third components of $J_x$, $J_b$, $J_a$, and $J_A$, respectively.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h2>Source Term Calculation</h2>
+                    <p>The source term $\langle r_x \beta M_x m_{j_b} |\rho^\mathrm{prior}(\mathbf{k}_b) M_a m_{j_A} \rangle$ with unspecified magnetic components of the spins of the incoming projectile and target and outgoing particles can be given by:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        &\langle r_x \beta M_x m_{j_b} \mid \rho^\mathrm{prior}(\mathbf{k}_b) M_a m_{j_A} \rangle \\
+                        &= \langle r_x \beta M_x m_{j_b} \chi_b^{(-)}(\mathbf{k}_b) \mid \mathcal{V}_\mathrm{prior} \mid \chi_a^{(+)} \phi_a M_a m_{j_A} \rangle \\
+                        &= \sum_{\alpha_{\text{out}}, \alpha_{\text{in}}} \sum_{M_J} \sum_{M_b} \sum_{M_A} \int r_b^2 r_a^2 r_{bx}^2 \, dr_a \, dr_b \, dr_{bx} \, \langle J_x M_x J_b M_b \mid J M_J \rangle \langle J_a M_a J_A M_A \mid J M_J \rangle  \\
+                        &\quad \times \langle \chi_b^{(-)}(\mathbf{k}_b) m_{j_b} \mid r_b J_b M_b \rangle \int_{-1}^1 \mathcal{G}_{\alpha_{\text{in}}, \alpha_{\text{out}}}^{\text{out} \gets \text{in}} (\mathbf{r}_{b}, \mathbf{r}_x) \mathcal{V}_\mathrm{prior}(\mathbf{r}_{b}, \mathbf{r}_x) \langle r_a J_A M_A \mid \chi_a^{(+)} m_{j_A} \rangle  \\
+                        &\quad \times \langle r_{bx} J_a M_a \mid \phi_a M_a \rangle\frac{\delta(\mathbf{r}_{bx} - \mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x))}{r_{bx}^2} \frac{\delta(\mathbf{r}_a - \mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x))}{r_a^2}\delta_{\beta, \alpha_{\text{out}}} \, d\cos\theta
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>where:</p>
+                    
+                    <div class="formula-block">
+                        $$\langle \chi_b^{(-)}(\mathbf{k}_b) m_{j_b} \mid r_b J_b M_b \rangle = \frac{4\pi}{k_b r_b} i^{-\lambda_b} e^{i\sigma_{\lambda_b}} f_{\lambda_b}(k_b r_b) \sum_{m_{\lambda_b}} \langle \lambda_b m_{\lambda_b} j_b m_{j_b} \mid J_b M_b \rangle Y_{\lambda_b}^{m_{\lambda_b}}(\hat{k}_b)$$
+                    </div>
+                    
+                    <div class="formula-block">
+                        $$\langle r_a J_A M_A \mid \chi_a^{(+)} m_{j_A} \rangle = \frac{4\pi}{k_a r_a} i^{\lambda_a} e^{i\sigma_{\lambda_a}} f_{\lambda_a}(k_a r_a) \sum_{m_{\lambda_a}} \langle \lambda_a m_{\lambda_a} j_A m_{j_A} \mid J_A M_A \rangle Y_{\lambda_a}^{m_{\lambda_a} *}(\hat{k}_a)$$
+                    </div>
+                    
+                    <div class="formula-block">
+                        $$\langle r_{bx} J_a M_a \mid \phi_a M_a \rangle = \frac{u_{l_a}(r_{bx})}{r_{bx}}$$
+                    </div>
+                    
+                    <p>and:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        \mathcal{G}_{\alpha_{\text{in}}, \alpha_{\text{out}}}^{\text{out} \gets \text{in}} (\mathbf{r}_{b}, \mathbf{r}_x) &= \sum_{L S} (2 S + 1) \sqrt{(2 J_a + 1)(2 J_A + 1)(2 J_x + 1)(2 J_b + 1)} \begin{Bmatrix} l_x & s_{xA} & J_x \\ \lambda_b & j_b & J_b \\ L & S & J \end{Bmatrix} \\
+                        &\quad \times\begin{Bmatrix} l_a & s_{bx} & J_a \\ \lambda_a & j_A & J_A \\ L & S & J \end{Bmatrix} 
+                        (-)^{s_{bx} + 2 j_A + j_x + j_b} \sqrt{(2 s_{xA} + 1)(2 s_{bx} + 1)}  \\
+                        &\quad \times \begin{Bmatrix} j_A & j_x & s_{xA} \\ j_b & S & s_{bx} \end{Bmatrix}
+                        8\pi^2\sum_{M = -L}^{L} \sum_{m'_{l_x} m'_{\lambda_b}} \sum_{m'_{l_a} m'_{\lambda_a}} 
+                        \langle l_x m'_{l_x} \lambda_b m'_{\lambda_b} \mid L M \rangle   \\
+                        &\quad \times \langle l_a m'_{l_a} \lambda_a m'_{\lambda_a} \mid L M \rangle Y_{l_x}^{m'_{l_x} *}(\hat{r}_x)  Y_{\lambda_b}^{m'_{\lambda_b} *}(\hat{r}_b)Y_{l_a}^{m'_{l_a}}(\hat{f}) Y_{\lambda_a}^{m'_{\lambda_a}}(\hat{g})
+                        \end{aligned}$$
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h2>Coordinate Transformations</h2>
+                    <p>The coordinate transformation functions are defined by the Jacobi coordinate relations:</p>
+                    
+                    <div class="formula-block">
+                        $$\mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x) = \mathbf{r}_{bx} = a\vec{r}_x-\vec{r}_b$$
+                        $$\mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x) = \mathbf{r}_a = b\vec{r}_x+c\vec{r}_b$$
+                    </div>
+                    
+                    <p>where the mass ratios are given by:</p>
+                    
+                    <div class="formula-block">
+                        $$a = \frac{m_{A}}{m_{A}+m_{x}}$$
+                        $$b = \frac{(m_{b}+m_{x}+m_{A})\, m_{x}}{(m_{A}+m_{x})(m_{b}+m_{x})}$$
+                        $$c = \frac{m_{b}}{m_{b}+m_{x}}$$
+                    </div>
+                    
+                    <p>where $m_b$, $m_x$, and $m_A$ are the masses of particles $b$, $x$, and $A$, respectively.</p>
+
+                    <p>To evaluate the angular integration, we choose $\vec{r}_b$ as the $z$-direction, which gives $\int d\Omega_{r_{b}} d\Omega_{r_x} = 8\pi^2 \int_{-1}^1 d\cos\theta$, where $\theta$ is the angle between $\vec{r}_b$ and $\vec{r}_x$. To evaluate the above equation, one has to compute the directions $\hat{f}$ and $\hat{g}$ corresponding to the unit vectors of $\mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x)$ and $\mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x)$, respectively. Since we have chosen $\vec{r}_b$ as the $z$-direction and $\vec{r}_x$ lies in the $x$-$z$ plane, the coordinate vectors are:</p>
+                    
+                    <div class="formula-block">
+                        $$\vec{r}_{b} = \left( \begin{array}{c}
+                        0 \\ 0 \\ r_{b}
+                        \end{array}\right)
+                        \hspace{1cm} \vec{r}_{x} = \left( \begin{array}{c}
+                        r_{x} \sin\theta \\ 0 \\ r_{x} \cos\theta
+                        \end{array}\right)$$
+                    </div>
+                    
+                    <p>where $\sin\theta = \sqrt{1-\cos^{2}\theta}$. The values of $\vec{r}_a$ and $\vec{r}_{bx}$ can then be computed from the coordinate transformation functions, and consequently the corresponding unit vectors $\hat{r}_a$ and $\hat{r}_{bx}$ (denoted as $\hat{g}$ and $\hat{f}$ in the spherical harmonic expressions).</p>
+
+                    <p>In the above derivation, we use the coordinate transformation to express $\vec{r}_a$ and $\vec{r}_{bx}$ in terms of $\vec{r}_b$ and $\vec{r}_x$ through the functions $\mathbf{f}$ and $\mathbf{g}$. Alternatively, one could use $\vec{r}_{bx}$ and $\vec{r}_x$ to represent $\vec{r}_a$ and $\vec{r}_{b}$, yielding similar results with different computational advantages. However, in practical calculations, if we choose $\vec{r}_b$ as the $z$-direction, then $m'_{\lambda_b}=0$, thus eliminating the sum over this quantum number. This is computationally more efficient compared to choosing $\vec{r}_{bx}$ as the $z$-direction, which would eliminate the sum over $m'_{l_a}$ instead. Since $\lambda_b$ represents the orbital angular momentum in the scattering wave between $b$ and $B^*$, the range of $\lambda_b$ values is much larger than that of $l_a$, which represents the bound state angular momentum of the projectile. Therefore, eliminating the sum over $m'_{\lambda_b}$ provides greater computational savings.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h2>Final Expressions</h2>
+                    <p>Then the source term can be rewritten as:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        &\langle r_x \beta M_x m_{j_b} \mid \rho^\mathrm{prior}(\mathbf{k}_b) M_a m_{j_A} \rangle \\
+                        &= \frac{16\pi^2}{k_a k_b} \sum_{\alpha_{\text{out}}, \alpha_{\text{in}}} \sum_{M_J} \sum_{M_A} \sum_{M_b} \sum_{m_{\lambda_b}} \sum_{m_{\lambda_a}} \delta_{\beta, \alpha_{\text{out}}} \langle J_x M_x J_b M_b \mid J M_J \rangle \langle J_a M_a J_A M_A \mid J M_J \rangle \\
+                        &\quad \times \langle \lambda_b m_{\lambda_b} j_b m_{j_b} \mid J_b M_b \rangle \langle \lambda_a m_{\lambda_a} j_A m_{j_A} \mid J_A M_A \rangle Y_{\lambda_a}^{m_{\lambda_a} *}(\hat{k}_a) Y_{\lambda_b}^{m_{\lambda_b}}(\hat{k}_b) \varrho^\mathrm{prior}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>where $\varrho^\mathrm{prior}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})$ is the radial part of the source term which takes the form:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        &\varrho^\mathrm{prior}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}}) \\
+                        &= i^{\lambda_a - \lambda_b} e^{i(\sigma_{\lambda_a} + \sigma_{\lambda_b})} \int r_b dr_b f_{\lambda_b}(k_b r_b) \int_{-1}^1 d\cos\theta \mathcal{G}_{\alpha_{\text{in}}, \alpha_{\text{out}}}^{\text{out} \gets \text{in}} (\mathbf{r}_{b}, \mathbf{r}_x) \mathcal{V}_\mathrm{prior}(\mathbf{r}_{b}, \mathbf{r}_x)  \\
+                        & \quad \times \frac{f_{\lambda_a}(k_a |\mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x)|) u_{l_a}(|\mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x)|)}{|\mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x)||\mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x)|}
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>where $\mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x)$ and $\mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x)$ are the coordinate transformation functions defined previously, and the integrals are performed over the coordinate variables $r_b$ and $\cos\theta$ representing the relative positions and orientations.</p>
+
+                    <p>Then the Udagawa and Tamura term can be rewritten as:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        &\langle r_x \beta M_x m_{j_b} \mid \varphi_x^\mathrm{UT}(\mathbf{k}_b) M_a m_{j_A} \rangle \\
+                        &= \sum_{\alpha_{\text{out}}, \alpha_{\text{in}}} \sum_{M_J} \sum_{M_A} \sum_{M_b} \sum_{m_{\lambda_b}} \sum_{m_{\lambda_a}} \delta_{\beta, \alpha_{\text{out}}} \langle J_x M_x J_b M_b \mid J M_J \rangle \langle J_a M_a J_A M_A \mid J M_J \rangle \\
+                        &\quad \times \langle \lambda_b m_{\lambda_b} j_b m_{j_b} \mid J_b M_b \rangle \langle \lambda_a m_{\lambda_a} j_A m_{j_A} \mid J_A M_A \rangle Y_{\lambda_a}^{m_{\lambda_a} *}(\hat{k}_a) Y_{\lambda_b}^{m_{\lambda_b}}(\hat{k}_b) \mathcal{R}^\mathrm{UT}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>where $\mathcal{R}^\mathrm{UT}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})$ represents the radial part of the UT wave function, which is obtained by solving the inhomogeneous equation with the Green's function method. This takes the form:</p>
+                    
+                    <div class="formula-block">
+                        $$\mathcal{R}^\mathrm{UT}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}}) =  -\frac{32 \pi^2 \mu_x}{\hbar^2 k_a k_b k_x} \frac{1}{r_x} \int r_x' f_\beta(r_{x<}) h_\beta^{(+)}(r_{x>})\varrho^\mathrm{prior} (r_x', \alpha_{\text{in}}, \alpha_{\text{out}} ) dr_x'$$
+                    </div>
+                    
+                    <p>where $\mu_x$ is the reduced mass of the $x$-$A$ subsystem, $k_x$ is the wave number for the relative motion between $x$ and $A$, and $r_{x<} = \min\{r_x,r_x'\}$ and $r_{x>} = \max\{r_x,r_x'\}$ represent the smaller and larger of the two radial coordinates, respectively. The functions $f_\beta(r)$ and $h_\beta^{(+)}(r)$ are the regular and irregular solutions of the radial Schrödinger equation computed with the optical potential $U_{xA}$. Alternatively, this radial part can be solved using the R-matrix method with Lagrange functions as discussed in Ref. [Jin20].</p>
+
+                    <p>The Hussein and McVoy term can be considered as derived from the source term when the prior-form interaction is set to unity, i.e., when $\mathcal{V}_\mathrm{prior} \to 1$ (representing the limit of no interaction). In this case, it can be rewritten as:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        &\langle r_x \beta M_x m_{j_b} \mid \varphi_x^\mathrm{HM}(\mathbf{k}_b) M_a m_{j_A} \rangle \\
+                        &= \sum_{\alpha_{\text{out}}, \alpha_{\text{in}}} \sum_{M_J} \sum_{M_A} \sum_{M_b} \sum_{m_{\lambda_b}} \sum_{m_{\lambda_a}} \delta_{\beta, \alpha_{\text{out}}} \langle J_x M_x J_b M_b \mid J M_J \rangle \langle J_a M_a J_A M_A \mid J M_J \rangle \\
+                        &\quad \times \langle \lambda_b m_{\lambda_b} j_b m_{j_b} \mid J_b M_b \rangle \langle \lambda_a m_{\lambda_a} j_A m_{j_A} \mid J_A M_A \rangle Y_{\lambda_a}^{m_{\lambda_a} *}(\hat{k}_a) Y_{\lambda_b}^{m_{\lambda_b}}(\hat{k}_b) \mathcal{R}^\mathrm{HM}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>where the radial part is given by:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        &\mathcal{R}^\mathrm{HM}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}}) \\
+                        &= \frac{16\pi^2}{k_a k_b} i^{\lambda_a - \lambda_b} e^{i(\sigma_{\lambda_a} + \sigma_{\lambda_b})} \int r_b dr_b f_{\lambda_b}(k_b r_b) \int_{-1}^1 d\cos\theta \mathcal{G}_{\alpha_{\text{in}}, \alpha_{\text{out}}}^{\text{out} \gets \text{in}} (\mathbf{r}_{b}, \mathbf{r}_x)  \\
+                        &\quad \times \frac{f_{\lambda_a}(k_a |\mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x)|) u_{l_a}(|\mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x)|)}{|\mathbf{g}(\mathbf{r}_{b}, \mathbf{r}_x)||\mathbf{f}(\mathbf{r}_{b}, \mathbf{r}_x)|}
+                        \end{aligned}$$
+                    </div>
+
+                    <p>The Hussein-McVoy term represents the direct contribution to the wave function without the interaction potential, providing a baseline against which the effects of the prior-form interaction can be assessed.</p>
+
+                    <p>Thus, in the prior form of the IAV model, the relative wave function in the $x$-$A$ subsystem is given by the sum of both contributions:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        &\langle r_x \beta M_x m_{j_b} \mid \varphi_x(\mathbf{k}_b) M_a m_{j_A} \rangle \\
+                        &= \sum_{\alpha_{\text{out}}, \alpha_{\text{in}}} \sum_{M_J} \sum_{M_A} \sum_{M_b} \sum_{m_{\lambda_b}} \sum_{m_{\lambda_a}} \delta_{\beta, \alpha_{\text{out}}} \langle J_x M_x J_b M_b \mid J M_J \rangle \langle J_a M_a J_A M_A \mid J M_J \rangle \\
+                        &\quad \times \langle \lambda_b m_{\lambda_b} j_b m_{j_b} \mid J_b M_b \rangle \langle \lambda_a m_{\lambda_a} j_A m_{j_A} \mid J_A M_A \rangle Y_{\lambda_a}^{m_{\lambda_a} *}(\hat{k}_a) Y_{\lambda_b}^{m_{\lambda_b}}(\hat{k}_b) \mathcal{R}^\mathrm{IAV}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>with the total radial wave function being the sum of the UT and HM contributions:</p>
+                    
+                    <div class="formula-block">
+                        $$\mathcal{R}^\mathrm{IAV}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}}) = \mathcal{R}^\mathrm{UT}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}}) + \mathcal{R}^\mathrm{HM}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})$$
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <h2>Cross Section Calculations</h2>
+                    <p>The double differential cross section for the NEB inclusive process in the angular momentum partial wave basis can be written as:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        \frac{d^2\sigma}{dE_b d\Omega_b}& = -\frac{2}{\hbar v_a}\rho_b(E_b) \frac{1}{(2J_a+1)(2J_A+1)} \sum_{M_x}\sum_{m_{j_b}}\sum_{M_a}\sum_{m_{j_A}}\sum_\beta \\
+                        &\quad \times \int  |\langle r_x \beta M_x m_{j_b} \mid \varphi_x(\mathbf{k}_b) M_a m_{j_A} \rangle|^2 \text{Im}[U_{xA}(r_x)] r_x^2 dr_x
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>where the sum over magnetic quantum numbers $M_x$, $m_{j_b}$, $M_a$, and $m_{j_A}$ accounts for all possible orientations of the angular momenta, and the factor $1/(2J_a+1)(2J_A+1)$ represents the average over initial spin orientations of the projectile and target.</p>
+
+                    <p>When the angular dependence is integrated over the solid angle $\Omega_b$ (i.e., integrating over all possible directions of the outgoing fragment $b$), one obtains the energy spectrum:</p>
+                    
+                    <div class="formula-block">
+                        $$\begin{aligned}
+                        \frac{d\sigma}{dE_b} & = \int \frac{d^2\sigma}{dE_b d\Omega_b} d\Omega_b \\
+                        & = -\frac{1}{2\pi\hbar v_a} \rho_b(E_b) \frac{1}{(2J_a+1)(2J_A+1)} \sum_{J M_J} (2J+1) \sum_{\alpha_\mathrm{in}} \sum_{\alpha_\mathrm{out}} \\
+                        & \quad \times \int |\mathcal{R}^\mathrm{IAV}(r_x, \alpha_{\text{in}}, \alpha_{\text{out}})|^2\text{Im}[U_{xA}(r_x)]  r_x^2 dr_x
+                        \end{aligned}$$
+                    </div>
+                    
+                    <p>The sums over $\alpha_\mathrm{in}$ and $\alpha_\mathrm{out}$ represent the summation over all relevant incoming and outgoing channel configurations, respectively.</p>
+
+                    <p>The radial integration extends over the interaction region where the imaginary part of the optical potential $\text{Im}[U_{xA}(r_x)]$ is non-zero, representing the probability flux loss due to nonelastic processes in the $x$-$A$ subsystem. This formulation allows for the calculation of energy-integrated cross sections and provides insight into the energy dependence of the breakup process.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
