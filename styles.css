@@ -747,6 +747,87 @@ html {
     margin: 0;
 }
 
+/* Formulas Page Specific Styles */
+.formulas-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.theory-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-light);
+}
+
+.theory-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.theory-section p {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.formula-block {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-light);
+    overflow-x: auto;
+    text-align: center;
+}
+
+.formula-block .MathJax {
+    font-size: 1.2rem !important;
+}
+
+.formula-block mjx-container {
+    margin: 0.5rem 0;
+}
+
+/* Mobile responsiveness for formulas */
+@media (max-width: 768px) {
+    .formulas-content {
+        padding: 1rem;
+    }
+    
+    .theory-section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .theory-section h2 {
+        font-size: 1.25rem;
+    }
+    
+    .theory-section p {
+        font-size: 1rem;
+    }
+    
+    .formula-block {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .formula-block .MathJax {
+        font-size: 1rem !important;
+    }
+}
+
 /* Papers page styles */
 .paper-links {
     display: flex;
