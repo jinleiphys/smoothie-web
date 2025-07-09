@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://smoothie.example.com/sitemap.xml
+
+# Disallow temporary files
+Disallow: /tmp/
+Disallow: /*.tmp
+
+# Allow all common file types
+Allow: /*.css
+Allow: /*.js
+Allow: /*.pdf
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+
+# Crawl delay (optional)
+Crawl-delay: 1

@@ -425,7 +425,21 @@ ${this.generatePotentialSection('t', 5, data)}
     showNotification(message, type = 'info') {
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
-        notification.textContent = message;
+        notification.setAttribute('role', 'alert');
+        notification.setAttribute('aria-live', 'polite');
+        
+        // Handle multi-line messages
+        if (message.includes('\n')) {
+            const lines = message.split('\n');
+            lines.forEach((line, index) => {
+                const lineElement = document.createElement('div');
+                lineElement.textContent = line;
+                if (index > 0) lineElement.style.marginTop = '0.5rem';
+                notification.appendChild(lineElement);
+            });
+        } else {
+            notification.textContent = message;
+        }
         
         notification.style.cssText = `
             position: fixed;
@@ -439,6 +453,8 @@ ${this.generatePotentialSection('t', 5, data)}
             z-index: 3000;
             transform: translateX(100%);
             transition: transform 0.3s ease;
+            max-width: 400px;
+            word-wrap: break-word;
         `;
         
         document.body.appendChild(notification);
@@ -469,32 +485,83 @@ function generateInputFile() {
         data[key] = value;
     }
 
-    // Validate SMOOTHIE-specific required parameters
-    const requiredFields = [
-        'elab', 'namep', 'massp', 'zp', 'jp', 'namet', 'masst', 'zt', 'jt', 
-        'nameb', 'massb', 'zb', 'jb', 'namex', 'massx', 'zx', 'jx', 
-        'sbx', 'lbx', 'nodes', 'be', 'ecmbmin', 'ecmbmax', 'ecmbh'
-    ];
+    // Enhanced validation with detailed error messages
+    const validationErrors = [];
     
-    const missingFields = requiredFields.filter(field => !data[field]);
-    if (missingFields.length > 0) {
-        window.smoothieWebsite.showNotification(`Please fill in all required fields: ${missingFields.join(', ')}`, 'error');
-        return;
-    }
-
-    // Validate numerical constraints
-    if (parseFloat(data.lmax) <= parseFloat(data.lmin || 0)) {
-        window.smoothieWebsite.showNotification('lmax must be greater than lmin', 'error');
-        return;
+    // Required fields validation with user-friendly names
+    const requiredFields = {
+        'elab': 'Laboratory Energy',
+        'namep': 'Projectile Name',
+        'massp': 'Projectile Mass',
+        'zp': 'Projectile Charge',
+        'jp': 'Projectile Spin',
+        'namet': 'Target Name',
+        'masst': 'Target Mass',
+        'zt': 'Target Charge',
+        'jt': 'Target Spin',
+        'nameb': 'Binary Product Name',
+        'massb': 'Binary Product Mass',
+        'zb': 'Binary Product Charge',
+        'jb': 'Binary Product Spin',
+        'namex': 'Ejectile Name',
+        'massx': 'Ejectile Mass',
+        'zx': 'Ejectile Charge',
+        'jx': 'Ejectile Spin',
+        'sbx': 'Binding Energy',
+        'lbx': 'Orbital Angular Momentum',
+        'nodes': 'Number of Nodes',
+        'be': 'Binding Energy',
+        'ecmbmin': 'Minimum CM Energy',
+        'ecmbmax': 'Maximum CM Energy',
+        'ecmbh': 'Energy Step'
+    };
+    
+    // Check for missing required fields
+    Object.entries(requiredFields).forEach(([field, label]) => {
+        if (!data[field] || data[field].toString().trim() === '') {
+            validationErrors.push(`${label} is required`);
+        }
+    });
+    
+    // Numerical validation with detailed error messages
+    try {
+        const lmin = parseFloat(data.lmin || 0);
+        const lmax = parseFloat(data.lmax);
+        if (lmax <= lmin) {
+            validationErrors.push('Maximum L value must be greater than minimum L value');
+        }
+        
+        const jtmin = parseFloat(data.jtmin || 0);
+        const jtmax = parseFloat(data.jtmax);
+        if (jtmax <= jtmin) {
+            validationErrors.push('Maximum Jt value must be greater than minimum Jt value');
+        }
+        
+        const ecmbmin = parseFloat(data.ecmbmin);
+        const ecmbmax = parseFloat(data.ecmbmax);
+        if (ecmbmax <= ecmbmin) {
+            validationErrors.push('Maximum CM energy must be greater than minimum CM energy');
+        }
+        
+        // Additional physics validation
+        if (parseFloat(data.elab) <= 0) {
+            validationErrors.push('Laboratory energy must be positive');
+        }
+        
+        if (parseFloat(data.ecmbh) <= 0) {
+            validationErrors.push('Energy step must be positive');
+        }
+        
+    } catch (error) {
+        validationErrors.push('Invalid numerical values detected');
     }
     
-    if (parseFloat(data.jtmax) <= parseFloat(data.jtmin || 0)) {
-        window.smoothieWebsite.showNotification('jtmax must be greater than jtmin', 'error');
-        return;
-    }
-    
-    if (parseFloat(data.ecmbmax) <= parseFloat(data.ecmbmin)) {
-        window.smoothieWebsite.showNotification('ecmbmax must be greater than ecmbmin', 'error');
+    // Display validation errors
+    if (validationErrors.length > 0) {
+        const errorMessage = validationErrors.length === 1 
+            ? validationErrors[0]
+            : `${validationErrors.length} validation errors:\n• ${validationErrors.join('\n• ')}`;
+        window.smoothieWebsite.showNotification(errorMessage, 'error');
         return;
     }
 
@@ -754,7 +821,49 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error initializing SmoothieWebsite:', error);
     }
     
+    // Initialize back to top functionality
+    initBackToTop();
+    
 });
+
+// Back to Top functionality
+function initBackToTop() {
+    const backToTopButton = document.getElementById('backToTop');
+    
+    if (!backToTopButton) return;
+    
+    // Show/hide button based on scroll position
+    function toggleBackToTop() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    }
+    
+    // Smooth scroll to top
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', toggleBackToTop);
+    backToTopButton.addEventListener('click', scrollToTop);
+    
+    // Keyboard support
+    backToTopButton.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            scrollToTop();
+        }
+    });
+    
+    // Initial check
+    toggleBackToTop();
+}
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {

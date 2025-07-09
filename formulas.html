@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Theoretical Framework - SMOOTHIE</title>
+    <meta name="description" content="Complete theoretical framework and mathematical formulation of the Ichimura-Austern-Vincent model implemented in SMOOTHIE quantum scattering calculations.">
+    <meta name="keywords" content="IAV model, theoretical framework, quantum scattering, mathematical formulation, nuclear physics, breakup reactions">
+    <meta name="author" content="SMOOTHIE Development Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Theoretical Framework - SMOOTHIE">
+    <meta property="og:description" content="Complete theoretical framework and mathematical formulation of the Ichimura-Austern-Vincent model implemented in SMOOTHIE quantum scattering calculations.">
+    <meta property="og:url" content="https://smoothie.example.com/formulas.html">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Theoretical Framework - SMOOTHIE">
+    <meta property="twitter:description" content="Complete theoretical framework and mathematical formulation of the Ichimura-Austern-Vincent model implemented in SMOOTHIE quantum scattering calculations.">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "name": "Theoretical Framework - SMOOTHIE",
+      "description": "Complete theoretical framework and mathematical formulation of the Ichimura-Austern-Vincent model",
+      "about": "Quantum scattering theory and nuclear physics calculations",
+      "author": {
+        "@type": "Organization",
+        "name": "SMOOTHIE Development Team"
+      },
+      "isPartOf": {
+        "@type": "SoftwareApplication",
+        "name": "SMOOTHIE"
+      }
+    }
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +58,8 @@
     </script>
 </head>
 <body>
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-navigation">Skip to main content</a>
     <div class="app-container">
         <!-- Mobile Menu Toggle -->
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -37,7 +72,7 @@
         <div class="sidebar-overlay"></div>
         
         <!-- Sidebar Navigation -->
-        <nav class="sidebar">
+        <nav class="sidebar" role="navigation" aria-label="Main navigation">
             <div class="sidebar-header">
                 <h1 class="logo">SMOOTHIE</h1>
                 <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
@@ -56,7 +91,13 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="main-content" id="main-content" role="main">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Theoretical Framework</li>
+                </ol>
+            </nav>
             <!-- Formulas Page -->
             <div class="page-header">
                 <h1>Theoretical Framework</h1>
@@ -361,6 +402,13 @@
             </div>
         </main>
     </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>

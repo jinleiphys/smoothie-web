@@ -4,12 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - SMOOTHIE</title>
+    <meta name="description" content="Get in touch with the SMOOTHIE development team. Contact information, support resources, and collaboration opportunities for nuclear physics research.">
+    <meta name="keywords" content="SMOOTHIE contact, nuclear physics collaboration, support, Jin Lei, Antonio Moro, research opportunities">
+    <meta name="author" content="SMOOTHIE Development Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact - SMOOTHIE">
+    <meta property="og:description" content="Get in touch with the SMOOTHIE development team. Contact information, support resources, and collaboration opportunities for nuclear physics research.">
+    <meta property="og:url" content="https://smoothie.example.com/contact.html">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Contact - SMOOTHIE">
+    <meta property="twitter:description" content="Get in touch with the SMOOTHIE development team. Contact information, support resources, and collaboration opportunities for nuclear physics research.">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact - SMOOTHIE",
+      "description": "Contact information and support resources for the SMOOTHIE development team",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SMOOTHIE"
+      }
+    }
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-navigation">Skip to main content</a>
     <div class="app-container">
         <!-- Mobile Menu Toggle -->
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -22,7 +52,7 @@
         <div class="sidebar-overlay"></div>
         
         <!-- Sidebar Navigation -->
-        <nav class="sidebar">
+        <nav class="sidebar" role="navigation" aria-label="Main navigation">
             <div class="sidebar-header">
                 <h1 class="logo">SMOOTHIE</h1>
                 <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
@@ -31,17 +61,23 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="story.html" class="nav-link">Birth of SMOOTHIE</a></li>
                 <li><a href="papers.html" class="nav-link">Related Papers</a></li>
+                <li><a href="formulas.html" class="nav-link">Theoretical Framework</a></li>
                 <li><a href="downloads.html" class="nav-link">Downloads</a></li>
                 <li><a href="examples.html" class="nav-link">Input Examples</a></li>
                 <li><a href="programs.html" class="nav-link">Related Programs</a></li>
                 <li><a href="generator.html" class="nav-link">Input File Generator</a></li>
-                <li><a href="formulas.html" class="nav-link">Formulas</a></li>
                 <li><a href="contact.html" class="nav-link active">Contact</a></li>
             </ul>
         </nav>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="main-content" id="main-content" role="main">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Contact</li>
+                </ol>
+            </nav>
             <!-- Contact Page -->
             <div class="page-header">
                 <h1>Contact</h1>
@@ -190,6 +226,13 @@
             </div>
         </main>
     </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>
