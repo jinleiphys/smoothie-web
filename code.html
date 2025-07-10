@@ -19,10 +19,13 @@
     <meta property="twitter:title" content="Code & Installation - SMOOTHIE">
     <meta property="twitter:description" content="Learn about SMOOTHIE's code structure, installation process, and how to compile the Fortran 95 nuclear physics software.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0idXJsKCNncmFkaWVudCkiLz4KPHA+UzwvcD4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNjY3ZWVhO3N0b3Atb3BhY2l0eToxIiAvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM3NjRiYTI7c3RvcC1vcGFjaXR5OjEiIC8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Skip Navigation -->
@@ -675,88 +678,398 @@ ls -la *.out</code></pre>
                 </section>
 
                 <section class="troubleshooting-section">
-                    <h2>🔧 Troubleshooting</h2>
+                    <div class="section-header">
+                        <div class="section-icon">🔧</div>
+                        <div class="section-title">
+                            <h2>Troubleshooting Guide</h2>
+                            <p class="section-subtitle">Common issues and their solutions for smooth SMOOTHIE operations</p>
+                        </div>
+                    </div>
                     
-                    <div class="troubleshooting-grid">
-                        <div class="issue-card">
-                            <h3>❌ Compilation Errors</h3>
-                            <div class="issue-solution">
-                                <p><strong>Problem:</strong> "Command not found: gfortran"</p>
-                                <p><strong>Solution:</strong> Install Fortran compiler package for your system.</p>
+                    <div class="install-steps">
+                        <div class="step-card compilation-issues">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <div class="step-title">
+                                    <h3>Compilation Errors</h3>
+                                    <p class="step-subtitle">Build-time problems and solutions</p>
+                                </div>
+                                <div class="step-icon">❌</div>
                             </div>
-                            <div class="issue-solution">
-                                <p><strong>Problem:</strong> "Cannot find -llapack"</p>
-                                <p><strong>Solution:</strong> Install LAPACK development libraries or modify library paths in make.inc.</p>
-                            </div>
-                            <div class="issue-solution">
-                                <p><strong>Problem:</strong> Module compilation errors</p>
-                                <p><strong>Solution:</strong> Ensure Fortran 95 or later compiler. Clean and rebuild all modules.</p>
+                            <div class="step-content">
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🚫</div>
+                                        <div class="req-content">
+                                            <h4>Command not found: gfortran</h4>
+                                            <p>Install Fortran compiler package for your system</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🔗</div>
+                                        <div class="req-content">
+                                            <h4>Cannot find -llapack</h4>
+                                            <p>Install LAPACK development libraries or modify library paths in make.inc</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🔄</div>
+                                        <div class="req-content">
+                                            <h4>Module compilation errors</h4>
+                                            <p>Ensure Fortran 95 or later compiler. Clean and rebuild all modules</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="issue-card">
-                            <h3>⚠️ Runtime Issues</h3>
-                            <div class="issue-solution">
-                                <p><strong>Problem:</strong> Segmentation fault during execution</p>
-                                <p><strong>Solution:</strong> Increase stack size or compile with bounds checking for debugging.</p>
+                        <div class="step-card runtime-issues">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <div class="step-title">
+                                    <h3>Runtime Issues</h3>
+                                    <p class="step-subtitle">Execution problems and fixes</p>
+                                </div>
+                                <div class="step-icon">⚠️</div>
                             </div>
-                            <div class="issue-solution">
-                                <p><strong>Problem:</strong> Numerical instabilities</p>
-                                <p><strong>Solution:</strong> Adjust mesh parameters or potential model settings in input file.</p>
-                            </div>
-                            <div class="issue-solution">
-                                <p><strong>Problem:</strong> Slow performance</p>
-                                <p><strong>Solution:</strong> Link with optimized BLAS/LAPACK libraries and enable compiler optimizations.</p>
+                            <div class="step-content">
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <div class="req-icon">💥</div>
+                                        <div class="req-content">
+                                            <h4>Segmentation fault during execution</h4>
+                                            <p>Increase stack size or compile with bounds checking for debugging</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">📊</div>
+                                        <div class="req-content">
+                                            <h4>Numerical instabilities</h4>
+                                            <p>Adjust mesh parameters or potential model settings in input file</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🐌</div>
+                                        <div class="req-content">
+                                            <h4>Slow performance</h4>
+                                            <p>Link with optimized BLAS/LAPACK libraries and enable compiler optimizations</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="issue-card">
-                            <h3>🔍 Platform-Specific Issues</h3>
-                            <div class="issue-solution">
-                                <p><strong>macOS:</strong> Use Homebrew gcc instead of Xcode's compiler for better Fortran support.</p>
+                        <div class="step-card platform-issues">
+                            <div class="step-header">
+                                <div class="step-number">3</div>
+                                <div class="step-title">
+                                    <h3>Platform-Specific Issues</h3>
+                                    <p class="step-subtitle">OS-specific considerations and solutions</p>
+                                </div>
+                                <div class="step-icon">🔍</div>
                             </div>
-                            <div class="issue-solution">
-                                <p><strong>Windows:</strong> Use MinGW-w64 or Windows Subsystem for Linux (WSL) for best compatibility.</p>
-                            </div>
-                            <div class="issue-solution">
-                                <p><strong>HPC Systems:</strong> Load appropriate modules for compiler and mathematical libraries.</p>
+                            <div class="step-content">
+                                <div class="platform-install">
+                                    <h4>Platform-specific Solutions</h4>
+                                    <div class="platform-tabs">
+                                        <div class="platform-tab macos">
+                                            <div class="platform-header">
+                                                <div class="platform-icon">🍎</div>
+                                                <strong>macOS</strong>
+                                            </div>
+                                            <div class="platform-solution">
+                                                <p>Use Homebrew gcc instead of Xcode's compiler for better Fortran support.</p>
+                                            </div>
+                                        </div>
+                                        <div class="platform-tab windows">
+                                            <div class="platform-header">
+                                                <div class="platform-icon">🪟</div>
+                                                <strong>Windows</strong>
+                                            </div>
+                                            <div class="platform-solution">
+                                                <p>Use MinGW-w64 or Windows Subsystem for Linux (WSL) for best compatibility.</p>
+                                            </div>
+                                        </div>
+                                        <div class="platform-tab hpc">
+                                            <div class="platform-header">
+                                                <div class="platform-icon">🖥️</div>
+                                                <strong>HPC Systems</strong>
+                                            </div>
+                                            <div class="platform-solution">
+                                                <p>Load appropriate modules for compiler and mathematical libraries.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section class="performance-section">
-                    <h2>⚡ Performance Optimization</h2>
+                <section class="deployment-section">
+                    <div class="section-header">
+                        <div class="section-icon">🚀</div>
+                        <div class="section-title">
+                            <h2>Deployment & Usage</h2>
+                            <p class="section-subtitle">Advanced deployment strategies and usage patterns for production environments</p>
+                        </div>
+                    </div>
                     
-                    <div class="performance-tips">
-                        <div class="tip-card">
-                            <h3>🚀 Compiler Optimizations</h3>
-                            <ul>
-                                <li>Use <code>-O3</code> or <code>-Ofast</code> for production runs</li>
-                                <li>Enable vectorization with <code>-ftree-vectorize</code></li>
-                                <li>Consider profile-guided optimization (PGO)</li>
-                                <li>Use native architecture flags: <code>-march=native</code></li>
-                            </ul>
+                    <div class="install-steps">
+                        <div class="step-card global-install">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <div class="step-title">
+                                    <h3>Installing SMOOTHIE Globally</h3>
+                                    <p class="step-subtitle">Make SMOOTHIE accessible from anywhere on your system</p>
+                                </div>
+                                <div class="step-icon">📁</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="command-block">
+                                    <pre><code># Create personal bin directory (if it doesn't exist)
+mkdir -p ~/bin
+
+# Copy SMOOTHIE executable to personal bin
+cp smoothie/smoothie ~/bin/
+
+# Make executable (if needed)
+chmod +x ~/bin/smoothie
+
+# Alternative: Install system-wide (requires sudo)
+sudo cp smoothie/smoothie /usr/local/bin/</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                                
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <div class="req-icon">👤</div>
+                                        <div class="req-content">
+                                            <h4>~/bin/</h4>
+                                            <p>Personal installation, no sudo required</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🌐</div>
+                                        <div class="req-content">
+                                            <h4>/usr/local/bin/</h4>
+                                            <p>System-wide installation, available to all users</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🎯</div>
+                                        <div class="req-content">
+                                            <h4>/opt/smoothie/bin/</h4>
+                                            <p>Dedicated application directory</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="tip-card">
-                            <h3>📚 Library Optimizations</h3>
-                            <ul>
-                                <li>Link with optimized BLAS: Intel MKL, OpenBLAS, or ATLAS</li>
-                                <li>Use threaded libraries for parallel execution</li>
-                                <li>Set environment variables: <code>OMP_NUM_THREADS</code></li>
-                                <li>Consider GPU acceleration where available</li>
-                            </ul>
+                        <div class="step-card path-setup">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <div class="step-title">
+                                    <h3>Setting Up PATH Environment</h3>
+                                    <p class="step-subtitle">Configure shell environment for global access</p>
+                                </div>
+                                <div class="step-icon">🛤️</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="command-block">
+                                    <pre><code># For Bash (add to ~/.bashrc or ~/.bash_profile)
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+# For Zsh (add to ~/.zshrc)
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# For Fish shell (add to ~/.config/fish/config.fish)
+echo 'set -gx PATH $HOME/bin $PATH' >> ~/.config/fish/config.fish
+
+# Verify PATH is set correctly
+echo $PATH
+which smoothie</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="tip-card">
-                            <h3>🎛️ Runtime Tuning</h3>
-                            <ul>
-                                <li>Adjust mesh parameters for accuracy vs. speed trade-off</li>
-                                <li>Optimize angular momentum cutoffs</li>
-                                <li>Use appropriate numerical integration methods</li>
-                                <li>Monitor memory usage and adjust accordingly</li>
-                            </ul>
+                        <div class="step-card io-usage">
+                            <div class="step-header">
+                                <div class="step-number">3</div>
+                                <div class="step-title">
+                                    <h3>Input/Output Usage</h3>
+                                    <p class="step-subtitle">Flexible I/O redirection and background execution</p>
+                                </div>
+                                <div class="step-icon">📡</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="command-block">
+                                    <pre><code># Read input from file via stdin
+smoothie < input.dat
+
+# Redirect output to file
+smoothie < input.dat > results.out
+
+# Pipe output to another program
+smoothie < input.dat | grep "Cross section"
+
+# Run in background
+smoothie < input.dat > output.log &
+
+# Run with nohup to survive terminal disconnect
+nohup smoothie < input.dat > output.log 2>&1 &</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card env-config">
+                            <div class="step-header">
+                                <div class="step-number">4</div>
+                                <div class="step-title">
+                                    <h3>Environment Configuration</h3>
+                                    <p class="step-subtitle">Runtime optimization and performance tuning</p>
+                                </div>
+                                <div class="step-icon">🔧</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="command-block">
+                                    <pre><code># OpenMP thread control
+export OMP_NUM_THREADS=4
+export OMP_STACKSIZE=64M
+
+# BLAS/LAPACK optimization
+export OPENBLAS_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+
+# Set stack size for large calculations
+ulimit -s unlimited</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="performance-section">
+                    <div class="section-header">
+                        <div class="section-icon">⚡</div>
+                        <div class="section-title">
+                            <h2>Performance Optimization</h2>
+                            <p class="section-subtitle">Maximize computational efficiency and reduce execution time</p>
+                        </div>
+                    </div>
+                    
+                    <div class="install-steps">
+                        <div class="step-card compiler-opts">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <div class="step-title">
+                                    <h3>Compiler Optimizations</h3>
+                                    <p class="step-subtitle">Build-time performance enhancements</p>
+                                </div>
+                                <div class="step-icon">🚀</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🎯</div>
+                                        <div class="req-content">
+                                            <h4>Production Flags</h4>
+                                            <p>Use <code>-O3</code> or <code>-Ofast</code> for production runs</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🔄</div>
+                                        <div class="req-content">
+                                            <h4>Vectorization</h4>
+                                            <p>Enable vectorization with <code>-ftree-vectorize</code></p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">📊</div>
+                                        <div class="req-content">
+                                            <h4>Architecture Tuning</h4>
+                                            <p>Use native architecture flags: <code>-march=native</code></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card library-opts">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <div class="step-title">
+                                    <h3>Library Optimizations</h3>
+                                    <p class="step-subtitle">High-performance mathematical libraries</p>
+                                </div>
+                                <div class="step-icon">📚</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🔷</div>
+                                        <div class="req-content">
+                                            <h4>Optimized BLAS</h4>
+                                            <p>Link with Intel MKL, OpenBLAS, or ATLAS</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🔀</div>
+                                        <div class="req-content">
+                                            <h4>Parallel Libraries</h4>
+                                            <p>Use threaded libraries for parallel execution</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">⚙️</div>
+                                        <div class="req-content">
+                                            <h4>Environment Setup</h4>
+                                            <p>Set environment variables: <code>OMP_NUM_THREADS</code></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card runtime-tuning">
+                            <div class="step-header">
+                                <div class="step-number">3</div>
+                                <div class="step-title">
+                                    <h3>Runtime Tuning</h3>
+                                    <p class="step-subtitle">Optimize computational parameters</p>
+                                </div>
+                                <div class="step-icon">🎛️</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🔬</div>
+                                        <div class="req-content">
+                                            <h4>Mesh Parameters</h4>
+                                            <p>Adjust mesh density for accuracy vs. speed trade-off</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🎯</div>
+                                        <div class="req-content">
+                                            <h4>Angular Momentum</h4>
+                                            <p>Optimize angular momentum cutoffs</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">💾</div>
+                                        <div class="req-content">
+                                            <h4>Memory Management</h4>
+                                            <p>Monitor memory usage and adjust accordingly</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
