@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code & Installation - SMOOTHIE</title>
+    <meta name="description" content="Learn about SMOOTHIE's code structure, installation process, and how to compile the Fortran 95 nuclear physics software.">
+    <meta name="keywords" content="SMOOTHIE installation, Fortran 95, nuclear physics code, compilation guide">
+    <meta name="author" content="SMOOTHIE Development Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Code & Installation - SMOOTHIE">
+    <meta property="og:description" content="Learn about SMOOTHIE's code structure, installation process, and how to compile the Fortran 95 nuclear physics software.">
+    <meta property="og:url" content="https://smoothie.example.com/code.html">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Code & Installation - SMOOTHIE">
+    <meta property="twitter:description" content="Learn about SMOOTHIE's code structure, installation process, and how to compile the Fortran 95 nuclear physics software.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-navigation">Skip to main content</a>
+    
+    <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" role="navigation" aria-label="Main navigation">
+            <div class="sidebar-header">
+                <h1 class="logo">SMOOTHIE</h1>
+                <div class="logo-subtitle">Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="story.html" class="nav-link">Birth of SMOOTHIE</a></li>
+                <li><a href="papers.html" class="nav-link">Related Papers</a></li>
+                <li><a href="formulas.html" class="nav-link">Theoretical Framework</a></li>
+                <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+                <li><a href="examples.html" class="nav-link">Input Examples</a></li>
+                <li><a href="programs.html" class="nav-link">Related Programs</a></li>
+                <li><a href="generator.html" class="nav-link">Input File Generator</a></li>
+                <li><a href="code.html" class="nav-link active">Code & Installation</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content" role="main">
+            <!-- Breadcrumb -->
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Code & Installation</li>
+                </ol>
+            </nav>
+            
+            <div class="page-header">
+                <div class="header-content">
+                    <div class="header-text">
+                        <h1>Code & Installation</h1>
+                        <p class="page-description">
+                            Learn about SMOOTHIE's architecture, installation process, and compilation instructions for this high-performance Fortran 95 nuclear physics code.
+                        </p>
+                        <div class="header-badges">
+                            <span class="badge fortran">Fortran 95</span>
+                            <span class="badge cross-platform">Cross-Platform</span>
+                            <span class="badge open-source">Open Source</span>
+                        </div>
+                    </div>
+                    <div class="header-visual">
+                        <div class="code-icon">
+                            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="120" height="120" rx="20" fill="url(#gradient)"/>
+                                <path d="M30 40L45 55L30 70" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M55 70H85" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <section class="overview-section">
+                    <div class="section-header">
+                        <div class="section-icon">📋</div>
+                        <div class="section-title">
+                            <h2>Overview</h2>
+                            <p class="section-subtitle">Modern Fortran 95 code for nuclear physics calculations</p>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-content">
+                        <div class="overview-text">
+                            <p>
+                                SMOOTHIE is written in modern <strong>Fortran 95</strong> and designed for high-performance nuclear physics calculations. 
+                                The code implements the Ichimura-Austern-Vincent formalism for non-elastic breakup reactions and uses advanced 
+                                numerical methods including the Lagrange-mesh R-matrix approach.
+                            </p>
+                            <div class="highlights">
+                                <div class="highlight-item">
+                                    <span class="highlight-icon">⚡</span>
+                                    <span>High-performance computing optimized</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <span class="highlight-icon">🔬</span>
+                                    <span>Advanced IAV formalism implementation</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <span class="highlight-icon">🎯</span>
+                                    <span>Lagrange-mesh R-matrix methods</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-specs">
+                        <div class="spec-card">
+                            <div class="spec-icon">💻</div>
+                            <h3>Language</h3>
+                            <p>Fortran 95</p>
+                            <div class="spec-detail">Modern standard</div>
+                        </div>
+                        <div class="spec-card">
+                            <div class="spec-icon">🖥️</div>
+                            <h3>Platforms</h3>
+                            <p>Linux, macOS, Windows</p>
+                            <div class="spec-detail">Cross-platform support</div>
+                        </div>
+                        <div class="spec-card">
+                            <div class="spec-icon">📦</div>
+                            <h3>Dependencies</h3>
+                            <p>LAPACK/BLAS (optional)</p>
+                            <div class="spec-detail">For enhanced performance</div>
+                        </div>
+                        <div class="spec-card">
+                            <div class="spec-icon">🔧</div>
+                            <h3>Build System</h3>
+                            <p>Make</p>
+                            <div class="spec-detail">Standard build tools</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="architecture-section">
+                    <div class="section-header">
+                        <div class="section-icon">🏗️</div>
+                        <div class="section-title">
+                            <h2>Code Architecture</h2>
+                            <p class="section-subtitle">Modular design for maintainability and extensibility</p>
+                        </div>
+                    </div>
+                    
+                    <div class="architecture-diagram">
+                        <div class="diagram-container">
+                            <div class="diagram-flow">
+                                <div class="flow-item core">
+                                    <div class="flow-icon">🎯</div>
+                                    <span>smoothie/</span>
+                                    <div class="flow-description">Main Engine</div>
+                                </div>
+                                <div class="flow-arrows">
+                                    <div class="arrow">→</div>
+                                    <div class="arrow">→</div>
+                                    <div class="arrow">→</div>
+                                    <div class="arrow">→</div>
+                                </div>
+                                <div class="flow-modules">
+                                    <div class="flow-item">
+                                        <div class="flow-icon">⚙️</div>
+                                        <span>general_modules/</span>
+                                    </div>
+                                    <div class="flow-item">
+                                        <div class="flow-icon">📐</div>
+                                        <span>mesh_modules/</span>
+                                    </div>
+                                    <div class="flow-item">
+                                        <div class="flow-icon">🔋</div>
+                                        <span>pot_modules/</span>
+                                    </div>
+                                    <div class="flow-item">
+                                        <div class="flow-icon">🌊</div>
+                                        <span>pw_modules/</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="architecture-grid">
+                        <div class="module-card foundational">
+                            <div class="module-header">
+                                <div class="module-icon">⚙️</div>
+                                <h3>general_modules/</h3>
+                                <div class="module-badge">Core</div>
+                            </div>
+                            <p>Core modules containing fundamental constants, precision definitions, and system utilities.</p>
+                            <div class="file-list">
+                                <div class="file-item">
+                                    <code>constants.F90</code>
+                                    <span>Physical constants and parameters</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>precision.F90</code>
+                                    <span>Numerical precision definitions</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>systems.f</code>
+                                    <span>System-specific utilities</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>channels.f</code>
+                                    <span>Channel coupling definitions</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="module-card numerical">
+                            <div class="module-header">
+                                <div class="module-icon">📐</div>
+                                <h3>mesh_modules/</h3>
+                                <div class="module-badge">Numerical</div>
+                            </div>
+                            <p>Numerical mesh and integration routines for wave function calculations.</p>
+                            <div class="file-list">
+                                <div class="file-item">
+                                    <code>mesh.f</code>
+                                    <span>Radial mesh generation</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>angularmesh.f</code>
+                                    <span>Angular quadrature points</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>gauss.F</code>
+                                    <span>Gaussian integration methods</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>derivative.f</code>
+                                    <span>Numerical differentiation</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>interpolation.f</code>
+                                    <span>Interpolation routines</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="module-card physics">
+                            <div class="module-header">
+                                <div class="module-icon">🔋</div>
+                                <h3>pot_modules/</h3>
+                                <div class="module-badge">Physics</div>
+                            </div>
+                            <p>Optical potential models and parameterizations for various nuclear systems.</p>
+                            <div class="file-list">
+                                <div class="file-item">
+                                    <code>kd02.f</code>
+                                    <span>Koning-Delaroche global potential</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>ch89.f</code>
+                                    <span>Chapel Hill 89 potential</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>bg69.f</code>
+                                    <span>Becchetti-Greenlees potential</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>guopot.f</code>
+                                    <span>Guo potential models</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>pot.f</code>
+                                    <span>Generic potential interface</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="module-card mathematical">
+                            <div class="module-header">
+                                <div class="module-icon">🌊</div>
+                                <h3>pw_modules/</h3>
+                                <div class="module-badge">Mathematics</div>
+                            </div>
+                            <p>Partial wave analysis and special function libraries.</p>
+                            <div class="file-list">
+                                <div class="file-item">
+                                    <code>clebsch.f</code>
+                                    <span>Clebsch-Gordan coefficients</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>spharm.f</code>
+                                    <span>Spherical harmonics</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>whittaker.f</code>
+                                    <span>Whittaker functions</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>coul90.f</code>
+                                    <span>Coulomb wave functions</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="module-card main">
+                            <div class="module-header">
+                                <div class="module-icon">🎯</div>
+                                <h3>smoothie/</h3>
+                                <div class="module-badge">Main</div>
+                            </div>
+                            <p>Main calculation engine implementing the IAV formalism.</p>
+                            <div class="file-list">
+                                <div class="file-item">
+                                    <code>smoothie.F</code>
+                                    <span>Main program entry point</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>iavdwba.f</code>
+                                    <span>IAV-DWBA calculations</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>bound.f</code>
+                                    <span>Bound state wave functions</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>scatt.f</code>
+                                    <span>Scattering wave functions</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>green.f</code>
+                                    <span>Green's function methods</span>
+                                </div>
+                                <div class="file-item">
+                                    <code>input.f</code>
+                                    <span>Input file parsing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="installation-section">
+                    <div class="section-header">
+                        <div class="section-icon">🚀</div>
+                        <div class="section-title">
+                            <h2>Installation Guide</h2>
+                            <p class="section-subtitle">Step-by-step instructions to get SMOOTHIE running on your system</p>
+                        </div>
+                    </div>
+                    
+                    <div class="install-steps">
+                        <div class="step-card prerequisites">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <div class="step-title">
+                                    <h3>Prerequisites</h3>
+                                    <p class="step-subtitle">Essential components for building SMOOTHIE</p>
+                                </div>
+                                <div class="step-icon">🛠️</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <div class="req-icon">🔧</div>
+                                        <div class="req-content">
+                                            <h4>Fortran Compiler</h4>
+                                            <p>gfortran (GCC) or ifort (Intel)</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">⚙️</div>
+                                        <div class="req-content">
+                                            <h4>Build Tools</h4>
+                                            <p>make utility</p>
+                                        </div>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <div class="req-icon">📚</div>
+                                        <div class="req-content">
+                                            <h4>Libraries</h4>
+                                            <p>LAPACK/BLAS (recommended)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="platform-install">
+                                    <h4>Platform-specific Installation Commands</h4>
+                                    <div class="platform-tabs">
+                                        <div class="platform-tab ubuntu">
+                                            <div class="platform-header">
+                                                <div class="platform-icon">🐧</div>
+                                                <strong>Ubuntu/Debian</strong>
+                                            </div>
+                                            <div class="command-block">
+                                                <pre><code>sudo apt update
+sudo apt install gfortran make liblapack-dev libblas-dev</code></pre>
+                                                <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                            </div>
+                                        </div>
+                                        <div class="platform-tab centos">
+                                            <div class="platform-header">
+                                                <div class="platform-icon">🎩</div>
+                                                <strong>CentOS/RHEL</strong>
+                                            </div>
+                                            <div class="command-block">
+                                                <pre><code>sudo yum install gcc-gfortran make lapack-devel blas-devel</code></pre>
+                                                <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                            </div>
+                                        </div>
+                                        <div class="platform-tab macos">
+                                            <div class="platform-header">
+                                                <div class="platform-icon">🍎</div>
+                                                <strong>macOS (Homebrew)</strong>
+                                            </div>
+                                            <div class="command-block">
+                                                <pre><code>brew install gcc make openblas lapack</code></pre>
+                                                <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card download">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <div class="step-title">
+                                    <h3>Download Source Code</h3>
+                                    <p class="step-subtitle">Clone the SMOOTHIE repository from GitHub</p>
+                                </div>
+                                <div class="step-icon">📥</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="download-info">
+                                    <div class="repo-card">
+                                        <div class="repo-icon">📁</div>
+                                        <div class="repo-details">
+                                            <h4>SMOOTHIE Public Repository</h4>
+                                            <p>Complete source code with examples and documentation</p>
+                                            <div class="repo-stats">
+                                                <span class="stat">Fortran 95</span>
+                                                <span class="stat">MIT License</span>
+                                                <span class="stat">Open Source</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="command-block">
+                                    <pre><code># Clone the source code
+git clone https://github.com/jinleiphys/smoothie-public.git
+cd smoothie-public</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card configure">
+                            <div class="step-header">
+                                <div class="step-number">3</div>
+                                <div class="step-title">
+                                    <h3>Configure Build Environment</h3>
+                                    <p class="step-subtitle">Set up compiler and library settings</p>
+                                </div>
+                                <div class="step-icon">⚙️</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="config-info">
+                                    <p>Edit the <code>make.inc</code> file to match your system configuration:</p>
+                                </div>
+                                <div class="command-block">
+                                    <pre><code># Copy appropriate template
+cp make.inc.gfortran make.inc    # For GCC/gfortran
+# OR
+cp make.inc.ifort make.inc       # For Intel Fortran
+
+# Edit configuration
+vim make.inc</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                                
+                                <div class="config-options">
+                                    <h4>Key Configuration Options</h4>
+                                    <div class="config-grid">
+                                        <div class="config-item">
+                                            <code>FC</code>
+                                            <span>Fortran compiler (gfortran, ifort)</span>
+                                        </div>
+                                        <div class="config-item">
+                                            <code>FFLAGS</code>
+                                            <span>Compiler flags for optimization</span>
+                                        </div>
+                                        <div class="config-item">
+                                            <code>LIBS</code>
+                                            <span>Library linking options</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card compile">
+                            <div class="step-header">
+                                <div class="step-number">4</div>
+                                <div class="step-title">
+                                    <h3>Compile SMOOTHIE</h3>
+                                    <p class="step-subtitle">Build the executable and all modules</p>
+                                </div>
+                                <div class="step-icon">🔨</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="command-block">
+                                    <pre><code># Build all modules and main program
+make
+
+# Clean previous builds if needed
+make clean && make
+
+# Build with specific compiler (optional)
+make FC=gfortran</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                                
+                                <div class="build-output">
+                                    <h4>Compilation Results</h4>
+                                    <div class="output-grid">
+                                        <div class="output-item">
+                                            <div class="output-icon">📚</div>
+                                            <div class="output-content">
+                                                <h5>Module Libraries</h5>
+                                                <p>Compiled libraries in each subdirectory</p>
+                                            </div>
+                                        </div>
+                                        <div class="output-item">
+                                            <div class="output-icon">🎯</div>
+                                            <div class="output-content">
+                                                <h5>Main Executable</h5>
+                                                <p><code>smoothie/smoothie</code></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card test">
+                            <div class="step-header">
+                                <div class="step-number">5</div>
+                                <div class="step-title">
+                                    <h3>Test Installation</h3>
+                                    <p class="step-subtitle">Verify everything works correctly</p>
+                                </div>
+                                <div class="step-icon">✅</div>
+                            </div>
+                            <div class="step-content">
+                                <div class="test-info">
+                                    <p>Run the included test case to verify your installation:</p>
+                                </div>
+                                <div class="command-block">
+                                    <pre><code># Navigate to test directory
+cd smoothie/test/
+
+# Run test calculation
+../smoothie < test.in
+
+# Check output files
+ls -la *.out</code></pre>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                                
+                                <div class="success-indicator">
+                                    <div class="success-icon">🎉</div>
+                                    <div class="success-content">
+                                        <h4>Success!</h4>
+                                        <p>You should see output files containing cross-section data. Your SMOOTHIE installation is ready!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="compilation-section">
+                    <h2>⚙️ Compilation Options</h2>
+                    
+                    <div class="compilation-grid">
+                        <div class="option-card">
+                            <h3>🎯 Optimization Levels</h3>
+                            <div class="option-list">
+                                <div class="option-item">
+                                    <code>-O0</code>
+                                    <span>No optimization (debug builds)</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-O2</code>
+                                    <span>Standard optimization (recommended)</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-O3</code>
+                                    <span>High optimization (production)</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-Ofast</code>
+                                    <span>Aggressive optimization</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card">
+                            <h3>🐛 Debug Options</h3>
+                            <div class="option-list">
+                                <div class="option-item">
+                                    <code>-g</code>
+                                    <span>Include debug information</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-fcheck=all</code>
+                                    <span>Runtime array bounds checking</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-Wall</code>
+                                    <span>Enable all warnings</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-Wextra</code>
+                                    <span>Extra warning messages</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card">
+                            <h3>🔗 Linking Libraries</h3>
+                            <div class="option-list">
+                                <div class="option-item">
+                                    <code>-llapack</code>
+                                    <span>Linear algebra package</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-lblas</code>
+                                    <span>Basic linear algebra subprograms</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-lm</code>
+                                    <span>Math library functions</span>
+                                </div>
+                                <div class="option-item">
+                                    <code>-fopenmp</code>
+                                    <span>OpenMP parallel processing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="troubleshooting-section">
+                    <h2>🔧 Troubleshooting</h2>
+                    
+                    <div class="troubleshooting-grid">
+                        <div class="issue-card">
+                            <h3>❌ Compilation Errors</h3>
+                            <div class="issue-solution">
+                                <p><strong>Problem:</strong> "Command not found: gfortran"</p>
+                                <p><strong>Solution:</strong> Install Fortran compiler package for your system.</p>
+                            </div>
+                            <div class="issue-solution">
+                                <p><strong>Problem:</strong> "Cannot find -llapack"</p>
+                                <p><strong>Solution:</strong> Install LAPACK development libraries or modify library paths in make.inc.</p>
+                            </div>
+                            <div class="issue-solution">
+                                <p><strong>Problem:</strong> Module compilation errors</p>
+                                <p><strong>Solution:</strong> Ensure Fortran 95 or later compiler. Clean and rebuild all modules.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="issue-card">
+                            <h3>⚠️ Runtime Issues</h3>
+                            <div class="issue-solution">
+                                <p><strong>Problem:</strong> Segmentation fault during execution</p>
+                                <p><strong>Solution:</strong> Increase stack size or compile with bounds checking for debugging.</p>
+                            </div>
+                            <div class="issue-solution">
+                                <p><strong>Problem:</strong> Numerical instabilities</p>
+                                <p><strong>Solution:</strong> Adjust mesh parameters or potential model settings in input file.</p>
+                            </div>
+                            <div class="issue-solution">
+                                <p><strong>Problem:</strong> Slow performance</p>
+                                <p><strong>Solution:</strong> Link with optimized BLAS/LAPACK libraries and enable compiler optimizations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="issue-card">
+                            <h3>🔍 Platform-Specific Issues</h3>
+                            <div class="issue-solution">
+                                <p><strong>macOS:</strong> Use Homebrew gcc instead of Xcode's compiler for better Fortran support.</p>
+                            </div>
+                            <div class="issue-solution">
+                                <p><strong>Windows:</strong> Use MinGW-w64 or Windows Subsystem for Linux (WSL) for best compatibility.</p>
+                            </div>
+                            <div class="issue-solution">
+                                <p><strong>HPC Systems:</strong> Load appropriate modules for compiler and mathematical libraries.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="performance-section">
+                    <h2>⚡ Performance Optimization</h2>
+                    
+                    <div class="performance-tips">
+                        <div class="tip-card">
+                            <h3>🚀 Compiler Optimizations</h3>
+                            <ul>
+                                <li>Use <code>-O3</code> or <code>-Ofast</code> for production runs</li>
+                                <li>Enable vectorization with <code>-ftree-vectorize</code></li>
+                                <li>Consider profile-guided optimization (PGO)</li>
+                                <li>Use native architecture flags: <code>-march=native</code></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h3>📚 Library Optimizations</h3>
+                            <ul>
+                                <li>Link with optimized BLAS: Intel MKL, OpenBLAS, or ATLAS</li>
+                                <li>Use threaded libraries for parallel execution</li>
+                                <li>Set environment variables: <code>OMP_NUM_THREADS</code></li>
+                                <li>Consider GPU acceleration where available</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h3>🎛️ Runtime Tuning</h3>
+                            <ul>
+                                <li>Adjust mesh parameters for accuracy vs. speed trade-off</li>
+                                <li>Optimize angular momentum cutoffs</li>
+                                <li>Use appropriate numerical integration methods</li>
+                                <li>Monitor memory usage and adjust accordingly</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="next-steps-section">
+                    <h2>🎯 Next Steps</h2>
+                    <p>
+                        Once you have successfully installed SMOOTHIE, explore the following resources to get started with your calculations:
+                    </p>
+                    
+                    <div class="next-steps-grid">
+                        <a href="examples.html" class="next-step-card">
+                            <div class="step-icon">📝</div>
+                            <h3>Input Examples</h3>
+                            <p>Study example input files and parameter settings for various nuclear reactions</p>
+                        </a>
+                        
+                        <a href="generator.html" class="next-step-card">
+                            <div class="step-icon">🛠️</div>
+                            <h3>Input Generator</h3>
+                            <p>Use the web-based tool to create custom input files for your specific calculations</p>
+                        </a>
+                        
+                        <a href="formulas.html" class="next-step-card">
+                            <div class="step-icon">📐</div>
+                            <h3>Theoretical Framework</h3>
+                            <p>Understand the mathematical formalism and physics behind SMOOTHIE calculations</p>
+                        </a>
+                        
+                        <a href="papers.html" class="next-step-card">
+                            <div class="step-icon">📄</div>
+                            <h3>Related Papers</h3>
+                            <p>Read the scientific publications that document SMOOTHIE's development and applications</p>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
