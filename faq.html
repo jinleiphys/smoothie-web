@@ -237,25 +237,47 @@
                     // Get the default FAQ content first
                     const defaultFAQs = document.getElementById('faqList').innerHTML;
                     
-                    const dynamicFAQs = issues.map(issue => {
+                    // Fetch comments for each issue to get the actual answers
+                    const dynamicFAQs = await Promise.all(issues.map(async (issue) => {
                         const question = issue.title;
-                        const answer = issue.comments > 0 ? 
-                            'Click to view the detailed answer on GitHub.' : 
-                            'This question is being reviewed.';
+                        let answer = 'This question is being reviewed.';
+                        
+                        // Fetch comments to get the actual answer
+                        if (issue.comments > 0) {
+                            try {
+                                const commentsResponse = await fetch(issue.comments_url);
+                                const comments = await commentsResponse.json();
+                                
+                                if (comments && comments.length > 0) {
+                                    // Get the first comment as the answer (usually from the maintainer)
+                                    const firstComment = comments[0];
+                                    answer = firstComment.body || 'No answer provided yet.';
+                                    
+                                    // Convert markdown-style formatting to HTML
+                                    answer = formatMarkdownToHtml(answer);
+                                }
+                            } catch (commentError) {
+                                console.error('Error fetching comments:', commentError);
+                                answer = 'Error loading answer. Please check the GitHub discussion.';
+                            }
+                        }
                         
                         return `
                             <div class="faq-item dynamic-faq">
                                 <h3 class="faq-question">${escapeHtml(question)}</h3>
                                 <div class="faq-answer">
-                                    <p>${escapeHtml(answer)}</p>
-                                    <a href="${issue.html_url}" target="_blank" class="faq-link">View full discussion →</a>
+                                    <div class="faq-answer-content">${answer}</div>
+                                    <div class="faq-meta">
+                                        <small>Asked on: ${new Date(issue.created_at).toLocaleDateString()}</small>
+                                        <a href="${issue.html_url}" target="_blank" class="faq-link">View full discussion →</a>
+                                    </div>
                                 </div>
                             </div>
                         `;
-                    }).join('');
+                    }));
                     
                     // Add dynamic FAQs after default ones
-                    faqList.innerHTML = defaultFAQs + dynamicFAQs;
+                    faqList.innerHTML = defaultFAQs + dynamicFAQs.join('');
                     
                     // Reinitialize click handlers for all FAQ items
                     initializeFAQHandlers();
@@ -267,6 +289,27 @@
             } finally {
                 spinner.style.display = 'none';
             }
+        }
+
+        function formatMarkdownToHtml(text) {
+            // Basic markdown to HTML conversion
+            return text
+                // Convert bold **text** to <strong>text</strong>
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                // Convert italic *text* to <em>text</em>
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                // Convert code `text` to <code>text</code>
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                // Convert links [text](url) to <a href="url">text</a>
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+                // Convert line breaks to <br>
+                .replace(/\n/g, '<br>')
+                // Convert code blocks ```text``` to <pre><code>text</code></pre>
+                .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')
+                // Convert headers # text to <h4>text</h4>
+                .replace(/^# (.+)$/gm, '<h4>$1</h4>')
+                .replace(/^## (.+)$/gm, '<h5>$1</h5>')
+                .replace(/^### (.+)$/gm, '<h6>$1</h6>');
         }
 
         function escapeHtml(text) {
