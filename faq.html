@@ -196,6 +196,9 @@
             hideQuestionForm();
             
             alert('Thank you for your question! You will be redirected to GitHub to complete the submission. The question will appear in the FAQ once it has been answered.');
+            
+            // Auto-refresh after 5 seconds to check for new questions
+            setTimeout(loadFAQs, 5000);
         }
 
         async function loadFAQs() {
@@ -205,18 +208,43 @@
             spinner.style.display = 'block';
             
             try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues?labels=${FAQ_LABEL}&state=closed`);
-                const issues = await response.json();
+                // Try to fetch with FAQ label first
+                let response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues?labels=${FAQ_LABEL}&state=closed`);
+                let issues = await response.json();
                 
-                if (issues.length > 0) {
-                    const faqItems = issues.map(issue => {
+                // If no issues with FAQ label, try to fetch all closed issues and filter for FAQ-related ones
+                if (!issues || issues.length === 0) {
+                    response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues?state=closed`);
+                    const allIssues = await response.json();
+                    
+                    // Filter for FAQ-related issues (title contains question words or body mentions FAQ)
+                    issues = allIssues.filter(issue => {
+                        const title = issue.title.toLowerCase();
+                        const body = (issue.body || '').toLowerCase();
+                        return title.includes('?') || 
+                               title.includes('how') || 
+                               title.includes('what') || 
+                               title.includes('why') || 
+                               title.includes('when') || 
+                               title.includes('where') || 
+                               body.includes('question') ||
+                               body.includes('faq') ||
+                               issue.labels.some(label => label.name === FAQ_LABEL);
+                    });
+                }
+                
+                if (issues && issues.length > 0) {
+                    // Get the default FAQ content first
+                    const defaultFAQs = document.getElementById('faqList').innerHTML;
+                    
+                    const dynamicFAQs = issues.map(issue => {
                         const question = issue.title;
                         const answer = issue.comments > 0 ? 
                             'Click to view the detailed answer on GitHub.' : 
                             'This question is being reviewed.';
                         
                         return `
-                            <div class="faq-item">
+                            <div class="faq-item dynamic-faq">
                                 <h3 class="faq-question">${escapeHtml(question)}</h3>
                                 <div class="faq-answer">
                                     <p>${escapeHtml(answer)}</p>
@@ -226,7 +254,11 @@
                         `;
                     }).join('');
                     
-                    faqList.innerHTML = faqItems;
+                    // Add dynamic FAQs after default ones
+                    faqList.innerHTML = defaultFAQs + dynamicFAQs;
+                    
+                    // Reinitialize click handlers for all FAQ items
+                    initializeFAQHandlers();
                 } else {
                     console.log('No FAQ issues found, keeping default content');
                 }
@@ -243,14 +275,34 @@
             return div.innerHTML;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializeFAQHandlers() {
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
-                question.addEventListener('click', function() {
+                // Remove existing listeners to avoid duplicates
+                question.replaceWith(question.cloneNode(true));
+                const newQuestion = item.querySelector('.faq-question');
+                newQuestion.addEventListener('click', function() {
                     item.classList.toggle('active');
                 });
             });
+        }
+
+        // Auto-refresh functionality
+        function startAutoRefresh() {
+            // Refresh every 2 minutes
+            setInterval(loadFAQs, 120000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize FAQ handlers for default content
+            initializeFAQHandlers();
+            
+            // Load dynamic FAQs on page load
+            loadFAQs();
+            
+            // Start auto-refresh
+            startAutoRefresh();
         });
     </script>
 </body>

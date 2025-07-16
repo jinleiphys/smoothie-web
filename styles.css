@@ -2883,3 +2883,15 @@ html {
         padding: 0 1rem 1rem;
     }
 }
+
+/* Dynamic FAQ styling */
+.dynamic-faq {
+    border-left: 4px solid var(--success-color);
+}
+
+.dynamic-faq .faq-question::before {
+    content: "🔄 ";
+    color: var(--success-color);
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
