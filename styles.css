@@ -1,4 +1,4 @@
-/* Modern Apple-style CSS with Frosted Glass Effects */
+/* Nuclear Physics Research Website - Modern Design with Quantum-Inspired Theme */
 * {
     margin: 0;
     padding: 0;
@@ -6,33 +6,110 @@
 }
 
 :root {
-    --primary-color: #007AFF;
-    --secondary-color: #5AC8FA;
-    --accent-color: #FF3B30;
-    --success-color: #34C759;
-    --warning-color: #FF9500;
-    --text-primary: #1D1D1F;
-    --text-secondary: #86868B;
+    /* Nuclear Physics Inspired Color Palette */
+    --primary-color: #1B4F72;          /* Deep Blue - representing nuclear stability */
+    --secondary-color: #2E86AB;        /* Ocean Blue - wave functions */
+    --accent-color: #F39C12;           /* Golden - nuclear energy */
+    --accent-secondary: #E74C3C;       /* Red - nuclear reactions */
+    --success-color: #27AE60;          /* Green - successful calculations */
+    --warning-color: #F39C12;          /* Orange - caution */
+    --quantum-blue: #3498DB;           /* Quantum state blue */
+    --particle-violet: #8E44AD;        /* Particle physics purple */
+    --atomic-teal: #16A085;            /* Atomic structure teal */
+    
+    /* Enhanced Text Colors */
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A5568;
+    --text-tertiary: #6B7280;
     --text-light: #FFFFFF;
-    --bg-primary: #F5F5F7;
+    --text-muted: #9CA3AF;
+    
+    /* Sophisticated Background System */
+    --bg-primary: #F8FAFC;
     --bg-secondary: #FFFFFF;
-    --bg-glass: rgba(255, 255, 255, 0.7);
-    --bg-glass-dark: rgba(0, 0, 0, 0.05);
-    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
-    --shadow-heavy: 0 12px 40px rgba(0, 0, 0, 0.2);
-    --border-radius: 12px;
+    --bg-tertiary: #F1F5F9;
+    --bg-glass: rgba(255, 255, 255, 0.85);
+    --bg-glass-dark: rgba(27, 79, 114, 0.1);
+    --bg-quantum: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-nuclear: linear-gradient(135deg, #1B4F72 0%, #2E86AB 50%, #3498DB 100%);
+    
+    /* Advanced Shadow System */
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-light: 0 4px 20px rgba(27, 79, 114, 0.08);
+    --shadow-medium: 0 8px 30px rgba(27, 79, 114, 0.12);
+    --shadow-heavy: 0 20px 60px rgba(27, 79, 114, 0.15);
+    --shadow-glow: 0 0 30px rgba(52, 152, 219, 0.3);
+    
+    /* Enhanced Design System */
+    --border-radius: 16px;
     --border-radius-large: 24px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-radius-xl: 32px;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    
+    /* Spacing System */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
 }
 
+/* Enhanced Body with Particle Animation Background */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(52, 152, 219, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(142, 68, 173, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(22, 160, 133, 0.05) 0%, transparent 50%);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: var(--font-size-base);
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Quantum particle animation overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, rgba(52, 152, 219, 0.3), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(142, 68, 173, 0.3), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(22, 160, 133, 0.3), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(243, 156, 18, 0.3), transparent);
+    background-repeat: repeat;
+    background-size: 150px 150px;
+    animation: particleFloat 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+@keyframes particleFloat {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-150px, -150px); }
 }
 
 /* Skip Navigation */
@@ -138,46 +215,115 @@ body {
 }
 
 /* Sidebar Navigation with Frosted Glass */
+/* Enhanced Nuclear Physics Themed Sidebar */
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    width: 280px;
+    width: 300px;
     height: 100vh;
-    background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(248, 250, 252, 0.9) 50%,
+        rgba(255, 255, 255, 0.85) 100%);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-right: 2px solid rgba(27, 79, 114, 0.1);
     z-index: 1000;
     transition: var(--transition);
-    box-shadow: var(--shadow-medium);
+    box-shadow: var(--shadow-heavy), inset -1px 0 0 rgba(255, 255, 255, 0.8);
     pointer-events: auto;
     touch-action: manipulation;
+    position: relative;
 }
 
+/* Quantum field pattern overlay for sidebar */
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(27, 79, 114, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 60%, rgba(52, 152, 219, 0.02) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 40%, rgba(243, 156, 18, 0.01) 50%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Enhanced Nuclear Physics Header */
 .sidebar-header {
-    padding: 2rem 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    padding: var(--space-8) var(--space-6);
+    border-bottom: 2px solid rgba(27, 79, 114, 0.1);
+    background: linear-gradient(135deg, 
+        rgba(27, 79, 114, 0.05) 0%, 
+        rgba(52, 152, 219, 0.03) 100%);
     min-height: fit-content;
+    position: relative;
+    z-index: 2;
+    text-align: center;
 }
 
+/* Quantum-inspired SMOOTHIE logo */
 .logo {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    text-shadow: 0 2px 4px rgba(0, 122, 255, 0.2);
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    background: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        var(--quantum-blue) 50%,
+        var(--particle-violet) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-3);
+    letter-spacing: 0.05em;
+    text-shadow: 0 4px 20px rgba(27, 79, 114, 0.3);
+    position: relative;
+    display: inline-block;
 }
 
+/* Nuclear glow effect for logo */
+.logo::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, 
+        rgba(52, 152, 219, 0.2) 0%, 
+        transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.logo:hover::after {
+    opacity: 1;
+    animation: nucleusGlow 2s ease-in-out infinite;
+}
+
+@keyframes nucleusGlow {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.4; }
+}
+
+/* Enhanced subtitle with nuclear physics emphasis */
 .logo-subtitle {
-    font-size: 0.875rem;
+    font-size: var(--font-size-xs);
     color: var(--text-secondary);
-    font-weight: 400;
-    line-height: 1.4;
+    font-weight: 500;
+    line-height: 1.5;
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0.9;
 }
 
 .nav-menu {
@@ -239,12 +385,16 @@ body {
 }
 
 /* Main Content */
+/* Enhanced Main Content Layout */
 .main-content {
-    margin-left: 280px;
+    margin-left: 20px;
+    margin-right: 15px;
     flex: 1;
     min-height: 100vh;
-    padding: 2rem;
+    padding: var(--space-6) 0 var(--space-6) var(--space-2);
     background: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 .page {
@@ -267,19 +417,24 @@ body {
     }
 }
 
-/* Hero Section */
+/* Enhanced Hero Section with Nuclear Physics Theme */
 .hero-section {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: var(--border-radius-large);
-    padding: 4rem 3rem;
-    box-shadow: var(--shadow-heavy);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(248, 250, 252, 0.9) 50%,
+        rgba(255, 255, 255, 0.85) 100%);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-16) var(--space-4) var(--space-16) var(--space-2);
+    box-shadow: var(--shadow-heavy), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(27, 79, 114, 0.1);
     position: relative;
     overflow: hidden;
+    margin: var(--space-8) 0;
 }
 
+/* Quantum wave pattern overlay */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -287,71 +442,131 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 122, 255, 0.05) 0%, rgba(90, 200, 250, 0.05) 100%);
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(27, 79, 114, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(52, 152, 219, 0.06) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 40%, rgba(243, 156, 18, 0.02) 50%, transparent 60%);
     pointer-events: none;
+    animation: quantumWave 15s ease-in-out infinite;
+}
+
+/* Nuclear particle decorative elements */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    background: 
+        radial-gradient(circle at 30% 30%, var(--quantum-blue) 2px, transparent 3px),
+        radial-gradient(circle at 70% 60%, var(--particle-violet) 1.5px, transparent 2px),
+        radial-gradient(circle at 50% 90%, var(--atomic-teal) 1px, transparent 2px);
+    background-size: 20px 20px, 15px 15px, 10px 10px;
+    opacity: 0.3;
+    animation: atomicOrbit 20s linear infinite;
+}
+
+@keyframes quantumWave {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.01); }
+}
+
+@keyframes atomicOrbit {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
 }
 
+/* Enhanced Typography with Nuclear Physics Aesthetic */
 .hero-title {
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    text-shadow: 0 4px 8px rgba(0, 122, 255, 0.3);
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    font-size: var(--font-size-5xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-6);
+    background: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        var(--secondary-color) 40%,
+        var(--quantum-blue) 70%,
+        var(--particle-violet) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 8px 32px rgba(27, 79, 114, 0.3);
+    position: relative;
+    display: inline-block;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-weight: 400;
+    margin-bottom: var(--space-8);
+    font-weight: 500;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Enhanced acronym highlighting with nuclear colors */
 .acronym-highlight {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-color);
     font-weight: 600;
+    text-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.acronym-highlight:hover {
+    color: var(--accent-secondary);
+    text-shadow: 0 4px 16px rgba(231, 76, 60, 0.4);
+    transform: translateY(-1px);
 }
 
 .hero-description {
-    font-size: 1.125rem;
+    font-size: var(--font-size-lg);
     color: var(--text-primary);
-    margin-bottom: 3rem;
-    max-width: 600px;
-    line-height: 1.7;
+    margin-bottom: var(--space-12);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+    font-weight: 400;
 }
 
 .hero-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+    padding: 0 var(--space-4);
 }
 
+/* Enhanced Feature Cards with Quantum Physics Aesthetic */
 .feature-card {
-    background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: var(--border-radius);
-    padding: 2rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(248, 250, 252, 0.85) 100%);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: var(--border-radius-large);
+    padding: var(--space-8);
     text-align: center;
-    box-shadow: var(--shadow-light);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-medium), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(27, 79, 114, 0.1);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
 }
 
+/* Quantum energy field effect */
 .feature-card::before {
     content: '';
     position: absolute;
@@ -359,83 +574,197 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: radial-gradient(circle at center, 
+        rgba(27, 79, 114, 0.1) 0%, 
+        transparent 50%);
     opacity: 0;
-    transition: var(--transition);
+    transition: opacity 0.5s ease;
+}
+
+/* Nuclear glow on hover */
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--quantum-blue), 
+        var(--particle-violet), 
+        var(--atomic-teal), 
+        var(--accent-color));
+    background-size: 400% 400%;
+    opacity: 0;
+    border-radius: var(--border-radius-large);
+    z-index: -1;
+    animation: quantumFlow 3s ease infinite;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes quantumFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .feature-card:hover::before {
     opacity: 1;
 }
 
-.feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-medium);
+.feature-card:hover::after {
+    opacity: 0.6;
 }
 
+.feature-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-heavy), var(--shadow-glow);
+}
+
+/* Enhanced Nuclear-Themed Icons */
 .feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
     display: block;
+    background: linear-gradient(135deg, 
+        var(--accent-color) 0%, 
+        var(--quantum-blue) 50%, 
+        var(--particle-violet) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 12px rgba(243, 156, 18, 0.3));
+    transition: var(--transition);
+    position: relative;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 8px 24px rgba(52, 152, 219, 0.4));
 }
 
 .feature-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--quantum-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.01em;
 }
 
 .feature-card p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 .hero-actions {
     display: flex;
-    gap: 1rem;
+    gap: var(--space-6);
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--space-8);
 }
 
-/* Buttons */
+/* Enhanced Nuclear Physics Themed Buttons */
 .btn-primary, .btn-secondary, .btn-download, .btn-example, .btn-generate {
-    padding: 1rem 2rem;
-    border-radius: var(--border-radius);
-    font-weight: 600;
-    font-size: 1rem;
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--border-radius-large);
+    font-weight: 700;
+    font-size: var(--font-size-base);
     text-decoration: none;
     border: none;
     cursor: pointer;
     transition: var(--transition);
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     position: relative;
     overflow: hidden;
+    letter-spacing: 0.01em;
+    min-width: 160px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
+/* Nuclear Energy Button - Primary */
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        var(--secondary-color) 50%,
+        var(--quantum-blue) 100%);
     color: var(--text-light);
-    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(27, 79, 114, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(27, 79, 114, 0.4), var(--shadow-glow);
 }
 
+/* Quantum Field Button - Secondary */
 .btn-secondary {
-    background: var(--bg-glass);
+    background: linear-gradient(135deg, 
+        var(--bg-glass) 0%, 
+        rgba(248, 250, 252, 0.9) 100%);
     color: var(--primary-color);
-    border: 1px solid rgba(0, 122, 255, 0.3);
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-light);
+}
+
+.btn-secondary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        var(--quantum-blue) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: var(--border-radius-large);
 }
 
 .btn-secondary:hover {
-    background: rgba(0, 122, 255, 0.1);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-light);
+    color: var(--text-light);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(27, 79, 114, 0.3);
+}
+
+.btn-secondary:hover::after {
+    opacity: 1;
+}
+
+.btn-secondary:hover * {
+    position: relative;
+    z-index: 1;
 }
 
 .btn-download, .btn-example, .btn-generate {
@@ -845,19 +1174,38 @@ html {
 
 /* Formulas Page Specific Styles */
 .formulas-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+/* Override for content-section when used with formulas-content */
+.content-section.formulas-content {
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
 }
 
 .theory-section {
     margin-bottom: 3rem;
-    padding: 2rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 3rem 2rem;
     background: var(--bg-glass);
     backdrop-filter: blur(20px);
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: var(--shadow-light);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--border-radius-large);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-medium);
+    width: calc(100% - 0px);
+    box-sizing: border-box;
+    display: block;
 }
 
 .theory-section h2 {
@@ -881,7 +1229,7 @@ html {
     border: 1px solid rgba(0, 122, 255, 0.2);
     border-radius: var(--border-radius);
     padding: 1.5rem;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     box-shadow: var(--shadow-light);
     overflow-x: auto;
     text-align: center;
@@ -892,7 +1240,7 @@ html {
 }
 
 .formula-block mjx-container {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
 }
 
 /* Mobile responsiveness for formulas */
@@ -2628,6 +2976,35 @@ html {
         order: -1;
     }
     
+    /* Enhanced mobile responsiveness for nuclear physics theme */
+    .sidebar {
+        width: 280px;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: var(--space-4);
+        padding-top: 5rem;
+        width: 100%;
+    }
+    
+    .hero-section {
+        padding: var(--space-8) var(--space-4);
+        margin: var(--space-4) 0;
+    }
+    
+    .feature-card {
+        padding: var(--space-6);
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-lg);
+    }
+    
     .requirements-grid {
         grid-template-columns: 1fr;
     }
@@ -2957,5 +3334,143 @@ html {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+}
+
+/* ================================
+   NUCLEAR PHYSICS ENHANCEMENT SYSTEM
+   ================================ */
+
+/* Enhanced scrollbar for nuclear theme */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-color), var(--quantum-blue));
+    border-radius: 4px;
+    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--quantum-blue), var(--particle-violet));
+}
+
+/* Selection highlighting with nuclear colors */
+::selection {
+    background: rgba(27, 79, 114, 0.2);
+    color: var(--primary-color);
+}
+
+::-moz-selection {
+    background: rgba(27, 79, 114, 0.2);
+    color: var(--primary-color);
+}
+
+/* Enhanced focus indicators for accessibility */
+*:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Nuclear physics themed loading animation */
+@keyframes nuclearSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1); }
+    75% { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Atomic orbital patterns for decorative elements */
+@keyframes orbitalPath {
+    0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+/* Enhanced text rendering for scientific content */
+.scientific-text {
+    font-feature-settings: "liga", "kern", "frac", "sups", "subs";
+    text-rendering: optimizeLegibility;
+}
+
+/* Nuclear reaction equation styling */
+.nuclear-equation {
+    font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    padding: var(--space-4);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--accent-color);
+    font-size: var(--font-size-lg);
+    letter-spacing: 0.02em;
+}
+
+/* Enhanced performance optimizations */
+.hero-section,
+.feature-card,
+.sidebar {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Quantum field background patterns */
+.quantum-bg {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(142, 68, 173, 0.1) 0%, transparent 50%);
+    background-size: 200px 200px;
+    background-position: 0 0, 100px 100px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #003366;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --bg-primary: #ffffff;
+    }
+}
+
+/* Reduced motion preference support */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero-section::before,
+    .feature-card::after,
+    body::before {
+        animation: none !important;
+    }
+}
+
+/* Print styles for scientific documentation */
+@media print {
+    .sidebar,
+    .mobile-menu-toggle,
+    .btn-primary,
+    .btn-secondary {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .hero-section,
+    .feature-card {
+        background: white !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
     }
 }
