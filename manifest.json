@@ -1,0 +1,27 @@
+{
+    "name": "SMOOTHIE Nuclear Reaction Code",
+    "short_name": "SMOOTHIE",
+    "description": "Scattering Model of Optical Operator Theory for Ichimura-Austern-Vincent Equations",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1B4F72",
+    "theme_color": "#2E86AB",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "categories": ["education", "utilities", "productivity"],
+    "lang": "en-US",
+    "icons": [
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMxQjRGNzIiLz4KPHBhdGggZD0iTTk2IDQ4QzEyNCA0OCA5NiA3MiA5NiA5NkM5NiAxMjAgMTI0IDE0NCA5NiAxNDRDNjggMTQ0IDk2IDEyMCA5NiA5NkM5NiA3MiA2OCA0OCA5NiA0OFoiIGZpbGw9IiNGMzlDMTIiLz4KPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iMTYiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9IiMxQjRGNzIiLz4KPHBhdGggZD0iTTI1NiAxMjhDMzMxIDEyOCAyNTYgMTkyIDI1NiAyNTZDMjU2IDMyMCAzMzEgMzg0IDI1NiAzODRDMTgxIDM4NCAyNTYgMzIwIDI1NiAyNTZDMjU2IDE5MiAxODEgMTI4IDI1NiAxMjhaIiBmaWxsPSIjRjM5QzEyIi8+CjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iNDIiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

@@ -5,6 +5,22 @@
     box-sizing: border-box;
 }
 
+/* Performance optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 :root {
     /* Nuclear Physics Inspired Color Palette */
     --primary-color: #1B4F72;          /* Deep Blue - representing nuclear stability */
@@ -3096,6 +3112,20 @@ html {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.form-help {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"] {
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
 }
 
 .form-group textarea {

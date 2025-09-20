@@ -8,11 +8,20 @@
     <meta name="keywords" content="input file generator, SMOOTHIE, quantum scattering, breakup reactions, nuclear physics calculator">
     <meta name="author" content="SMOOTHIE Development Team">
     
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://www.googletagmanager.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://smoothie.fewbody.com/generator.html">
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Input File Generator - SMOOTHIE">
     <meta property="og:description" content="Interactive web-based input file generator for SMOOTHIE quantum scattering calculations. Generate properly formatted input files for breakup reactions.">
-    <meta property="og:url" content="https://smoothie.example.com/generator.html">
+    <meta property="og:url" content="https://smoothie.fewbody.com/generator.html">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
@@ -96,7 +105,8 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="hcm">Radial Step Size (fm)</label>
-                                    <input type="number" id="hcm" name="hcm" step="0.001" value="0.05" placeholder="0.05">
+                                    <input type="number" id="hcm" name="hcm" step="0.001" value="0.05" placeholder="0.05" aria-describedby="hcm-help">
+                                    <small id="hcm-help" class="form-help">Integration step size in MeV</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="rmax">Maximum Radius (fm)</label>
@@ -136,7 +146,8 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="elab">Incident Energy (MeV)</label>
-                                    <input type="number" id="elab" name="elab" step="0.1" placeholder="e.g., 25.5" required>
+                                    <input type="number" id="elab" name="elab" step="0.1" placeholder="e.g., 25.5" required aria-describedby="elab-help">
+                                    <small id="elab-help" class="form-help">Laboratory energy in MeV (required)</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="dwba">DWBA Method</label>
@@ -176,10 +187,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="printf">Enable Detailed Output</label>
-                                    <select id="printf" name="printf">
+                                    <select id="printf" name="printf" aria-describedby="printf-help">
                                         <option value="f">False</option>
                                         <option value="t">True</option>
                                     </select>
+                                    <small id="printf-help" class="form-help">Enable verbose output for debugging</small>
                                 </div>
                             </div>
                         </div>

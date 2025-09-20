@@ -8,11 +8,20 @@
     <meta name="keywords" content="IAV model, theoretical framework, quantum scattering, mathematical formulation, nuclear physics, breakup reactions">
     <meta name="author" content="SMOOTHIE Development Team">
     
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://www.googletagmanager.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://smoothie.fewbody.com/formulas.html">
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="Theoretical Framework - SMOOTHIE">
     <meta property="og:description" content="Complete theoretical framework and mathematical formulation of the Ichimura-Austern-Vincent model implemented in SMOOTHIE quantum scattering calculations.">
-    <meta property="og:url" content="https://smoothie.example.com/formulas.html">
+    <meta property="og:url" content="https://smoothie.fewbody.com/formulas.html">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
@@ -245,15 +254,17 @@
                     <p>and:</p>
                     
                     <div class="formula-block">
-                        $$\begin{aligned}
+                        $$\begin{align}
+                        \begin{aligned}
                         \mathcal{G}_{\alpha_{\text{in}}, \alpha_{\text{out}}}^{\text{out} \gets \text{in}} (\mathbf{r}_{b}, \mathbf{r}_x) &= \sum_{L S} (2 S + 1) \sqrt{(2 J_a + 1)(2 J_A + 1)(2 J_x + 1)(2 J_b + 1)} \begin{Bmatrix} l_x & s_{xA} & J_x \\ \lambda_b & j_b & J_b \\ L & S & J \end{Bmatrix} \\
                         &\quad \times\begin{Bmatrix} l_a & s_{bx} & J_a \\ \lambda_a & j_A & J_A \\ L & S & J \end{Bmatrix} 
-                        (-)^{s_{bx} + 2 j_A + j_x + j_b} \sqrt{(2 s_{xA} + 1)(2 s_{bx} + 1)}  \\
+                        (-)^{s_{xA} + 2 j_b + j_x + j_A} \sqrt{(2 s_{xA} + 1)(2 s_{bx} + 1)}  \\
                         &\quad \times \begin{Bmatrix} j_A & j_x & s_{xA} \\ j_b & S & s_{bx} \end{Bmatrix}
                         8\pi^2\sum_{M = -L}^{L} \sum_{m'_{l_x} m'_{\lambda_b}} \sum_{m'_{l_a} m'_{\lambda_a}} 
                         \langle l_x m'_{l_x} \lambda_b m'_{\lambda_b} \mid L M \rangle   \\
-                        &\quad \times \langle l_a m'_{l_a} \lambda_a m'_{\lambda_a} \mid L M \rangle Y_{l_x}^{m'_{l_x} *}(\hat{r}_x)  Y_{\lambda_b}^{m'_{\lambda_b} *}(\hat{r}_b)Y_{l_a}^{m'_{l_a}}(\hat{f}) Y_{\lambda_a}^{m'_{\lambda_a}}(\hat{g})
-                        \end{aligned}$$
+                        &\quad \times \langle l_a m'_{l_a} \lambda_a m'_{\lambda_a} \mid L M \rangle Y_{l_x}^{m'_{l_x} *}(\hat{r}_x)  Y_{\lambda_b}^{m'_{\lambda_b} *}(\hat{r}_b)Y_{l_a}^{m'_{l_a}}(\hat{f}) Y_{\lambda_a}^{m'_{\lambda_a}}(\hat{g}).
+                        \end{aligned}
+                        \end{align}$$
                     </div>
                 </div>
 
