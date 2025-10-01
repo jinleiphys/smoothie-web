@@ -3504,3 +3504,126 @@ html {
         border: 1px solid #ccc !important;
     }
 }
+
+/* Video Section Styling */
+.video-section {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--border-radius-large);
+    padding: 3rem;
+    margin-top: 3rem;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.video-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.05) 0%, 
+        rgba(142, 68, 173, 0.05) 50%, 
+        rgba(22, 160, 133, 0.05) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.video-title {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    background: var(--bg-nuclear);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.video-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-large);
+    background: var(--bg-secondary);
+    border: 2px solid rgba(52, 152, 219, 0.2);
+    transition: all 0.3s var(--transition-smooth);
+}
+
+.video-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(52, 152, 219, 0.3);
+    border-color: var(--quantum-blue);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+/* Responsive video styling */
+@media (max-width: 768px) {
+    .video-section {
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .video-title {
+        font-size: 2rem;
+    }
+    
+    .video-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .video-wrapper {
+        margin: 0 -1rem;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .video-title {
+        font-size: 1.75rem;
+    }
+    
+    .video-wrapper {
+        margin: 0 -0.5rem;
+    }
+}
