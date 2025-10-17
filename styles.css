@@ -238,7 +238,7 @@ body::before {
     top: 0;
     width: 300px;
     height: 100vh;
-    background: linear-gradient(180deg, 
+    background: linear-gradient(180deg,
         rgba(255, 255, 255, 0.95) 0%,
         rgba(248, 250, 252, 0.9) 50%,
         rgba(255, 255, 255, 0.85) 100%);
@@ -250,7 +250,7 @@ body::before {
     box-shadow: var(--shadow-heavy), inset -1px 0 0 rgba(255, 255, 255, 0.8);
     pointer-events: auto;
     touch-action: manipulation;
-    position: relative;
+    overflow-y: auto;
 }
 
 /* Quantum field pattern overlay for sidebar */
@@ -272,13 +272,28 @@ body::before {
 .sidebar-header {
     padding: var(--space-8) var(--space-6);
     border-bottom: 2px solid rgba(27, 79, 114, 0.1);
-    background: linear-gradient(135deg, 
-        rgba(27, 79, 114, 0.05) 0%, 
+    background: linear-gradient(135deg,
+        rgba(27, 79, 114, 0.05) 0%,
         rgba(52, 152, 219, 0.03) 100%);
     min-height: fit-content;
     position: relative;
     z-index: 2;
     text-align: center;
+}
+
+/* Logo image in sidebar */
+.logo-image {
+    width: 180px;
+    height: auto;
+    margin: 0 auto var(--space-4);
+    display: block;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 8px 20px rgba(52, 152, 219, 0.3));
 }
 
 /* Quantum-inspired SMOOTHIE logo */
@@ -403,11 +418,11 @@ body::before {
 /* Main Content */
 /* Enhanced Main Content Layout */
 .main-content {
-    margin-left: 20px;
+    margin-left: 300px;
     margin-right: 15px;
     flex: 1;
     min-height: 100vh;
-    padding: var(--space-6) 0 var(--space-6) var(--space-2);
+    padding: var(--space-6) var(--space-8);
     background: transparent;
     position: relative;
     z-index: 1;
@@ -499,6 +514,23 @@ body::before {
     max-width: 1000px;
     margin: 0 auto;
     text-align: center;
+}
+
+/* Hero logo styling */
+.hero-logo {
+    width: 280px;
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto var(--space-8);
+    display: block;
+    border-radius: var(--border-radius-large);
+    transition: var(--transition);
+    filter: drop-shadow(0 10px 30px rgba(52, 152, 219, 0.2));
+}
+
+.hero-logo:hover {
+    transform: translateY(-8px) scale(1.02);
+    filter: drop-shadow(0 20px 40px rgba(52, 152, 219, 0.3));
 }
 
 /* Enhanced Typography with Nuclear Physics Aesthetic */
@@ -1079,7 +1111,15 @@ body::before {
     .sidebar-header {
         padding: 1.5rem 1rem;
     }
-    
+
+    .logo-image {
+        width: 140px;
+    }
+
+    .hero-logo {
+        width: 220px;
+    }
+
     .logo {
         font-size: 1.5rem;
     }
@@ -3618,12 +3658,20 @@ html {
     .video-section {
         padding: 1.5rem 1rem;
     }
-    
+
     .video-title {
         font-size: 1.75rem;
     }
-    
+
     .video-wrapper {
         margin: 0 -0.5rem;
+    }
+
+    .logo-image {
+        width: 120px;
+    }
+
+    .hero-logo {
+        width: 180px;
     }
 }
