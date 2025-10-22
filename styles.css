@@ -2019,8 +2019,8 @@ html {
     -webkit-backdrop-filter: blur(20px);
     border-radius: var(--border-radius-large);
     padding: 3rem;
-    margin-top: 8rem;
-    margin-bottom: 4rem;
+    margin-top: 30rem;
+    margin-bottom: 6rem;
     box-shadow: var(--shadow-medium);
     border: 1px solid rgba(255, 255, 255, 0.3);
     clear: both;
