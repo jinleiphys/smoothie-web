@@ -213,55 +213,69 @@
         async function loadFAQs() {
             const spinner = document.getElementById('loadingSpinner');
             const faqList = document.getElementById('faqList');
-            
+
             spinner.style.display = 'block';
-            
+
             try {
-                // Try to fetch with FAQ label first
-                let response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues?labels=${FAQ_LABEL}&state=closed`);
-                let issues = await response.json();
-                
-                // If no issues with FAQ label, try to fetch all closed issues and filter for FAQ-related ones
-                if (!issues || issues.length === 0) {
-                    response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues?state=closed`);
-                    const allIssues = await response.json();
-                    
-                    // Filter for FAQ-related issues (title contains question words or body mentions FAQ)
-                    issues = allIssues.filter(issue => {
-                        const title = issue.title.toLowerCase();
-                        const body = (issue.body || '').toLowerCase();
-                        return title.includes('?') || 
-                               title.includes('how') || 
-                               title.includes('what') || 
-                               title.includes('why') || 
-                               title.includes('when') || 
-                               title.includes('where') || 
-                               body.includes('question') ||
-                               body.includes('faq') ||
-                               issue.labels.some(label => label.name === FAQ_LABEL);
-                    });
-                }
+                // Fetch all issues (both open and closed)
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues?state=all&per_page=100`);
+                const allIssues = await response.json();
+
+                // Filter for FAQ-related issues - look for:
+                // 1. Issues with 'faq' or 'question' labels
+                // 2. Issues with question-related content
+                // 3. Issues with contact email (from the FAQ form)
+                const issues = allIssues.filter(issue => {
+                    // Skip pull requests
+                    if (issue.pull_request) return false;
+
+                    const title = issue.title.toLowerCase();
+                    const body = (issue.body || '').toLowerCase();
+
+                    // Check for FAQ-related labels
+                    const hasRelevantLabel = issue.labels.some(label =>
+                        ['faq', 'question', 'help wanted'].includes(label.name.toLowerCase())
+                    );
+
+                    // Check for question indicators
+                    const hasQuestionIndicators =
+                        title.includes('?') ||
+                        title.includes('how') ||
+                        title.includes('what') ||
+                        title.includes('why') ||
+                        title.includes('when') ||
+                        title.includes('where') ||
+                        title.includes('can i') ||
+                        title.includes('should i') ||
+                        body.includes('question') ||
+                        body.includes('**contact:**'); // From FAQ form submission
+
+                    return hasRelevantLabel || hasQuestionIndicators;
+                });
                 
                 if (issues && issues.length > 0) {
                     // Get the default FAQ content first
                     const defaultFAQs = document.getElementById('faqList').innerHTML;
-                    
+
                     // Fetch comments for each issue to get the actual answers
                     const dynamicFAQs = await Promise.all(issues.map(async (issue) => {
                         const question = issue.title;
-                        let answer = 'This question is being reviewed.';
-                        
+                        const isOpen = issue.state === 'open';
+                        let answer = isOpen ?
+                            'This question is currently being reviewed. Please check back soon for an answer.' :
+                            'This question has been answered.';
+
                         // Fetch comments to get the actual answer
                         if (issue.comments > 0) {
                             try {
                                 const commentsResponse = await fetch(issue.comments_url);
                                 const comments = await commentsResponse.json();
-                                
+
                                 if (comments && comments.length > 0) {
                                     // Get the first comment as the answer (usually from the maintainer)
                                     const firstComment = comments[0];
                                     answer = firstComment.body || 'No answer provided yet.';
-                                    
+
                                     // Convert markdown-style formatting to HTML
                                     answer = formatMarkdownToHtml(answer);
                                 }
@@ -270,24 +284,29 @@
                                 answer = 'Error loading answer. Please check the GitHub discussion.';
                             }
                         }
-                        
+
+                        const statusBadge = isOpen ?
+                            '<span style="display: inline-block; background: #ffa500; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px;">Pending</span>' :
+                            '<span style="display: inline-block; background: #28a745; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px;">Answered</span>';
+
                         return `
-                            <div class="faq-item dynamic-faq">
-                                <h3 class="faq-question">${escapeHtml(question)}</h3>
+                            <div class="faq-item dynamic-faq ${isOpen ? 'faq-pending' : 'faq-answered'}">
+                                <h3 class="faq-question">${escapeHtml(question)}${statusBadge}</h3>
                                 <div class="faq-answer">
                                     <div class="faq-answer-content">${answer}</div>
                                     <div class="faq-meta">
                                         <small>Asked on: ${new Date(issue.created_at).toLocaleDateString()}</small>
+                                        ${issue.closed_at && !isOpen ? `<small> • Answered on: ${new Date(issue.closed_at).toLocaleDateString()}</small>` : ''}
                                         <a href="${issue.html_url}" target="_blank" class="faq-link">View full discussion →</a>
                                     </div>
                                 </div>
                             </div>
                         `;
                     }));
-                    
+
                     // Add dynamic FAQs after default ones
                     faqList.innerHTML = defaultFAQs + dynamicFAQs.join('');
-                    
+
                     // Reinitialize click handlers for all FAQ items
                     initializeFAQHandlers();
                 } else {
