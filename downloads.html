@@ -68,16 +68,16 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="downloads.html" class="nav-link active">Downloads & Installation</a></li>
+                <li><a href="examples.html" class="nav-link">Input Examples</a></li>
+                <li><a href="code.html" class="nav-link">Code Documentation</a></li>
+                <li><a href="generator.html" class="nav-link">Online Input Generator</a></li>
                 <li><a href="story.html" class="nav-link">Birth of SMOOTHIE</a></li>
                 <li><a href="papers.html" class="nav-link">Related Papers</a></li>
                 <li><a href="formulas.html" class="nav-link">Theoretical Framework</a></li>
-                <li><a href="downloads.html" class="nav-link active">Downloads</a></li>
-                <li><a href="examples.html" class="nav-link">Input Examples</a></li>
                 <li><a href="programs.html" class="nav-link">Related Programs</a></li>
-                <li><a href="generator.html" class="nav-link">Input File Generator</a></li>
-                <li><a href="code.html" class="nav-link">Code & Installation</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
                 <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </nav>
 
@@ -91,20 +91,54 @@
             </nav>
             <!-- Downloads Page -->
             <div class="page-header">
-                <h1>Downloads</h1>
-                <p>Get the latest version of SMOOTHIE from our GitHub repository</p>
+                <h1>Downloads & Installation</h1>
+                <p>Get started with SMOOTHIE - Choose the option that works best for you</p>
             </div>
+
             <div class="content-section">
-                <div class="download-info">
-                    <h2>SMOOTHIE Source Code</h2>
-                    <p>SMOOTHIE is available as open source code on GitHub. The repository contains the complete Modern Fortran source code, build scripts, documentation, and examples.</p>
+                <!-- GUI Installation (Recommended) -->
+                <div class="download-info" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                    <h2 style="color: white; margin-top: 0;">🎉 NEW: SMOOTHIE GUI (Recommended)</h2>
+                    <p style="font-size: 1.1rem;">The easiest way to use SMOOTHIE! Complete graphical interface with one-command setup.</p>
                 </div>
-                
+
                 <div class="download-grid">
+                    <div class="download-card" style="border: 3px solid #667eea;">
+                        <div class="download-icon">🖥️</div>
+                        <h3>SMOOTHIE GUI</h3>
+                        <p><strong>All-in-one graphical interface</strong> - the recommended way to use SMOOTHIE</p>
+                        <ul class="feature-list">
+                            <li>🚀 <strong>One-command automated setup</strong></li>
+                            <li>📝 Form-based input with organized tabs</li>
+                            <li>📊 Real-time plotting and visualization</li>
+                            <li>📟 Live output monitoring</li>
+                            <li>💾 Load/save input files easily</li>
+                            <li>🎨 Modern design with light/dark themes</li>
+                            <li>⚡ Integrated execution - no terminal needed</li>
+                        </ul>
+
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                            <h4 style="margin-top: 0;">Quick Install (Linux/macOS):</h4>
+                            <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 6px; overflow-x: auto;"><code>git clone https://github.com/jinleiphys/smoothie-public.git
+cd smoothie-public
+chmod +x setup_gui.sh
+./setup_gui.sh
+./run_smoothie_gui.sh</code></pre>
+
+                            <h4 style="margin-top: 1.5rem;">Windows Users:</h4>
+                            <p>We recommend using <strong>WSL (Windows Subsystem for Linux)</strong> for the best experience. Alternatively, run <code>setup_gui.ps1</code> in PowerShell.</p>
+                        </div>
+
+                        <a href="https://github.com/jinleiphys/smoothie-public" class="btn-download" target="_blank" style="background: #667eea;">Get SMOOTHIE GUI</a>
+                        <div class="download-details">
+                            <small>Includes everything: GUI, Fortran code, examples, documentation</small>
+                        </div>
+                    </div>
+
                     <div class="download-card">
                         <div class="download-icon">📦</div>
-                        <h3>GitHub Repository</h3>
-                        <p>Complete SMOOTHIE source code, documentation, and examples hosted on GitHub</p>
+                        <h3>Source Code Only</h3>
+                        <p>For advanced users who prefer command-line tools or custom builds</p>
                         <ul class="feature-list">
                             <li>Full Modern Fortran source code</li>
                             <li>Build scripts and Makefile</li>
@@ -112,30 +146,76 @@
                             <li>Input examples and test cases</li>
                             <li>Regular updates and bug fixes</li>
                         </ul>
+
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                            <h4 style="margin-top: 0;">Manual Installation:</h4>
+                            <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 6px; overflow-x: auto;"><code>git clone https://github.com/jinleiphys/smoothie-public.git
+cd smoothie-public/smoothie
+make</code></pre>
+                        </div>
+
                         <a href="https://github.com/jinleiphys/smoothie-public" class="btn-download" target="_blank">Visit GitHub Repository</a>
                         <div class="download-details">
                             <small>Free and open source | MIT License</small>
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- Quick Start Tools -->
+                <div style="background: #e6f7ff; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; border-left: 4px solid #1890ff;">
+                    <h3 style="margin-top: 0;">⚡ Quick Start Alternative</h3>
+                    <p><strong>Don't want to install anything?</strong> Try our <a href="generator.html">Online Input File Generator</a> to create SMOOTHIE input files directly in your browser. Great for quick tests and learning!</p>
+                </div>
+
                 <div class="system-requirements">
                     <h2>System Requirements</h2>
                     <div class="requirements-grid">
                         <div class="requirement-section">
-                            <h3>Compiler Requirements</h3>
+                            <h3>For GUI Installation</h3>
                             <ul>
-                                <li>GNU Fortran (gfortran)</li>
-                                <li>Intel Fortran Compiler</li>
+                                <li><strong>Operating System:</strong> Linux, macOS, or Windows (WSL recommended)</li>
+                                <li><strong>Python:</strong> 3.8 or later (auto-installed if missing)</li>
+                                <li><strong>Fortran Compiler:</strong> gfortran (auto-installed if missing)</li>
+                                <li><strong>Disk Space:</strong> ~500 MB</li>
+                                <li><strong>Note:</strong> The setup script handles all dependencies automatically!</li>
                             </ul>
                         </div>
                         <div class="requirement-section">
-                            <h3>Build Instructions</h3>
+                            <h3>For Source Code Build</h3>
                             <ul>
-                                <li>Clone the repository from GitHub</li>
-                                <li>Run the provided Makefile</li>
-                                <li>Follow the README.md instructions</li>
-                                <li>Ensure Fortran compiler is in PATH</li>
+                                <li><strong>Compiler:</strong> GNU Fortran (gfortran) or Intel Fortran</li>
+                                <li><strong>Build Tools:</strong> Make</li>
+                                <li><strong>Optional:</strong> LAPACK/BLAS libraries (recommended for performance)</li>
+                                <li><strong>Installation:</strong> See README.md for detailed instructions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="system-requirements">
+                    <h2>What's Included</h2>
+                    <div class="requirements-grid">
+                        <div class="requirement-section">
+                            <h3>SMOOTHIE GUI Package</h3>
+                            <ul>
+                                <li>✅ Modern graphical user interface</li>
+                                <li>✅ Automated setup and build scripts</li>
+                                <li>✅ SMOOTHIE Fortran executable</li>
+                                <li>✅ Python plotting and visualization tools</li>
+                                <li>✅ Complete documentation</li>
+                                <li>✅ Example input files</li>
+                                <li>✅ Quick start guide (GUI_QUICKSTART.md)</li>
+                            </ul>
+                        </div>
+                        <div class="requirement-section">
+                            <h3>Getting Help</h3>
+                            <ul>
+                                <li>📖 <strong>GUI Guide:</strong> See GUI_QUICKSTART.md in the repository</li>
+                                <li>📖 <strong>Documentation:</strong> Full user manual included</li>
+                                <li>💡 <strong>Examples:</strong> Pre-configured example calculations</li>
+                                <li>❓ <strong>FAQ:</strong> <a href="faq.html">Frequently Asked Questions</a></li>
+                                <li>🐛 <strong>Issues:</strong> Report bugs on GitHub</li>
+                                <li>✉️ <strong>Contact:</strong> <a href="contact.html">Reach out to the developers</a></li>
                             </ul>
                         </div>
                     </div>
