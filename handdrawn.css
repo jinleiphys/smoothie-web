@@ -1,0 +1,765 @@
+/**
+ * SMOOTHIE - Hand-drawn Style CSS
+ * Colored pencil strokes and rice paper (Xuan paper) texture effects
+ */
+
+/* ===================================
+   Hand-drawn Color Palette
+   Colors inspired by colored pencils
+   =================================== */
+:root {
+    /* Rice Paper Background Colors */
+    --paper-base: #fcf8f0;
+    --paper-fiber: #f5ebdc;
+    --paper-warm: #eee4d2;
+    --paper-aged: #dccdb4;
+
+    /* Colored Pencil Palette */
+    --pencil-blue: #648cc8;
+    --pencil-cyan: #50b4c8;
+    --pencil-pink: #dc8298;
+    --pencil-orange: #f0aa64;
+    --pencil-green: #78b48c;
+    --pencil-purple: #a082be;
+    --pencil-teal: #5abeb0;
+    --pencil-brown: #a08060;
+    --pencil-red: #d87070;
+    --pencil-yellow: #e8c864;
+
+    /* Shadows - softer, more organic */
+    --shadow-pencil: 2px 3px 0 rgba(160, 128, 96, 0.15);
+    --shadow-pencil-hover: 3px 4px 0 rgba(160, 128, 96, 0.2);
+
+    /* Hand-drawn border style */
+    --border-sketch: 2px solid var(--pencil-brown);
+}
+
+/* ===================================
+   Base Styles - Rice Paper Background
+   =================================== */
+html, body {
+    background-color: var(--paper-base) !important;
+}
+
+body {
+    font-family: 'Caveat', 'Comic Neue', 'Patrick Hand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 隐藏p5.js canvas（纹理已在styles.css中实现） */
+#paper-background {
+    display: none !important;
+}
+
+/* ===================================
+   布局修复
+   =================================== */
+.sidebar {
+    width: 300px !important;
+}
+
+.main-content {
+    margin-left: 80px !important;
+}
+
+/* Video/IAV 图片区域放大 */
+.video-container {
+    max-width: 100% !important;
+}
+
+.video-section {
+    padding: 2rem !important;
+}
+
+.video-wrapper img {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Google Fonts for hand-written look */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Comic+Neue:wght@300;400;700&family=Patrick+Hand&display=swap');
+
+/* ===================================
+   Typography - Hand-written Style
+   =================================== */
+h1, h2, h3, h4, h5, h6,
+.hero-title,
+.logo {
+    font-family: 'Caveat', 'Comic Neue', cursive !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.hero-title {
+    font-size: 4.5rem !important;
+    color: var(--pencil-blue) !important;
+    text-shadow: 3px 3px 0 rgba(100, 140, 200, 0.2);
+}
+
+.logo {
+    font-size: 2rem !important;
+    color: var(--pencil-teal) !important;
+}
+
+p, li, a, span, div {
+    font-family: 'Patrick Hand', 'Comic Neue', sans-serif;
+}
+
+/* ===================================
+   Sidebar - Hand-drawn Style
+   =================================== */
+.sidebar {
+    background: linear-gradient(
+        180deg,
+        var(--paper-base) 0%,
+        var(--paper-fiber) 50%,
+        var(--paper-warm) 100%
+    ) !important;
+    border-right: 3px solid var(--pencil-brown) !important;
+    box-shadow: 4px 0 0 rgba(160, 128, 96, 0.1) !important;
+    position: relative;
+}
+
+/* Sketchy border effect using pseudo-element */
+.sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -3px;
+    width: 3px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        180deg,
+        var(--pencil-brown) 0px,
+        var(--pencil-brown) 10px,
+        transparent 10px,
+        transparent 12px
+    );
+    opacity: 0.3;
+}
+
+.sidebar-header {
+    background: transparent !important;
+    border-bottom: 2px dashed var(--pencil-teal) !important;
+    padding-bottom: 1.5rem;
+}
+
+/* Logo image - add sketch filter */
+.logo-image {
+    filter: sepia(10%) saturate(90%) contrast(95%);
+    border-radius: 0 !important;
+}
+
+.logo-subtitle {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-brown) !important;
+    font-size: 0.85rem !important;
+}
+
+/* Navigation Links */
+.nav-link {
+    font-family: 'Patrick Hand', cursive !important;
+    font-size: 1.1rem !important;
+    color: var(--pencil-brown) !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    background: rgba(100, 140, 200, 0.1) !important;
+    border-left: 3px solid var(--pencil-blue);
+    color: var(--pencil-blue) !important;
+}
+
+.nav-link.active {
+    background: rgba(90, 190, 176, 0.15) !important;
+    border-left: 3px solid var(--pencil-teal);
+    color: var(--pencil-teal) !important;
+    font-weight: 600;
+}
+
+/* Underline effect on hover */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* ===================================
+   Main Content Area
+   =================================== */
+.main-content {
+    background: transparent !important;
+}
+
+/* ===================================
+   Hero Section - Hand-drawn Style
+   =================================== */
+.hero-section {
+    background: transparent !important;
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero logo */
+.hero-logo {
+    filter: sepia(10%) saturate(90%);
+    max-width: 150px;
+}
+
+.hero-subtitle {
+    font-family: 'Patrick Hand', cursive !important;
+    font-size: 1.3rem !important;
+    color: var(--pencil-brown) !important;
+}
+
+.acronym-highlight {
+    color: var(--pencil-pink) !important;
+    font-weight: 700;
+}
+
+.hero-description {
+    font-family: 'Patrick Hand', cursive !important;
+    font-size: 1.15rem !important;
+    color: var(--pencil-brown) !important;
+    line-height: 1.8;
+}
+
+/* ===================================
+   Cards - Hand-drawn Style
+   =================================== */
+.feature-card,
+.citation-paper,
+.paper-card,
+.faq-item,
+.step-card,
+.method-card,
+.program-card,
+.contact-card,
+.handdrawn-card {
+    background: var(--paper-base) !important;
+    border: 2px solid var(--pencil-brown) !important;
+    border-radius: 0 !important;
+    box-shadow: var(--shadow-pencil) !important;
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Sketchy corner decorations */
+.feature-card::before,
+.citation-paper::before,
+.paper-card::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--pencil-teal);
+    border-left: 2px solid var(--pencil-teal);
+}
+
+.feature-card::after,
+.citation-paper::after,
+.paper-card::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--pencil-pink);
+    border-right: 2px solid var(--pencil-pink);
+}
+
+.feature-card:hover,
+.citation-paper:hover,
+.paper-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-pencil-hover) !important;
+}
+
+/* Override gradient backgrounds on feature cards */
+.feature-card[style*="gradient"] {
+    background: var(--paper-base) !important;
+    border: 2px solid var(--pencil-blue) !important;
+}
+
+.feature-card[style*="gradient"] h3,
+.feature-card[style*="gradient"] p {
+    color: var(--pencil-brown) !important;
+}
+
+/* Feature Icons */
+.feature-icon {
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem;
+    filter: grayscale(20%) sepia(30%);
+}
+
+/* Card Titles */
+.feature-card h3,
+.citation-paper h3,
+.paper-card h3 {
+    font-family: 'Caveat', cursive !important;
+    font-size: 1.5rem !important;
+    color: var(--pencil-blue) !important;
+    border-bottom: 2px dashed var(--pencil-cyan);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ===================================
+   Buttons - Hand-drawn Style
+   =================================== */
+.btn-primary,
+.btn-secondary,
+.paper-link,
+.handdrawn-btn {
+    font-family: 'Patrick Hand', cursive !important;
+    font-size: 1.1rem !important;
+    border-radius: 0 !important;
+    border: 2px solid var(--pencil-brown) !important;
+    background: var(--paper-base) !important;
+    color: var(--pencil-brown) !important;
+    box-shadow: var(--shadow-pencil) !important;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.btn-primary {
+    background: var(--pencil-teal) !important;
+    color: white !important;
+    border-color: var(--pencil-teal) !important;
+}
+
+.btn-primary:hover {
+    background: var(--pencil-cyan) !important;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 5px 0 rgba(80, 180, 200, 0.3) !important;
+}
+
+.btn-secondary:hover,
+.paper-link:hover {
+    background: var(--paper-fiber) !important;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-pencil-hover) !important;
+}
+
+/* ===================================
+   Form Inputs - Hand-drawn Style
+   =================================== */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea,
+.handdrawn-input {
+    font-family: 'Patrick Hand', cursive !important;
+    font-size: 1rem !important;
+    background: var(--paper-base) !important;
+    border: 2px solid var(--pencil-brown) !important;
+    border-radius: 0 !important;
+    color: var(--pencil-brown) !important;
+    box-shadow: inset 2px 2px 0 rgba(160, 128, 96, 0.1) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--pencil-blue) !important;
+    outline: none !important;
+    box-shadow: inset 2px 2px 0 rgba(100, 140, 200, 0.15) !important;
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+    color: var(--pencil-brown);
+    opacity: 0.5;
+    font-style: italic;
+}
+
+/* ===================================
+   Citation Section
+   =================================== */
+.citation-section {
+    background: var(--paper-fiber) !important;
+    border-top: 3px dashed var(--pencil-teal);
+    border-bottom: 3px dashed var(--pencil-teal);
+}
+
+.citation-section h2 {
+    font-family: 'Caveat', cursive !important;
+    color: var(--pencil-blue) !important;
+    font-size: 2.5rem !important;
+}
+
+.paper-title {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-purple) !important;
+    font-style: italic;
+}
+
+.paper-authors {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-teal) !important;
+}
+
+.paper-journal {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-orange) !important;
+}
+
+/* BibTeX Box */
+.bibtex-box {
+    background: var(--paper-warm) !important;
+    border: 2px dashed var(--pencil-brown) !important;
+    border-radius: 0 !important;
+}
+
+.bibtex-box pre {
+    font-family: 'Courier New', monospace !important;
+    color: var(--pencil-brown) !important;
+    font-size: 0.85rem;
+}
+
+/* ===================================
+   Video/Image Section
+   =================================== */
+.video-section {
+    background: transparent !important;
+}
+
+.video-container {
+    background: var(--paper-base) !important;
+    border: 3px solid var(--pencil-brown) !important;
+    border-radius: 0 !important;
+    box-shadow: var(--shadow-pencil) !important;
+}
+
+.video-title {
+    font-family: 'Caveat', cursive !important;
+    color: var(--pencil-blue) !important;
+    font-size: 2rem !important;
+}
+
+.video-description {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-brown) !important;
+}
+
+/* Image inside video wrapper */
+.video-wrapper img {
+    filter: sepia(10%) saturate(90%) contrast(95%);
+    border: 2px solid var(--pencil-brown);
+}
+
+/* ===================================
+   Breadcrumb
+   =================================== */
+.breadcrumb {
+    font-family: 'Patrick Hand', cursive !important;
+}
+
+.breadcrumb a {
+    color: var(--pencil-blue) !important;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    color: var(--pencil-brown) !important;
+}
+
+/* ===================================
+   Back to Top Button
+   =================================== */
+.back-to-top {
+    background: var(--paper-base) !important;
+    border: 2px solid var(--pencil-teal) !important;
+    border-radius: 0 !important;
+    box-shadow: var(--shadow-pencil) !important;
+    color: var(--pencil-teal) !important;
+}
+
+.back-to-top:hover {
+    background: var(--pencil-teal) !important;
+    color: white !important;
+    transform: translate(-2px, -2px);
+}
+
+/* ===================================
+   Mobile Menu Toggle
+   =================================== */
+.mobile-menu-toggle {
+    background: var(--paper-base) !important;
+    border: 2px solid var(--pencil-brown) !important;
+    border-radius: 0 !important;
+}
+
+.hamburger-line {
+    background: var(--pencil-brown) !important;
+}
+
+/* ===================================
+   Code Blocks
+   =================================== */
+pre, code {
+    font-family: 'Courier New', monospace !important;
+    background: var(--paper-warm) !important;
+    border: 2px solid var(--pencil-brown) !important;
+    border-radius: 0 !important;
+    color: var(--pencil-brown) !important;
+}
+
+/* ===================================
+   Tables
+   =================================== */
+table {
+    border: 2px solid var(--pencil-brown) !important;
+    background: var(--paper-base) !important;
+}
+
+th {
+    background: var(--paper-fiber) !important;
+    font-family: 'Caveat', cursive !important;
+    color: var(--pencil-blue) !important;
+    border-bottom: 2px solid var(--pencil-brown) !important;
+}
+
+td {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-brown) !important;
+    border-bottom: 1px dashed var(--pencil-brown) !important;
+}
+
+/* ===================================
+   Decorative Elements
+   =================================== */
+
+/* Doodle-style underlines for headings */
+.section-title,
+.page-title {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after,
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        var(--pencil-teal) 0%,
+        var(--pencil-cyan) 25%,
+        var(--pencil-pink) 50%,
+        var(--pencil-orange) 75%,
+        var(--pencil-teal) 100%
+    );
+    background-size: 200% 100%;
+    animation: underlineShimmer 3s linear infinite;
+}
+
+@keyframes underlineShimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Paper texture overlay */
+.paper-texture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ===================================
+   Animations - Hand-drawn Feel
+   =================================== */
+
+/* Slight wobble animation for interactive elements */
+@keyframes handWobble {
+    0%, 100% { transform: rotate(-0.5deg); }
+    50% { transform: rotate(0.5deg); }
+}
+
+.feature-card:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    animation: handWobble 0.3s ease-in-out;
+}
+
+/* ===================================
+   Scrollbar - Hand-drawn Style
+   =================================== */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--paper-fiber);
+    border-left: 2px solid var(--pencil-brown);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--pencil-teal);
+    border: 2px solid var(--pencil-brown);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--pencil-cyan);
+}
+
+/* ===================================
+   Selection Highlight
+   =================================== */
+::selection {
+    background: rgba(90, 190, 176, 0.3);
+    color: var(--pencil-brown);
+}
+
+/* ===================================
+   Link Styles
+   =================================== */
+a {
+    color: var(--pencil-blue) !important;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--pencil-blue);
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: var(--pencil-teal) !important;
+    border-bottom-color: var(--pencil-teal);
+}
+
+/* ===================================
+   FAQ Section
+   =================================== */
+.faq-item {
+    background: var(--paper-base) !important;
+    border: 2px solid var(--pencil-brown) !important;
+    margin-bottom: 1rem;
+}
+
+.faq-question {
+    font-family: 'Caveat', cursive !important;
+    font-size: 1.3rem !important;
+    color: var(--pencil-blue) !important;
+}
+
+.faq-answer {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-brown) !important;
+}
+
+/* ===================================
+   Downloads Page
+   =================================== */
+.download-card,
+.install-step {
+    background: var(--paper-base) !important;
+    border: 2px solid var(--pencil-brown) !important;
+    border-radius: 0 !important;
+}
+
+.step-number {
+    font-family: 'Caveat', cursive !important;
+    font-size: 2rem !important;
+    color: var(--pencil-teal) !important;
+    border: 2px solid var(--pencil-teal) !important;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===================================
+   Contact Page
+   =================================== */
+.contact-info {
+    font-family: 'Patrick Hand', cursive !important;
+}
+
+.contact-icon {
+    filter: sepia(30%) saturate(80%);
+}
+
+/* ===================================
+   Generator Page
+   =================================== */
+.generator-section {
+    background: var(--paper-base) !important;
+}
+
+.form-group label {
+    font-family: 'Caveat', cursive !important;
+    font-size: 1.2rem !important;
+    color: var(--pencil-blue) !important;
+}
+
+.form-help {
+    font-family: 'Patrick Hand', cursive !important;
+    color: var(--pencil-brown) !important;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* ===================================
+   Responsive Adjustments
+   =================================== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem !important;
+    }
+
+    .feature-card::before,
+    .feature-card::after,
+    .citation-paper::before,
+    .citation-paper::after {
+        display: none;
+    }
+}
+
+/* ===================================
+   Print Styles
+   =================================== */
+@media print {
+    body {
+        background: white !important;
+    }
+
+    .sidebar,
+    .back-to-top,
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
