@@ -57,10 +57,6 @@ body {
     width: 300px !important;
 }
 
-.main-content {
-    margin-left: 80px !important;
-}
-
 /* Video/IAV 图片区域放大 */
 .video-container {
     max-width: 100% !important;
@@ -116,7 +112,6 @@ p, li, a, span, div {
     ) !important;
     border-right: 3px solid var(--pencil-brown) !important;
     box-shadow: 4px 0 0 rgba(160, 128, 96, 0.1) !important;
-    position: relative;
 }
 
 /* Sketchy border effect using pseudo-element */
